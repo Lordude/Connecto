@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+
     return 'Connecto!!';
+
+    return 'Connecto sur la main!!!';
+
 });
 
 Route::get('/test', function () {
