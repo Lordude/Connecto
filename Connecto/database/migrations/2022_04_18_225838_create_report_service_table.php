@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('states', function (Blueprint $table) {
-            $table->id();
-            $table->name();
-            $table->image();
+        Schema::create('report_service', function (Blueprint $table) {
+            $table->foreignId('report_id');
+            $table->foreignId('service_id');
+            $table->primary(['report_id', 'service_id']);
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('etats');
+        Schema::dropIfExists('report_service');
     }
 };

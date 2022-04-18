@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('incident_service', function (Blueprint $table) {
-            $table->incident_id();
-            $table->service_id();
-            $table->primary(['incident_id'], ['service_id']);
+        Schema::create('states', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->text('description');
+            $table->string('image');
+            $table->timestamps();
         });
     }
 
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('incident_service');
+        Schema::dropIfExists('states');
     }
 };
