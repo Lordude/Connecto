@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return 'Connecto!!';
 });
+
+Route::get('/test', function () {
+    return 'Leviosa';
+});
