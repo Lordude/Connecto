@@ -15,12 +15,13 @@ return new class extends Migration
     {
         Schema::create('incidents', function (Blueprint $table) {
             $table->id();
-            $table->date_debut();
-            $table->date_fin();
-            $table->commentaire();
-            $table->id_user();
-            $table->etat_incident_id();
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->mediumText('commentary');
+            $table->foreignId('state_id')->constrained('states');
+            $table->foreignId('id_user')->constrained('users');
             $table->timestamps();
+
         });
     }
 
