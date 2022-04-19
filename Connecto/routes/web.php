@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,16 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+
+Route::prefix('home')->name('home.')->group(function() {
+    Route::redirect('/', 'home');
+    Route::resource('home', HomeController::class);
+});
+
+Route::prefix('admin')->name('admin.')->group(function() {
+    Route::redirect('/', 'admin/services');
+    Route::resource('services', Admin\ServiceController::class);
+});
 
 
 
