@@ -11,6 +11,6 @@ class HomeController extends Controller
     {
         $services = Service::all();
 
-        return view('home.services.index', ['services' => $services]);
+        return view('home.index', ['services' => $services]);
     }
 }
