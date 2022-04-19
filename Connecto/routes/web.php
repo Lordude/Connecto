@@ -27,6 +27,3 @@ Route::prefix('admin')->name('admin.')->group(function() {
     Route::resource('services', Admin\ServiceController::class);
 });
 
-
-
-
