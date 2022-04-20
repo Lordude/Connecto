@@ -1,10 +1,10 @@
 
 <div class="mb-3">
     <label for="name" class="form-label">Nom </label>
-    <input id="name" name="name" type="text" value="{{ old('name', $product->name) }}" class="form-control @error('name') is-invalid @enderror">
+    <input id="name" name="name" type="text" value="name" class="form-control 
    
     <label for="name" class="form-label">Nom </label>
-    <input id="name" name="name" type="text" value="{{ old('name', $product->name) }}" class="form-control @error('name') is-invalid @enderror">
+    <input id="name" name="name" type="text" value="name" class="form-control ">
   
    
   </div>
