@@ -23,6 +23,10 @@ return new class extends Migration
             $table->primary(['report_id', 'service_id']);
             $table->timestamps();
         });
+
+        Artisan::call('db:seed', [
+            '--class' => 'ReportServiceSeeder'
+        ]);
     }
 
     /**

@@ -29,6 +29,10 @@ return new class extends Migration
             ->onDelete('cascade');
 
         });
+
+        Artisan::call('db:seed', [
+            '--class' => 'UserSeeder'
+        ]);
     }
 
     /**

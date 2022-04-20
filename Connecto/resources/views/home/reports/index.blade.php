@@ -1,12 +1,13 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Accueil')
+@section('title', 'Signaler une panne')
 
 @section('content')
-    <h1>Service</h1>
-    <a href="#" class="nav navbar-nav navbar-left">Accès home</a>
-   
-        @if($services->count() > 0)
+
+    <h1>Signaler une panne</h1>
+
+
+        @if($reports->count() > 0)
             <table class="table">
                 <thead>
                     <th>Nom du service</th>
@@ -16,8 +17,8 @@
                     @foreach ($services as $service)
                         <tr>
                             <td> {{$service->name}} </td>
-                            <td><a href="{{route('admin.services.edit', ['service' => $service]) }}">Modifier </a> </td>
-                            <td><form method="POST" action="{{ route('admin.services.destroy', ['service' => $service]) }}" class="mb-0">
+                            <td><a href="{{route('home.report.edit', ['report' => $report]) }}">Modifier </a> </td>
+                            <td><form method="POST" action="{{ route('home.report.destroy', ['report' => $report]) }}" class="mb-0">
                                 @csrf
                                 @method('DELETE')
 
@@ -29,9 +30,9 @@
                 </tbody>
             </table>
         @else
-            <p> Aucun produit à afficher pour le moment ! </p>
+            <p> Votre système epprouve des difficultés remplissez ce formualaire et on vous aidera ! </p>
         @endif
 
-    <a href="{{ route('admin.services.create') }}">Ajouter un service </a>
+    <a href="{{ route('home.reports.create') }}">Formulaire </a>
 
 @endsection
