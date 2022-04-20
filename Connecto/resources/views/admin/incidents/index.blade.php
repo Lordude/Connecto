@@ -10,9 +10,27 @@
 
     <button type="button" class="btn btn-warning">Créer un incident</button>
     <div>
-<h3>Nouvel incident</h3>
-<p>Choisir l'état des services affectés</p>
+        {{-- quand on clic sur 'créer un incident' le formulaire ci-dessous apparait --}}
+        <h3>Nouvel incident</h3>
+        <p>Choisir le services affectés</p>
+        <select name="incident">
+            <?php
+            foreach ($incidents as $incident) {
+                echo '<option value="' . $incident . '">' . $incident . '</option>';
+            }
+            ?>
+        </select>
+        <p>Choisir l'état services affectés</p>
+        <select name="service">
+            <?php
+            foreach ($services as $incident) {
+                echo '<option value="' . $incident . '">' . $incident . '</option>';
+            }
+            ?>
+        </select>
     </div>
+
+    {{-- vue des incidents en cours --}}
     <table class="table">
         <thead>
             <th>Incident</th>
@@ -28,7 +46,7 @@
             <td>/</td>
             <td>/</td>
             <td>/</td>
-            <td><button type="button" class="btn btn-warning">Modifier un incident</button></td>
+            <td><button type="button" class="btn btn-warning">Modifier l'incident</button></td>
         </tr>
     </table>
 
