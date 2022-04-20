@@ -55,7 +55,7 @@ class ServiceController extends Controller
     {
         Service::destroy($id);
 
-        return redirect()->route('admin.services.index')->with('success', 'Le produit a été supprimé.');;
+        return redirect()->route('admin.services.index')->with('success', 'Le service a été supprimé.');;
     }
 
 
