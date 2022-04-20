@@ -4,7 +4,7 @@
 
 @section('content')
     <h1>Services Connecto</h1>
-    <a href="{{ route('admin.services.index') }}" class="nav navbar-nav navbar-left">Accès admin</a>
+    <a href="{{ route('admin.services.index') }}" class="nav navbar-nav navbar-left">Accès admin Service</a>
 
     @if($services->count() > 0)
         <table class="table">
