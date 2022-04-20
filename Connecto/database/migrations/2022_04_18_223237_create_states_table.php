@@ -20,6 +20,10 @@ return new class extends Migration
             $table->string('image');
             $table->timestamps();
         });
+
+        Artisan::call('db:seed', [
+            '--class' => 'StateSeeder'
+        ]);
     }
 
     /**
