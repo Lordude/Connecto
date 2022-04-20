@@ -3,6 +3,7 @@
 @section('title', 'Ajouter un service')
 
 @section('content')
+
     <h1>Ajouter un service</h1>
 
     <form method="POST" action="{{ route('admin.services.store') }}">

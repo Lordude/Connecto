@@ -30,9 +30,9 @@
                 </tbody>
             </table>
         @else
-            <p> Clic au besoin ! </p>
+            <p> Votre système epprouve des difficultés remplissez ce formualaire et on vous aidera ! </p>
         @endif
 
-    <a href="{{ route('home.reports.create') }}">Signaler une panne </a>
+    <a href="{{ route('home.reports.create') }}">Formulaire </a>
 
 @endsection
