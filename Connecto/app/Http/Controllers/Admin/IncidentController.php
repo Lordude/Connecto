@@ -21,4 +21,42 @@ class IncidentController extends Controller
             'product' => new Product,
         ]);
     }
+
+    public function store(Request $request)
+    {
+
+        $incident = new Incident;
+
+        $validated = $request->validated();
+
+        $incident->service = $validated['service'];
+        $incident->state = $validated['state'];
+        $incident->description = $validated['description'];
+
+        $incident->save();
+
+        return redirect()->route('admin.incidents.index')->with('success', 'L\'incident a été créé!');
+    }
+
+    public function edit($id)
+    {
+        $incident = Incident::findOrFail($id);
+
+        return view('admin.incidents.edit', ['incident' => $incident]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $incident = Incident::findOrFail($id);
+
+        $validated = $request->validated();
+
+        $incident->service = $validated['service'];
+        $incident->state = $validated['state'];
+        $incident->description = $validated['description'];
+
+        $incident->save();
+
+        return redirect()->route('admin.incidents.index')->with('success', 'L\'incident a été modifié!');
+    }
 }
