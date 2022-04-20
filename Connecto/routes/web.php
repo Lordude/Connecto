@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Admin;
+use App\Http\Controllers\ReportController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +30,12 @@ Route::prefix('admin')->name('admin.')->group(function() {
     Route::redirect('/', '/admin/incidents');
     Route::resource('incidents', Admin\IncidentController::class);
 });
+
+Route::prefix('admin')->name('admin.')->group(function() {
+    Route::redirect('/', 'admin/reports');
+    Route::resource('reports', Admin\ReportController::class);
+   Route::resource('reports.report_options', Admin\ReportController::class)->only(['create', 'store']);
+	Route::resource('categories', Admin\ReportController::class)->except('show');
+});
+
 
