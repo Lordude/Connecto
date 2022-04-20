@@ -8,23 +8,24 @@
   
    
   </div>
-  
-  <div class="dropdown">
-    <button onclick="myFunction()" class="dropbtn">services</button>
-    <div id="myDropdown" class="dropdown-content">
-      <a href="#">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
-    </div>
-  </div>
-  <div class="dropdown">
-    <button onclick="myFunction()" class="dropbtn">incidents</button>
-    <div id="myDropdown" class="dropdown-content">
-      <a href="#">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
-    </div>
-  </div>
+  <label for="services">Choisir un service:</label>
+<select name="services" id="services">
+    <option value="rigatoni">Rigatoni</option>
+  <option value="dave">Dave</option>
+  <option value="pumpernickel">Pumpernickel</option>
+  <option value="reeses">Reeses</option>
+</select>
+
+<label for="incident">Choisir un incident:</label>
+<select name="incident" id="incident">
+    <option value="rigatoni">Rigatoni</option>
+  <option value="dave">Dave</option>
+  <option value="pumpernickel">Pumpernickel</option>
+  <option value="reeses">Reeses</option>
+</select>
+
+
+
 
               <div class="mb-3">
                 <label for="détail" class="form-label">Détails supplémentaires</label>
@@ -36,4 +37,9 @@
                     </span>
                 @enderror
               </div>
-             
+              <button type="button" class="btn btn-warning">Envoyer</button></td>
+              <button type="button" class="btn btn-warning">Effacer</button></td>
+            </tr>
+        </table>
+    
+      

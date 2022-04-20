@@ -1,9 +1,12 @@
-@extends('layouts.admin.app')
+@extends('layouts.admin.incidents.app')
 
-@section('title', 'Signalement')
+@section('title', 'Incidents')
 
 @section('content')
-  <h1>Signalement</h1>
+
+    <h1><img style="width: 200px" src="{{ asset('image/RectangleText.png') }}"></h1>
+
+  <h3>Signalement</h3>
 
   <div class="row">
     
