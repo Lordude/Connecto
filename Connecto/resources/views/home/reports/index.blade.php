@@ -1,4 +1,4 @@
-@extends('layouts.admin.app')
+@extends('layouts.home.app')
 
 @section('title', 'Signaler une panne')
 
@@ -16,8 +16,8 @@
                     @foreach ($services as $service)
                         <tr>
                             <td> {{$service->name}} </td>
-                            <td><a href="{{route('admin.report.edit', ['report' => $report]) }}">Modifier </a> </td>
-                            <td><form method="POST" action="{{ route('admin.report.destroy', ['report' => $report]) }}" class="mb-0">
+                            <td><a href="{{route('home.report.edit', ['report' => $report]) }}">Modifier </a> </td>
+                            <td><form method="POST" action="{{ route('home.report.destroy', ['report' => $report]) }}" class="mb-0">
                                 @csrf
                                 @method('DELETE')
 
@@ -32,6 +32,6 @@
             <p> Clic au besoin ! </p>
         @endif
 
-    <a href="{{ route('admin.reports.create') }}">Signaler une panne </a>
+    <a href="{{ route('home.reports.create') }}">Signaler une panne </a>
 
 @endsection

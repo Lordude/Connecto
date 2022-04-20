@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Report;
@@ -17,7 +17,7 @@ class ReportController extends Controller
     {
         $reports = Report::all();
 
-        return view('admin.reports.index', ['reports' => $reports]);
+        return view('home.reports.index', ['reports' => $reports]);
     }
 
 
@@ -30,7 +30,7 @@ class ReportController extends Controller
     {
         $reports = new Report;
 
-        return view('admin.reports.create', ['report' => $reports]);
+        return view('home.reports.create', ['report' => $reports]);
     }
 
     /**
@@ -45,7 +45,7 @@ class ReportController extends Controller
             'name' => ['required'],
         ]));
 
-        return redirect()->route('admin.reports.index')->withSuccess('Le signalement a été créée');
+        return redirect()->route('home.reports.index')->withSuccess('Le signalement a été créée');
     }
 
     /**
@@ -58,7 +58,7 @@ class ReportController extends Controller
     {
         $reports = Report::findOrFail($id);
 
-        return view('admin.reports.edit', ['Report' => $reports]);
+        return view('home.reports.edit', ['Report' => $reports]);
     }
 
    
@@ -72,14 +72,14 @@ class ReportController extends Controller
     {
         Report::findOrFail($id)->delete();
 
-        return redirect()->route('admin.reports.index');
+        return redirect()->route('home.reports.index');
     }
 
     public function show($id)
     {
         $report = Report::findOrFail($id);
 
-        return view('admin.reports.show', [
+        return view('home.reports.show', [
             'report' => $report,
             'report_options' => $report->report_options()->get()
         ]);

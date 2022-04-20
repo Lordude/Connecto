@@ -1,4 +1,4 @@
-@extends('layouts.admin.app')
+@extends('layouts.home.app')
 
 @section('title', 'Ajouter un produit')
 
@@ -7,10 +7,10 @@
 
   <div class="row">
     <div class="col-6 col-lg-6">
-      <form method="POST" action="{{ route('admin.report.store') }}">
+      <form method="POST" action="{{ route('home.report.store') }}">
         @csrf
 
-        @include('admin.report.partials.form')
+        @include('home.report.partials.form')
 
       </form>
     </div>

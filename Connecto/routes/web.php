@@ -31,11 +31,11 @@ Route::prefix('admin')->name('admin.')->group(function() {
     Route::resource('incidents', Admin\IncidentController::class);
 });
 
-Route::prefix('admin')->name('admin.')->group(function() {
-    Route::redirect('/', 'admin/reports');
-    Route::resource('reports', Admin\ReportController::class);
-   Route::resource('reports.report_options', Admin\ReportController::class)->only(['create', 'store']);
-	Route::resource('categories', Admin\ReportController::class)->except('show');
+Route::prefix('home')->name('home.')->group(function() {
+    Route::redirect('/', 'home/reports');
+    Route::resource('reports', Home\ReportController::class);
+   Route::resource('reports.report_options', Home\ReportController::class)->only(['create', 'store']);
+	Route::resource('reports', Home\ReportController::class)->except('show');
 });
 
 

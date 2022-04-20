@@ -5,6 +5,7 @@
 @section('content')
     <h1>Services Connecto</h1>
     <a href="{{ route('admin.services.index') }}" class="nav navbar-nav navbar-left">Accès admin Service</a>
+    <a href="{{route('home.reports.index')}}" class="nav navbar-nav navbar-left">Signalement </a>
 
     @if($services->count() > 0)
         <table class="table">
