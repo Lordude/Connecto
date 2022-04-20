@@ -1,10 +1,10 @@
 
 <div class="mb-3">
     <label for="name" class="form-label">Nom </label>
-    <input id="name" name="name" type="text" value="name" class="form-control 
+    <input id="name" name="name" type="text" value="" class="form-control 
    
-    <label for="name" class="form-label">Nom </label>
-    <input id="name" name="name" type="text" value="name" class="form-control ">
+    <label for="courriel" class="form-label"> Courriel </label>
+    <input id="courriel" name="courriel" type="text" value="" class="form-control ">
   
    
   </div>

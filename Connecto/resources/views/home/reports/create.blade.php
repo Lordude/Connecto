@@ -1,9 +1,9 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Ajouter un signalement')
+@section('title', 'Signalement')
 
 @section('content')
-  <h1>Ajouter un signalement</h1>
+  <h1>Signalement</h1>
 
   <div class="row">
     
