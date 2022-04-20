@@ -33,9 +33,9 @@ Route::prefix('admin')->name('admin.')->group(function() {
 
 Route::prefix('home')->name('home.')->group(function() {
     Route::redirect('/', 'home/reports');
-    Route::resource('reports', Home\ReportController::class);
-   Route::resource('reports.report_options', Home\ReportController::class)->only(['create', 'store']);
-	Route::resource('reports', Home\ReportController::class)->except('show');
+    Route::resource('reports', ReportController::class);
+   Route::resource('reports.report_options', ReportController::class)->only(['create', 'store']);
+	Route::resource('reports', ReportController::class)->except('show');
 });
 
 

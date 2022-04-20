@@ -1,8 +1,9 @@
-@extends('layouts.home.app')
+@extends('layouts.admin.app')
 
 @section('title', 'Signaler une panne')
 
 @section('content')
+
     <h1>Signaler une panne</h1>
 
 
