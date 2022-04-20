@@ -23,9 +23,7 @@
         <p>Choisir l'état services affectés</p>
         <select name="service">
             <?php
-            foreach ($services as $incident) {
-                echo '<option value="' . $incident . '">' . $incident . '</option>';
-            }
+            
             ?>
         </select>
     </div>
