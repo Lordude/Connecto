@@ -14,11 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('incident_service', function (Blueprint $table) {
-            $table->foreignId('state_id');
             $table->foreignId('incident_id');
-            $table->primary(['state_id', 'incident_id']);
+            $table->foreignId('service_id');
+            $table->primary(['incident_id', 'service_id']);
             $table->timestamps();
         });
+
+        Artisan::call('db:seed', [
+            '--class' => 'IncidentServiceSeeder'
+        ]);
     }
 
     /**

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->date('start_date');
             $table->date('end_date')->nullable();
-            $table->mediumText('commentary');
+            $table->mediumText('commentary')->nullable();
             $table->timestamps();
 
             $table->foreignId('user_id')
@@ -27,6 +27,10 @@ return new class extends Migration
                     ->constrained()
                     ->onDeletE('cascade');
         });
+
+        Artisan::call('db:seed', [
+            '--class' => 'IncidentSeeder'
+        ]);
     }
 
     /**

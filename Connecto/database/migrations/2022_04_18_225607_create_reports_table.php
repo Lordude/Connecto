@@ -21,6 +21,10 @@ return new class extends Migration
             $table->date('date');
             $table->timestamps();
         });
+
+        Artisan::call('db:seed', [
+            '--class' => 'ReportSeeder'
+        ]);
     }
 
     /**
