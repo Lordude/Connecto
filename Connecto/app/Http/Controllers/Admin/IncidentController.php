@@ -3,22 +3,38 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Incident;
 use Illuminate\Http\Request;
+use App\Models\Incident;
+use App\Models\Service;
+use App\Models\State;
 
 class IncidentController extends Controller
 {
     public function index()
     {
         $incidents = Incident::all();
+        $services = Service::all();
+        $states = State::all();
 
-        return view('admin.incidents.index', ['incidents' => $incidents]);
+        return view('admin.incidents.index',['services' => $services], ['incidents' => $incidents], ['states' => $states]);
+
+    }
+    public function show($id)
+    {
+        $incident = Incident::findOrFail($id);
+
+        return view('admin.incidents.show', [
+            'incident' => $incident,
+        ]);
     }
 
     public function create()
     {
         return view('admin.incidents.index', [
-            'product' => new Product,
+            'incidents' => new Incident,
+            'services' => Service::all(),
+            'states' => State::all(),
+            'selected_incidents' => Array(),
         ]);
     }
 
@@ -26,12 +42,11 @@ class IncidentController extends Controller
     {
 
         $incident = new Incident;
+        $service = new Service;
 
-        $validated = $request->validated();
-
-        $incident->service = $validated['service'];
-        $incident->state = $validated['state'];
-        $incident->description = $validated['description'];
+        $service->id = $request->id;
+        // $state->id = $request->id;
+        // $incident->commentary = $request->commentary;
 
         $incident->save();
 
