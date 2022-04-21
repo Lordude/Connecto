@@ -26,9 +26,10 @@ Route::prefix('home')->name('home.')->group(function () {
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::redirect('/', 'admin/services');
-    Route::resource('services', Admin\ServiceController::class);
     Route::redirect('/', '/admin/incidents');
+    Route::resource('services', Admin\ServiceController::class);
     Route::resource('incidents', Admin\IncidentController::class);
+    Route::resource('states', Admin\StateController::class);
 });
 
 Route::prefix('home')->name('home.')->group(function () {
