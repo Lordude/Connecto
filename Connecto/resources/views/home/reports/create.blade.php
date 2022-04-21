@@ -16,7 +16,9 @@
         @csrf
 
         @include('home.reports.partials.form')
-
+        <input type="submit" value="Envoyer" class="btn btn-primary">
+        <a href="{{ route('home.reports.index') }}" class="btn btn-secondary"> Retour </a>
+    
       </form>
     </div>
   </div>
