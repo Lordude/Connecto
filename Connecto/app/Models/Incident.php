@@ -12,15 +12,18 @@ class Incident extends Model
     use HasFactory;
     public $timestamps = false;
 
-   /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
+        'commentary',
         'start_date',
         'end_date',
-        'commentary',
+        'user_id',
+        'state_id',
     ];
 
     public function services()
@@ -33,7 +36,7 @@ class Incident extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function state()
+    public function states()
     {
         return $this->belongsToMany(State::class);
     }
