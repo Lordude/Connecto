@@ -13,11 +13,11 @@ class IncidentController extends Controller
     public function index()
     {
         $incidents = Incident::all();
-        $services = Service::all();
-        $states = State::all();
 
-        return view('admin.incidents.index',['services' => $services], ['incidents' => $incidents], ['states' => $states]);
-
+        return view(
+            'admin.incidents.index',
+            ['incidents' => $incidents]
+        );
     }
     public function show($id)
     {
@@ -25,6 +25,7 @@ class IncidentController extends Controller
 
         return view('admin.incidents.show', [
             'incident' => $incident,
+            'services' => $incident->service()->get()
         ]);
     }
 
@@ -34,13 +35,13 @@ class IncidentController extends Controller
             'incidents' => new Incident,
             'services' => Service::all(),
             'states' => State::all(),
-            'selected_incidents' => Array(),
+            // 'selected_incidents' => Array(),
         ]);
     }
 
     public function store(Request $request)
     {
-
+        // a modifier...
         $incident = new Incident;
         $service = new Service;
 
