@@ -22,45 +22,64 @@
                         <label for="services">Service affecté</label>
                         <select name="services" id="services">
                             <option value="" selected="selected" disabled>choisir</option>
-                            <?php foreach ($services as $service){ ?>
-                                <option value="<?= $service['id']; ?>"><?= $service['name']; ?></option>
+                            <?php
+                            use App\Models\Service;
+                            $services = Service::all();
+                            foreach ($services as $service){ ?>
+                            <option value="<?= $service['id'] ?>"><?= $service['name'] ?></option>
                             <?php } ?>
                         </select>
-
-                    {{-- <div class="mb-3">
-                        <label for="states">État du service</label>
-                        <select name="states" id="states">
-                            <option value="" selected="selected" disabled>choisir</option>
-                            <?php foreach ($states as $state){ ?>
-                                <option value="<?= $state['id']; ?>"><?= $state['name'], $state['description'], $state['image']; ?></option>
-                            <?php } ?>
-                        </select> --}}
-
-
-                    <input type="submit" value="sauvegarder" class="btn btn-primary">
-                    <a href="{{ route('admin.incidents.index') }}" class="btn btn-secondary">Retour</a>
+                        <hr />
+                        <div class="mb-3">
+                            <label for="states">État du service</label>
+                            <select name="states" id="states">
+                                <option value="" selected="selected" disabled>choisir</option>
+                                <?php
+                            use App\Models\State;
+                            $states = State::all();
+                            foreach ($states as $state){ ?>
+                                <option value="<?= $state['id'] ?>"><?= $state['name'] ?></option>
+                                <?php } ?>
+                            </select>
+                            <hr />
+                            <input type="submit" value="créer le nouvel incident" class="btn btn-primary">
+                            <a href="{{ route('admin.incidents.index') }}" class="btn btn-secondary">Annuler</a>
                 </form>
             </div>
         </div>
     </div>
-        {{-- vue des incidents en cours --}}
-        <table class="table">
-            <thead>
-                <th>Incident</th>
-                <th>Service affecté</th>
-                <th>État</th>
-                <th>Date de début</th>
-                <th>Dure depuis</th>
-                <th>Option</th>
-            </thead>
-            <tr>
-                <td>/</td>
-                <td>/</td>
-                <td>/</td>
-                <td>/</td>
-                <td>/</td>
-                <td><button type="button" class="btn btn-warning">Modifier l'incident</button></td>
-            </tr>
-        </table>
+    {{-- vue des incidents en cours --}}
+    <table class="table">
+        <thead>
+            <h2>Incidents</h2>
 
-    @endsection
+            <th>Service affecté</th>
+            <th>État</th>
+            <th>Description</th>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th>Option</th>
+        </thead>
+        <tbody>
+
+            @foreach ($incidents as $incident)
+                <tr>
+                    <td>/</td>
+                    {{-- <td>{{ $service->name }}</td> --}}
+                    <td>{{ $incident->state_id }}</td>
+                    <td>{{ $incident->description }}</td>
+                    <td>{{ $incident->start_date }}</td>
+                    <td>{{ $incident->end_date }}</td>
+                    <td>
+                        <button type="button" class="btn btn-warning"><a
+                                href="{{ route('admin.incidents.index', ['incident' => $incident]) }}"
+                                class="btn btn-link">Modifier</a></button>
+                        {{-- en cliquant sur modifier, le formulaire va devenir éditable --}}
+                    </td>
+            @endforeach
+            </tr>
+
+        </tbody>
+    </table>
+
+@endsection
