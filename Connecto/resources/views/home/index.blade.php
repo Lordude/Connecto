@@ -4,6 +4,7 @@
 
 @section('content')
     <h1>Services Connecto</h1>
+    <h2> uptime() </h2>
     <a href="{{ route('admin.services.index') }}" class="nav navbar-nav navbar-left">Accès admin Service</a>
     <a href="{{route('home.reports.index')}}"  <button type="button" class="btn btn-warning">Signaler une panne</button></a> 
     @if($services->count() > 0)
@@ -16,6 +17,12 @@
                 @foreach ($services as $service)
                     <tr>
                         <td>{{ $service->name}} </td>
+                        <td>{{ $service->incident}}</td>
+                        <td> {{ $service->get_service_state($service->id)->first()->name;}} </td>
+                        <td> {{ $service->get_service_description($service->id)->first()->description;}} </td>
+                        <td> <img src="{{ asset('image/{{$service->get_service_image($service->id)') }}"></td>
+
+
                     </tr>
                 @endforeach
             </tbody>
