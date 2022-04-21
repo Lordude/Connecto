@@ -25,7 +25,7 @@ return new class extends Migration
             ->onDelete('cascade');
             $table->foreignId('state_id')
                     ->constrained()
-                    ->onDeletE('cascade');
+                    ->onDelete('cascade');
         });
 
         Artisan::call('db:seed', [
