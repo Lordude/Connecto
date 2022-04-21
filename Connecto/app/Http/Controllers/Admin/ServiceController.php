@@ -36,7 +36,6 @@ class ServiceController extends Controller
         $service->save();
 
         return redirect()->route('admin.services.index')->with('success', 'Le service a été créé ! ');
-
     }
 
     public function store(Request $request)
@@ -48,15 +47,12 @@ class ServiceController extends Controller
         $service->save();
 
         return redirect()->route('admin.services.index')->with('success', 'Le service a été créé ! ');
-
     }
 
     public function destroy(Request $request, $id)
     {
         Service::destroy($id);
 
-        return redirect()->route('admin.services.index')->with('success', 'Le service a été supprimé.');;
+        return redirect()->route('admin.services.index')->with('success', 'Le produit a été supprimé.');;
     }
-
-
 }
