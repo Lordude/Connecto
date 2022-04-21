@@ -12,43 +12,40 @@ class StateController extends Controller
     {
         $states = State::all();
 
-        return view('admin.services.index', ['states' => $states]);
+        return view('admin.incidents.index', ['states' => $states]);
     }
 
-    // public function create()
-    // {
-    //     return view('admin.states.create');
-    // }
+    public function create()
+    {
+        return view('admin.states.index');
+    }
 
-    // public function edit($id)
-    // {
-    //     $state = State::findOrFail($id);
+    public function edit($id)
+    {
+        $state = State::findOrFail($id);
 
-    //     return view('admin.states.edit', ['service' => $state]);
-    // }
+        return view('admin.incidents.index', ['service' => $state]);
+    }
 
-    // public function update(Request $request, $id)
-    // {
-    //     $state = State::findOrFail($id);
+    public function update(Request $request, $id)
+    {
+        $state = State::findOrFail($id);
 
-    //     $state->name = $request->name;
+        $state->name = $request->name;
 
-    //     $state->save();
+        $state->save();
 
-    //     return redirect()->route('admin.states.index')->with('success', 'L\état a été créé ! ');
+        return redirect()->route('admin.incidents.index')->with('success', 'L\état a été créé ! ');
+    }
 
-    // }
+    public function store(Request $request)
+    {
+        $state = new State;
 
-    // public function store(Request $request)
-    // {
-    //     $state = new State;
+        $state->name = $request->name;
 
-    //     $state->name = $request->name;
+        $state->save();
 
-    //     $state->save();
-
-    //     return redirect()->route('admin.states.index')->with('success', 'L\état a été créé ! ');
-
-    // }
-
+        return redirect()->route('admin.incidents.index')->with('success', 'L\état a été créé ! ');
+    }
 }
