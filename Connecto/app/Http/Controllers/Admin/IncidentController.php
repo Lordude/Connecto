@@ -35,19 +35,19 @@ class IncidentController extends Controller
             'incidents' => new Incident,
             'services' => Service::all(),
             'states' => State::all(),
-            // 'selected_incidents' => Array(),
+            'selected_incidents' => Array(),
         ]);
     }
 
     public function store(Request $request)
     {
-        // a modifier...
-        $incident = new Incident;
-        $service = new Service;
 
-        $service->id = $request->id;
-        // $state->id = $request->id;
-        // $incident->commentary = $request->commentary;
+        $incident = new Incident;
+        $incident->description = $request->description;
+        $incident->start_date = $request->start_date;
+        $incident->end_date = $request->end_date;
+        $incident->services()->sync($request->services);
+        $incident->categories()->sync($request->categories);
 
         $incident->save();
 
@@ -57,19 +57,28 @@ class IncidentController extends Controller
     public function edit($id)
     {
         $incident = Incident::findOrFail($id);
+        $services = Service::all();
+        $selected_services= $incident->services->pluck('id')->toArray();
+        $states = State::all();
+        $selected_states= $incident->states->pluck('id')->toArray();
 
-        return view('admin.incidents.edit', ['incident' => $incident]);
+        return view('admin.incidents.edit', ['incident' => $incident,
+            'services' => $services,
+            'selected_services' => $selected_services,
+            'states' => $states,
+            'selected_states' => $selected_states,]);
+
     }
 
     public function update(Request $request, $id)
     {
         $incident = Incident::findOrFail($id);
 
-        $validated = $request->validated();
-
-        $incident->service = $validated['service'];
-        $incident->state = $validated['state'];
-        $incident->description = $validated['description'];
+        $incident->description = $request->description;
+        $incident->start_date = $request->start_date;
+        $incident->end_date = $request->end_date;
+        $incident->services()->sync($request->services);
+        $incident->categories()->sync($request->categories);
 
         $incident->save();
 
