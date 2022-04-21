@@ -20,8 +20,8 @@ class Service extends Model
         'name',
     ];
 
-    public function incident()
+    public function incidents()
     {
-        return $this->hasMany(Incident::class);
+        return $this->belongsToMany(Incident::class);
     }
 }

@@ -13,10 +13,14 @@ class IncidentController extends Controller
     public function index()
     {
         $incidents = Incident::all();
+        $states = State::all();
+        $services = Service::all();
 
         return view(
             'admin.incidents.index',
-            ['incidents' => $incidents]
+            ['incidents' => $incidents],
+            ['services' => $services],
+            ['states' => $states]
         );
     }
     public function show($id)
@@ -35,7 +39,7 @@ class IncidentController extends Controller
             'incidents' => new Incident,
             'services' => Service::all(),
             'states' => State::all(),
-            'selected_incidents' => Array(),
+            'incident_service' => array(),
         ]);
     }
 
@@ -46,8 +50,11 @@ class IncidentController extends Controller
         $incident->description = $request->description;
         $incident->start_date = $request->start_date;
         $incident->end_date = $request->end_date;
+        $incident->save();
+
+
         $incident->services()->sync($request->services);
-        $incident->categories()->sync($request->categories);
+        $incident->states()->sync($request->categories);
 
         $incident->save();
 
@@ -58,16 +65,17 @@ class IncidentController extends Controller
     {
         $incident = Incident::findOrFail($id);
         $services = Service::all();
-        $selected_services= $incident->services->pluck('id')->toArray();
+        $selected_services = $incident->services->pluck('id')->toArray();
         $states = State::all();
-        $selected_states= $incident->states->pluck('id')->toArray();
+        $selected_states = $incident->states->pluck('id')->toArray();
 
-        return view('admin.incidents.edit', ['incident' => $incident,
+        return view('admin.incidents.edit', [
+            'incident' => $incident,
             'services' => $services,
             'selected_services' => $selected_services,
             'states' => $states,
-            'selected_states' => $selected_states,]);
-
+            'selected_states' => $selected_states,
+        ]);
     }
 
     public function update(Request $request, $id)
