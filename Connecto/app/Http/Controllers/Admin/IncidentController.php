@@ -7,20 +7,23 @@ use Illuminate\Http\Request;
 use App\Models\Incident;
 use App\Models\Service;
 use App\Models\State;
+use App\Models\User;
 
 class IncidentController extends Controller
 {
     public function index()
     {
         $incidents = Incident::all();
-        $states = State::all();
         $services = Service::all();
+        $states = State::all();
+        $users = User::all();
 
         return view(
             'admin.incidents.index',
             ['incidents' => $incidents],
             ['services' => $services],
-            ['states' => $states]
+            ['states' => $states],
+            ['users' => $users]
         );
     }
     public function show($id)
@@ -29,7 +32,7 @@ class IncidentController extends Controller
 
         return view('admin.incidents.show', [
             'incident' => $incident,
-            'services' => $incident->service()->get()
+            'services' => $incident->services()->get()
         ]);
     }
 
@@ -39,6 +42,7 @@ class IncidentController extends Controller
             'incidents' => new Incident,
             'services' => Service::all(),
             'states' => State::all(),
+            'users' => User::all(),
             'incident_service' => array(),
         ]);
     }
@@ -47,14 +51,13 @@ class IncidentController extends Controller
     {
 
         $incident = new Incident;
-        $incident->description = $request->description;
-        $incident->start_date = $request->start_date;
-        $incident->end_date = $request->end_date;
+        $incident->commentary = $request->commentary;
+        $incident->start_date = $request->date;
+        $incident->user_id = User::first()->id;
+        $incident->state_id = $request->state;
         $incident->save();
 
-
         $incident->services()->sync($request->services);
-        $incident->states()->sync($request->categories);
 
         $incident->save();
 
@@ -81,12 +84,13 @@ class IncidentController extends Controller
     public function update(Request $request, $id)
     {
         $incident = Incident::findOrFail($id);
-
-        $incident->description = $request->description;
+//a modifier
+        $incident->commentary = $request->commentary;
         $incident->start_date = $request->start_date;
         $incident->end_date = $request->end_date;
         $incident->services()->sync($request->services);
         $incident->categories()->sync($request->categories);
+        $incident->users()->sync($request->users);
 
         $incident->save();
 
