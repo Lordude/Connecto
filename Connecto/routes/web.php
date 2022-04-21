@@ -19,23 +19,21 @@ use App\Http\Controllers\ReportController;
 
 Route::get('/', [HomeController::class, 'index']);
 
-Route::prefix('home')->name('home.')->group(function() {
+Route::prefix('home')->name('home.')->group(function () {
     Route::redirect('/', 'home');
     Route::resource('home', HomeController::class);
 });
 
-Route::prefix('admin')->name('admin.')->group(function() {
+Route::prefix('admin')->name('admin.')->group(function () {
     Route::redirect('/', 'admin/services');
     Route::resource('services', Admin\ServiceController::class);
     Route::redirect('/', '/admin/incidents');
     Route::resource('incidents', Admin\IncidentController::class);
 });
 
-Route::prefix('home')->name('home.')->group(function() {
+Route::prefix('home')->name('home.')->group(function () {
     Route::redirect('/', 'home/reports');
     Route::resource('reports', ReportController::class);
-   Route::resource('reports.report_options', ReportController::class)->only(['create', 'store']);
-	Route::resource('reports', ReportController::class)->except('show');
+    Route::resource('reports.report_options', ReportController::class)->only(['create', 'store']);
+    Route::resource('reports', ReportController::class)->except('show');
 });
-
-
