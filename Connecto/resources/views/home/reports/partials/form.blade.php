@@ -27,14 +27,7 @@
     <option value="Tableau de bord Connecto Pro">Tableau de bord Connecto Pro</option>
  
  
-</select>
 
-<label for="date">La date du moment que l"incident à commencé:</label>
-<select name="date" id="dates">
-    <option value="choisir">Choisir une date</option>
-  <option value="dave">Dave</option>
-  <option value="pumpernickel">Pumpernickel</option>
-  <option value="reeses">Reeses</option>
 </select>
 
               <div class="mb-3">
