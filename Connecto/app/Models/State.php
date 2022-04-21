@@ -10,7 +10,7 @@ use App\Models\Incident;
 class State extends Model
 {
     use HasFactory;
-    public $timestamps = false;
+ 
 
      /**
      * The attributes that are mass assignable.
@@ -23,7 +23,7 @@ class State extends Model
         'image',
     ];
 
-    public function incident()
+    public function incidents()
     {
         return $this->hasMany(Incident::class);
     }
