@@ -19,20 +19,19 @@
                     <h3>Nouvel incident</h3>
 
                     <div class="mb-3">
-                        <label for="services">Service affecté</label>
-                        <select name="services" id="services">
-                            <option value="" selected="selected" disabled>choisir</option>
-                            <?php
-                            use App\Models\Service;
-                            $services = Service::all();
-                            foreach ($services as $service){ ?>
-                            <option value="<?= $service['id'] ?>"><?= $service['name'] ?></option>
-                            <?php } ?>
-                        </select>
+                        <label for="services">Choisir les services affectés</label>
+
+                        @foreach ($services as $service)
+                            {
+                            <input type="checkbox" id="service" name="service"
+                                value="<?= $service['id'] ?>"><?= $service['name'] ?>
+                            }
+                        @endforeach
+
                         <hr />
                         <div class="mb-3">
                             <label for="states">État du service</label>
-                            <select name="states" id="states">
+                            <select name="state" id="states">
                                 <option value="" selected="selected" disabled>choisir</option>
                                 <?php
                             use App\Models\State;
@@ -42,6 +41,11 @@
                                 <?php } ?>
                             </select>
                             <hr />
+                            <input type="text" id="commentaries" name="commentary">
+                            <hr />
+                            <hr />
+                            <input type="date" id="date" name="date">
+
                             <input type="submit" value="créer le nouvel incident" class="btn btn-primary">
                             <a href="{{ route('admin.incidents.index') }}" class="btn btn-secondary">Annuler</a>
                 </form>
@@ -64,8 +68,7 @@
 
             @foreach ($incidents as $incident)
                 <tr>
-                    <td>/</td>
-                    {{-- <td>{{ $service->name }}</td> --}}
+                    <td>{{ $incident->services()->get() }}</td>
                     <td>{{ $incident->state_id }}</td>
                     <td>{{ $incident->description }}</td>
                     <td>{{ $incident->start_date }}</td>
