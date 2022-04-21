@@ -43,7 +43,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function incident()
+    public function incidents()
     {
         return $this->hasMany(Incident::class);
     }
