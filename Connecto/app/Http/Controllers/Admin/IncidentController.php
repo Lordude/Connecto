@@ -49,7 +49,6 @@ class IncidentController extends Controller
 
     public function store(Request $request)
     {
-
         $incident = new Incident;
         $incident->commentary = $request->commentary;
         $incident->start_date = $request->date;
@@ -58,6 +57,7 @@ class IncidentController extends Controller
         $incident->save();
 
         $incident->services()->sync($request->services);
+        // dd($request->services);
 
         $incident->save();
 
@@ -84,7 +84,7 @@ class IncidentController extends Controller
     public function update(Request $request, $id)
     {
         $incident = Incident::findOrFail($id);
-//a modifier
+        //a modifier
         $incident->commentary = $request->commentary;
         $incident->start_date = $request->start_date;
         $incident->end_date = $request->end_date;

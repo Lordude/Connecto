@@ -22,10 +22,8 @@
                         <label for="services">Choisir les services affectés</label>
 
                         @foreach ($services as $service)
-                            {
-                            <input type="checkbox" id="service" name="service"
-                                value="<?= $service['id'] ?>"><?= $service['name'] ?>
-                            }
+                            <input type="checkbox" id="service" name="services[]" value="{{ $service->id }}"><label
+                                for="service">{{ $service->name }}</label>
                         @endforeach
 
                         <hr />
@@ -41,7 +39,7 @@
                                 <?php } ?>
                             </select>
                             <hr />
-                            <input type="text" id="commentaries" name="commentary">
+                            <input type="text" id="commentary" name="commentary">
                             <hr />
                             <hr />
                             <input type="date" id="date" name="date">
@@ -53,36 +51,49 @@
         </div>
     </div>
     {{-- vue des incidents en cours --}}
-    <table class="table">
-        <thead>
-            <h2>Incidents</h2>
+    <form>
+        <table class="table">
+            <thead>
+                <h2>Incidents</h2>
 
-            <th>Service affecté</th>
-            <th>État</th>
-            <th>Description</th>
-            <th>Date de début</th>
-            <th>Date de fin</th>
-            <th>Option</th>
-        </thead>
-        <tbody>
+                <th>Service affecté</th>
+                <th>État</th>
+                <th>Description</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+                <th>Option</th>
+            </thead>
+            <tbody>
 
-            @foreach ($incidents as $incident)
-                <tr>
-                    <td>{{ $incident->services()->get() }}</td>
-                    <td>{{ $incident->state_id }}</td>
-                    <td>{{ $incident->description }}</td>
-                    <td>{{ $incident->start_date }}</td>
-                    <td>{{ $incident->end_date }}</td>
-                    <td>
-                        <button type="button" class="btn btn-warning"><a
-                                href="{{ route('admin.incidents.index', ['incident' => $incident]) }}"
-                                class="btn btn-link">Modifier</a></button>
-                        {{-- en cliquant sur modifier, le formulaire va devenir éditable --}}
-                    </td>
-            @endforeach
-            </tr>
+                @foreach ($incidents as $incident)
+                    <tr>
+                        <td>
+                            @foreach ($incident->services as $service)
+                                {
 
-        </tbody>
-    </table>
+                                {{ $service->name }}
+                                }
+                            @endforeach
+                        </td>
+                        <td>{{ $incident->states_id }}</td>
+                        {{-- <td>@foreach ($incident->states as $state) {
+
+                        {{ $state->name}} </td>
+                     }@endforeach --}}
+                        <td>{{ $incident->commentary }}</td>
+                        <td>{{ $incident->start_date }}</td>
+                        <td>{{ $incident->end_date }}</td>
+                        <td>
+                            <button type="button" class="btn btn-warning"><a
+                                    href="{{ route('admin.incidents.index', ['incident' => $incident]) }}"
+                                    class="btn btn-link">Modifier</a></button>
+                            {{-- en cliquant sur modifier, le formulaire va devenir éditable --}}
+                        </td>
+                @endforeach
+                </tr>
+
+            </tbody>
+        </table>
+    </form>
 
 @endsection

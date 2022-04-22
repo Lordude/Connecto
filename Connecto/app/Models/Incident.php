@@ -10,7 +10,7 @@ use App\Models\State;
 class Incident extends Model
 {
     use HasFactory;
-   
+
 
     /**
      * The attributes that are mass assignable.
@@ -25,7 +25,7 @@ class Incident extends Model
         'user_id',
         'state_id',
     ];
-/**
+    /**
      * The attributes that should be cast.
      *
      * @var array<string, string>
@@ -33,6 +33,7 @@ class Incident extends Model
     protected $casts = [
         'start_date' => 'date',
     ];
+
 
     public function services()
     {
