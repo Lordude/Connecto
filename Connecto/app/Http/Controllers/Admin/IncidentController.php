@@ -86,11 +86,10 @@ class IncidentController extends Controller
         $incident = Incident::findOrFail($id);
         //a modifier
         $incident->commentary = $request->commentary;
-        $incident->start_date = $request->start_date;
-        $incident->end_date = $request->end_date;
+        $incident->start_date = $request->date;
+        $incident->user_id = User::first()->id;
+        $incident->state_id = $request->state;
         $incident->services()->sync($request->services);
-        $incident->categories()->sync($request->categories);
-        $incident->users()->sync($request->users);
 
         $incident->save();
 
