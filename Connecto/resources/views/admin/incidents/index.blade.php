@@ -51,49 +51,49 @@
         </div>
     </div>
     {{-- vue des incidents en cours --}}
-    <form>
-        <table class="table">
-            <thead>
-                <h2>Incidents</h2>
 
-                <th>Service affecté</th>
-                <th>État</th>
-                <th>Description</th>
-                <th>Date de début</th>
-                <th>Date de fin</th>
-                <th>Option</th>
-            </thead>
-            <tbody>
+    <tbody>
 
-                @foreach ($incidents as $incident)
-                    <tr>
-                        <td>
-                            @foreach ($incident->services as $service)
-                                {
+        @if ($states->count() > 0)
+            <table class="table">
+                <thead>
+                    <h2>Incidents</h2>
 
-                                {{ $service->name }}
-                                }
-                            @endforeach
-                        </td>
-                        <td>{{ $incident->states_id }}</td>
-                        {{-- <td>@foreach ($incident->states as $state) {
+                    <th>Service affecté</th>
+                    <th>État</th>
+                    <th>Description</th>
+                    <th>Date de début</th>
+                    <th>Date de fin</th>
+                    <th>Option</th>
+                </thead>
+                <tbody>
+                    @foreach ($incidents as $incident)
+                        <tr>
+                            <td>
+                                @foreach ($incident->services as $service)
+                                    {
 
-                        {{ $state->name}} </td>
-                     }@endforeach --}}
-                        <td>{{ $incident->commentary }}</td>
-                        <td>{{ $incident->start_date }}</td>
-                        <td>{{ $incident->end_date }}</td>
-                        <td>
-                            <button type="button" class="btn btn-warning"><a
-                                    href="{{ route('admin.incidents.index', ['incident' => $incident]) }}"
-                                    class="btn btn-link">Modifier</a></button>
-                            {{-- en cliquant sur modifier, le formulaire va devenir éditable --}}
-                        </td>
-                @endforeach
-                </tr>
+                                    {{ $service->name }}
+                                    }
+                                @endforeach
+                            </td>
+                            <td>{{ $service->get_service_state($service->id)->first()->name }}</td>
+                            <td>{{ $incident->commentary }}</td>
+                            <td>{{ $incident->start_date }}</td>
+                            <td>{{ $incident->end_date }}</td>
+                            <td>
+                                <button type="button" class="btn btn-warning"><a
+                                        href="{{ route('admin.incidents.index', ['incident' => $incident]) }}"
+                                        class="btn btn-link">Modifier</a></button>
+                                {{-- en cliquant sur modifier, le formulaire va devenir éditable --}}
+                            </td>
+                    @endforeach
+                    </tr>
+                </tbody>
+            </table>
+        @else
+            <p> Aucun services à afficher présentement </p>
+        @endif
 
-            </tbody>
-        </table>
-    </form>
 
-@endsection
+    @endsection
