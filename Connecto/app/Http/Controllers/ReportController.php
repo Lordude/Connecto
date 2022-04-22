@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Report;
 use App\Http\Controllers\Controller;
-use App\Models\Service;
+
 
 
 
@@ -27,11 +27,11 @@ class ReportController extends Controller
     }
     public function show($id)
     {
-        $report = Report::findOrFail($id);
+        $reports = Report::findOrFail($id);
 
         return view('home.reports.show', [
-            'report' => $report,
-            'report_options' => $report->report_options()->get()
+            'report' => $reports,
+            'report_options' => $reports->report_options()->get()
         ]);
     }
 

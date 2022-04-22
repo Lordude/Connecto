@@ -5,6 +5,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use App\Models\Service;
 
 
@@ -24,7 +25,7 @@ class Report extends Model
         'id',
         'name',
         'email',
-        'report',
+        'detail',
         'date',
        
     ];
@@ -39,7 +40,7 @@ class Report extends Model
     /**
      * Get the product that owns the ProductOption.
      */
-    public function service()
+    public function services()
     {
         return $this->belongsTo(Service::class);
     }
