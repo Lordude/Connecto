@@ -21,9 +21,19 @@ class ReportController extends Controller
     {
         $reports = Report::all();
 
-        return view('home.reports.index', ['reports' => $reports]);
+        return view('home.reports.index',
+         ['reports' => $reports]
+        );
     }
+    public function show($id)
+    {
+        $report = Report::findOrFail($id);
 
+        return view('home.reports.show', [
+            'report' => $report,
+            'report_options' => $report->report_options()->get()
+        ]);
+    }
 
  /**
      * Show the form for creating a new resource.
@@ -83,13 +93,6 @@ class ReportController extends Controller
         return redirect()->route('home.reports.index');
     }
 
-    public function show($id)
-    {
-        $report = Report::findOrFail($id);
-
-        return view('home.reports.show', [
-            'report' => $report,
-            'report_options' => $report->report_options()->get()
-        ]);
-    }
+   
+    
 }
