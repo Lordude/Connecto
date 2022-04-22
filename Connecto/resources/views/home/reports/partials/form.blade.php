@@ -12,7 +12,7 @@
       <input id="email" name="email" type="text" value="" class="form-control ">
       
         <label for="services">service</label>
-        <select name="reports" id="reports">
+        <select name="report" id="reports">
             <option value="" selected="selected" disabled>choisir</option>
             
             
@@ -25,12 +25,12 @@
         </select>
         <div class="mb-3">
 
-       
-          <label for="reports" class="form-label"><strong>Détails supplémentaires</strong></label>
+        <hr/>
+          <label for="report" class="form-label"><strong>Détails supplémentaires</strong></label>
          
-          <textarea id="detail" name="detail" class="form-control @error('detail') is-invalid @enderror">{{ old('detail', $report->detail) }}</textarea>
+          <textarea id="report" name="detail" class="form-control @error('detail') is-invalid @enderror">{{ old('detail', $report->detail) }}</textarea>
         
-          @error('detail')
+          @error('report')
               <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
               </span>
