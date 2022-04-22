@@ -4,7 +4,7 @@
 
 @section('content')
     <h1>Service</h1>
-    <a href="#" class="nav navbar-nav navbar-left">Accès home</a>
+    <a href="{{route('#')}}" class="nav navbar-nav navbar-left">Accès home</a>
     <a href="{{route('admin.incidents.index')}}"> Gestion des incidents </a>
    
         @if($services->count() > 0)

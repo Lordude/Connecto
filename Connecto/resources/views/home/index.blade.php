@@ -16,11 +16,11 @@
             <tbody>
                 @foreach ($services as $service)
                     <tr>
-                        <td>{{ $service->name}} </td>
-                        <td>{{ $service->incident}}</td>
+                        <td>{{ $service->name;}} </td>
+                        <td>{{ $service->incident;}}</td>
                         <td> {{ $service->get_service_state($service->id)->first()->name;}} </td>
                         <td> {{ $service->get_service_description($service->id)->first()->description;}} </td>
-                        <td> <img src="{{ asset('image/{{$service->get_service_image($service->id)') }}"></td>
+                        <td> <img width="42px" height="42px" src="/image/{{$service->get_service_image($service->id)->first()->image; }}"></td>
 
 
                     </tr>

@@ -19,6 +19,7 @@ use App\Http\Controllers\ReportController;
 
 Route::get('/', [HomeController::class, 'index']);
 
+
 Route::prefix('home')->name('home.')->group(function () {
     Route::redirect('/', 'home');
     Route::resource('home', HomeController::class);
