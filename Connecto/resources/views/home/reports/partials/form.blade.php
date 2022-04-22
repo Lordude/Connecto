@@ -25,7 +25,7 @@
         </select>
         <div class="mb-3">
 
-        <hr/>
+       
           <label for="report" class="form-label"><strong>Détails supplémentaires</strong></label>
          
           <textarea id="report" name="detail" class="form-control @error('detail') is-invalid @enderror">{{ old('detail', $report->detail) }}</textarea>
