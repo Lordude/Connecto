@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Report;
 use App\Http\Controllers\Controller;
+use App\Models\Service;
 
 
 
@@ -66,6 +67,7 @@ class ReportController extends Controller
 
         return view('home.reports.edit', ['Report' => $reports]);
     }
+
 
    
     /**

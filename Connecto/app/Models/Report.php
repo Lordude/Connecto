@@ -5,6 +5,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Service;
 
 
 
@@ -25,16 +26,22 @@ class Report extends Model
         'email',
         'report',
         'date',
-        'created_at',
-        'updated_at',
+       
     ];
-
+/**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'start_date' => 'date',
+    ];
     /**
      * Get the product that owns the ProductOption.
      */
-    public function product()
+    public function service()
     {
-        return $this->belongsTo(Report::class);
+        return $this->belongsTo(Service::class);
     }
 }
 

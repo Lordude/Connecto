@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->mediumText('report');
-            $table->date('date');
+            $table->date('date')->nullable();;
             $table->timestamps();
         });
 
