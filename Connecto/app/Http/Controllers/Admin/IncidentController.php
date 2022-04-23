@@ -68,16 +68,16 @@ class IncidentController extends Controller
     {
         $incident = Incident::findOrFail($id);
         $services = Service::all();
-        $selected_services = $incident->services->pluck('id')->toArray();
+        $incident_service = $incident->service->pluck('id')->toArray();
         $states = State::all();
-        $selected_states = $incident->states->pluck('id')->toArray();
+        // $selected_states = $incident->states->pluck('id')->toArray();
 
         return view('admin.incidents.edit', [
             'incident' => $incident,
             'services' => $services,
-            'selected_services' => $selected_services,
+            'incident_service' => $incident_service,
             'states' => $states,
-            'selected_states' => $selected_states,
+            // 'selected_states' => $selected_states,
         ]);
     }
 
@@ -86,7 +86,7 @@ class IncidentController extends Controller
         $incident = Incident::findOrFail($id);
         //a modifier
         $incident->commentary = $request->commentary;
-        $incident->start_date = $request->date;
+        $incident->end_date = $request->date;
         $incident->user_id = User::first()->id;
         $incident->state_id = $request->state;
         $incident->services()->sync($request->services);
