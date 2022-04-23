@@ -51,7 +51,7 @@ class IncidentController extends Controller
     {
         $incident = new Incident;
         $incident->commentary = $request->commentary;
-        $incident->start_date = $request->date;
+        $incident->start_date = now();
         $incident->user_id = User::first()->id;
         $incident->state_id = $request->state;
         $incident->save();

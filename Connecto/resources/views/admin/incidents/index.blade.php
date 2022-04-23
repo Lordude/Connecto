@@ -45,7 +45,7 @@
                             <input type="text" id="commentary" name="commentary">
                             <hr />
                             <hr />
-                            <input type="date" id="date" name="date">
+                            <input type="hidden" id="start_date" name="start_date">
 
                             <input type="submit" value="créer le nouvel incident" class="btn btn-primary">
                             <a href="{{ route('admin.incidents.index') }}" class="btn btn-secondary">Annuler</a>
