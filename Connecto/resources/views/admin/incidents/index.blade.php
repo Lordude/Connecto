@@ -25,7 +25,6 @@
                             <input type="checkbox" id="service" name="services[]" value="{{ $service->id }}"><label
                                 for="service">{{ $service->name }}</label>
                         @endforeach
-
                         <hr />
                         <div class="mb-3">
                             <label for="states">État du service</label>
@@ -51,30 +50,26 @@
         </div>
     </div>
     {{-- vue des incidents en cours --}}
-
     <tbody>
 
-        @if ($states->count() > 0)
-            <table class="table">
-                <thead>
-                    <h2>Incidents</h2>
+        <table class="table">
+            <thead>
+                <h2>Incidents</h2>
 
-                    <th>Service affecté</th>
-                    <th>État</th>
-                    <th>Description</th>
-                    <th>Date de début</th>
-                    <th>Date de fin</th>
-                    <th>Option</th>
-                </thead>
-                <tbody>
-                    @foreach ($incidents as $incident)
+                <th>Service affecté</th>
+                <th>État</th>
+                <th>Description</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+                <th>Option</th>
+            </thead>
+            <tbody>
+                @foreach ($incidents as $incident)
+                    @if ($incident->end_date == null)
                         <tr>
                             <td>
                                 @foreach ($incident->services as $service)
-                                    {
-
                                     {{ $service->name }}
-                                    }
                                 @endforeach
                             </td>
                             <td>{{ $service->get_service_state($service->id)->first()->name }}</td>
@@ -82,18 +77,18 @@
                             <td>{{ $incident->start_date }}</td>
                             <td>{{ $incident->end_date }}</td>
                             <td>
-                                <button type="button" class="btn btn-warning"><a
-                                        href="{{ route('admin.incidents.index', ['incident' => $incident]) }}"
-                                        class="btn btn-link">Modifier</a></button>
+                                <button type="button" class="btn btn-warning">
+                                    <a href="{{ route('admin.incidents.edit', ['incident' => $incident]) }}"
+                                        class="btn btn-link">Modifier</a>
+                                </button>
                                 {{-- en cliquant sur modifier, le formulaire va devenir éditable --}}
                             </td>
-                    @endforeach
-                    </tr>
-                </tbody>
-            </table>
-        @else
-            <p> Aucun services à afficher présentement </p>
-        @endif
 
-
+                        </tr>
+            </tbody>
+            {{-- @else --}}
+            {{-- <p> Aucun services à afficher présentement </p> --}}
+            @endif
+            @endforeach
+        </table>
     @endsection
