@@ -33,11 +33,15 @@
                                 <?php
                             use App\Models\State;
                             $states = State::all();
-                            foreach ($states as $state){ ?>
+                            foreach ($states as $state){
+                                if($state['id'] > 1){
+                                ?>
+
                                 <option value="<?= $state['id'] ?>"><?= $state['name'] ?></option>
-                                <?php } ?>
+                                <?php }} ?>
                             </select>
                             <hr />
+                            <label for="commentary">Commentaire</label>
                             <input type="text" id="commentary" name="commentary">
                             <hr />
                             <hr />
