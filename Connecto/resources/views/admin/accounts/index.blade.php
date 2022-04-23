@@ -1,7 +1,6 @@
-<html>
     @include('layouts.includes.head')
 
-<body>
+
     <div class="p-2 mb-2 bg-dark text-white text-end">Compte administrateur
         <svg xmlns="http://www.w3.org/2000/svg" id="moe" width="16" height="16" fill="red" class="bi bi-person-circle" onclick="openForm()" viewBox="0 0 16 16">
             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
@@ -14,20 +13,24 @@
             <a class="navbar-brand" href="">Connecto</a>
         </div>
     </nav>
+    
 
-    <div class="container mt-5">
-        @if (session('success'))
+    @if (session('logfail'))
             <div class="alert alert-sucess">
-                {{session('success')}}
+                {{session('logfail')}}
             </div>
-        @endif
-            
+    @endif
+
+     <div class="container mt-5">            
         @yield('content')
-    </div>
+    </div> 
+
+
 
         
     <div class="form-popup" id="myForm">
-    <form action="/action_page.php" class="form-container">
+    <form action="{{ route('admin.accounts.index') }}" method="POST" class="form-container">
+        @csrf
         <h2>Connection</h2>
 
         <label for="email"><b>Courriel</b></label>
@@ -40,6 +43,4 @@
         <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
     </form>
     </div>
-    </body>
-
-</html>
+    
