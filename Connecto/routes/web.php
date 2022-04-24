@@ -4,8 +4,6 @@ use App\Http\Controllers\Admin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReportController;
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,7 +14,6 @@ use App\Http\Controllers\ReportController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', [HomeController::class, 'index']);
 
 Route::prefix('home')->name('home.')->group(function () {
@@ -30,6 +27,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('services', Admin\ServiceController::class);
     Route::resource('incidents', Admin\IncidentController::class);
     Route::resource('states', Admin\StateController::class);
+    Route::resource('accounts', Admin\AuthController::class);
 });
 
 Route::prefix('home')->name('home.')->group(function () {
@@ -38,3 +36,4 @@ Route::prefix('home')->name('home.')->group(function () {
     Route::resource('reports.report_options', ReportController::class)->only(['create', 'store']);
     Route::resource('reports', ReportController::class)->except('show');
 });
+

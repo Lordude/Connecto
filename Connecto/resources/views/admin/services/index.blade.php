@@ -6,6 +6,11 @@
     <h1>Service</h1>
     <a href="#" class="nav navbar-nav navbar-left">Accès home</a>
     <a href="{{route('admin.incidents.index')}}"> Gestion des incidents </a>
+    @if (session('logsuccess'))
+            <div class="alert alert-sucess">
+                {{session('logsuccess')}}
+            </div>
+    @endif
    
         @if($services->count() > 0)
             <table class="table">
