@@ -8,14 +8,15 @@
         @csrf
         @method('PUT')
         <div>
-            <label for="name" class="form-label">Nom du service</label>
+            {{-- <label for="name" class="form-label">Nom du service</label> --}}
             @foreach ($incident->services as $service)
-                <p> {{ $service->name }} </p>
+                <h3>Service: {{ $service->name }} </h3>
+                <h4 class="text-danger">Actuellement en {{ $service->get_service_state($service->id)->first()->name }}</h4>
         </div>
         <div>
             <label for="name" class="form-label">État du service</label>
-            <select name="state" id="states">
-                <option value="" selected="selected" disabled>choisir</option>
+            <select class="form-select" name="state" id="states">
+                <option value="state" selected="selected" disabled>{{ $service->get_service_state($service->id)->first()->name }}</option>
                 @foreach ($states as $state)
                     <option> {{ $state->name }} </option>
                 @endforeach
