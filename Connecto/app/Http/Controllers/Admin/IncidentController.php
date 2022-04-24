@@ -70,6 +70,8 @@ class IncidentController extends Controller
         $services = Service::all();
         $incident_services = $incident->services->pluck('id')->toArray();
         $states = State::all();
+        if ($incident->state_id == 1)
+            $incident->end_date = now();
         // $selected_states = $incident->states->pluck('id')->toArray();
 
         return view('admin.incidents.edit', [
