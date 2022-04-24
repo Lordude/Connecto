@@ -17,12 +17,22 @@
             </div>
     @endif
 
+    @if(session()->has('emailUser'))
+    <a href="{{ route('admin.accounts.index') }}" class="btn btn-warning">Déconnexion</a>
+   @endif
+
+    @if (session('messagelogout'))
+            <div class="alert alert-sucess">
+               <p class="MessageSession">{{session('messagelogout')}}</p>
+            </div>
+    @endif
+
      <div class="container mt-5">            
         @yield('content')
     </div> 
 
     <div class="form-popup" id="myForm">
-    <form action="{{ route('admin.accounts.index') }}" method="POST" class="form-container">
+    <form action="{{ route('admin.accounts.store') }}" method="POST" class="form-container">
         @csrf
         <h2>Connection</h2>
 

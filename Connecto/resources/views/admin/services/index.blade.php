@@ -11,7 +11,6 @@
                 {{session('logsuccess')}}
             </div>
     @endif
-    {{ Session::get('email') }}
    
         @if($services->count() > 0)
             <table class="table">

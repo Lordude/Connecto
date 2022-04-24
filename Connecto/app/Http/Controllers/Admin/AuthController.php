@@ -16,6 +16,7 @@ class AuthController extends Controller
         $Authentification->email = $request->email;
         $Authentification->psw = $request->psw;
         $result = $Authentification::login($request->email, $request->psw);
+        
 
         if($result){
             Session::put("emailUser",$request->email);
@@ -23,5 +24,11 @@ class AuthController extends Controller
         }else{
             return redirect('/')->with('logfail', 'connexion échouée!');
         }
+    }
+
+    // je n'arrive pas à personnaliser mon nom de route, je voudrais logout à la place d'index. 
+    public function index(){
+        Session::remove("emailUser");
+        return redirect('/')->with('messagelogout', 'vous avez été déconnecté avec succes!');
     }
 }
