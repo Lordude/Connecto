@@ -34,7 +34,7 @@
 
 /* Set a style for the submit/login button */
 .form-container .btn {
-  background-color: #04AA6D;
+  background-color: #2A4A9B;
   color: white;
   padding: 16px 20px;
   border: none;
@@ -46,7 +46,7 @@
 
 /* Add a red background color to the cancel button */
 .form-container .cancel {
-  background-color: red;
+  background-color: #FFC107; 
 }
 
 /* Add some hover effects to buttons */
@@ -56,4 +56,18 @@
 
 .bi-person-circle {
     cursor: pointer;
+}
+
+.fill {
+  margin-bottom: 0 !important;
+}
+
+.filll {
+  background-color: #2A4A9B;
+  margin-top: 0;
+
+}
+
+.MessageSession {
+  text-align: center;
 }
