@@ -57,3 +57,10 @@
 .bi-person-circle {
     cursor: pointer;
 }
+
+/*formulaire création incident*/
+
+#hidden{
+    display: none;
+}
+
