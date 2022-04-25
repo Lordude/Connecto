@@ -70,30 +70,23 @@ class IncidentController extends Controller
         $services = Service::all();
         $incident_services = $incident->services->pluck('id')->toArray();
         $states = State::all();
-        if ($incident->state_id == 1)
-            $incident->end_date = now();
-        // $selected_states = $incident->states->pluck('id')->toArray();
 
         return view('admin.incidents.edit', [
             'incident' => $incident,
             'services' => $services,
             'incident_services' => $incident_services,
             'states' => $states,
-            // 'selected_states' => $selected_states,
         ]);
     }
 
     public function update(Request $request, $id)
     {
         $incident = Incident::findOrFail($id);
-        //a modifier
         $incident->commentary = $request->commentary;
-        $incident->start_date = $request->date;
         $incident->user_id = User::first()->id;
         $incident->state_id = $request->state;
-        $incident->services()->sync($request->services);
-
         $incident->save();
+        // dd($request->state);
 
         return redirect()->route('admin.incidents.index')->with('success', 'L\'incident a été modifié!');
     }

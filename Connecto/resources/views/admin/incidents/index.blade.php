@@ -89,7 +89,8 @@
                                 {{-- <td><img src="{{ asset('image/ {$service->get_service_image($service->id}' )}}" alt="icone"/></td> --}}
                                 <td>{{ $incident->commentary }}</td>
                                 <td>{{ $incident->start_date }}</td>
-                                <td>{{ $incident->adminIncident($incident->user_id)->first()->first_name }} {{ $incident->adminIncident($incident->user_id)->first()->last_name }} </td>
+                                <td>{{ $incident->adminIncident($incident->user_id)->first()->first_name }} {{ $incident->adminIncident($incident->user_id)->first()->last_name }}
+                                </td>
                                 <td>
                                     <button type="button" class="btn btn-warning">
                                         <a href="{{ route('admin.incidents.edit', ['incident' => $incident]) }}"

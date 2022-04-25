@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Models\Service;
 use App\Models\State;
+use App\Models\User;
 
 class Incident extends Model
 {
@@ -50,19 +51,35 @@ class Incident extends Model
     {
         return $this->belongsToMany(State::class);
     }
-
-    public function adminIncident($user_id) {
+    public function get_state_id($state_id)
+    {
         $result = DB::table('incidents')
-        ->join('users', 'incidents.user_id', '=', 'users.id')
-        ->select('users.first_name', 'users.last_name')
-        ->where('users.id', '=', $user_id)
-        ->get();
+            ->join('states', 'incidents.state_id', '=', 'states.id')
+            ->select('states')
+            ->where('state_id', '=', $state_id)
+            ->get();
 
-if($result->count()){
-return $result;
-}else{
-$result = DB::table('users')->where('users.id', '=', '1')->select('users.first_name')->get();
-return $result;
-}
-}
+        if ($result->count()) {
+            return $result;
+        } else {
+            $result = DB::table('states')->where('states.id', '=', '1')->select('states.name')->get();
+            return $result;
+        }
+    }
+
+    public function adminIncident($user_id)
+    {
+        $result = DB::table('incidents')
+            ->join('users', 'incidents.user_id', '=', 'users.id')
+            ->select('users.first_name', 'users.last_name')
+            ->where('users.id', '=', $user_id)
+            ->get();
+
+        if ($result->count()) {
+            return $result;
+        } else {
+            $result = DB::table('users')->where('users.id', '=', '1')->select('users.first_name', 'users.last_name')->get();
+            return $result;
+        }
+    }
 }
