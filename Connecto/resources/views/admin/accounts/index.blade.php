@@ -12,22 +12,22 @@
     <img style="width: 200px" src="{{ asset('image/RectangleText.png') }}">
 
     @if (session('logfail'))
-            <div class="alert alert-sucess">
                <p class="MessageSession">{{session('logfail')}}</p>
-            </div>
     @endif
 
     @if(session()->has('emailUser'))
     <a href="{{ route('admin.accounts.index') }}" class="btn btn-warning">Déconnexion</a>
    @endif
+   
+   @if(session('TypeRole') == '2')
+    <a href="" class="btn btn-warning">Bouton pour le superadmin</a>
+   @endif
 
     @if (session('messagelogout'))
-            <div class="alert alert-sucess">
                <p class="MessageSession">{{session('messagelogout')}}</p>
-            </div>
     @endif
 
-     <div class="container mt-5">            
+     <div class="container mt-5">         
         @yield('content')
     </div> 
 

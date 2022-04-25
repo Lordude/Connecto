@@ -22,7 +22,16 @@ class Authentification extends Model
             }else{
                 return false;
             }
-    } 
+    }
+    
+    static function getRole($email){
+        $result = DB::table("users")
+        ->select("role_id")
+        ->where("email", '=', $email)
+        ->first();
+
+        return $result->role_id;
+    }
 }
 
 
