@@ -1,4 +1,4 @@
-@extends('layouts.admin.app')
+@extends('layouts.admin.incidents.app')
 
 @section('title', 'Modifier un statut')
 
@@ -9,41 +9,42 @@
         @method('PUT')
         <div>
             @foreach ($incident->services as $service)
-                <h3>Service: {{ $service->name }} </h3>
-                <h4 class="text-danger">Actuellement :{{ $service->get_service_state($service->id)->first()->name }}
-                </h4>
+                <h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">Service: {{ $service->name }} </li>
+                    </ul>
+                </h3>
+            @endforeach
+            <h4 class="text-danger">Actuellement :{{ $service->get_service_state($service->id)->first()->name }}</h4>
         </div>
         <div>
             <label for="name" class="form-label">État du service</label>
             <select class="form-select" name="state" id="states">
-                <option value="state" selected="selected" disabled>
-                    {{ $service->get_service_state($service->id)->first()->name }}</option>
 
+                <option value="state" selected="selected" disabled>
+                    {{ $service->get_service_state($service->id)->first()->name }}
+                </option>
+                
                 @foreach ($states as $state)
+                    {{-- <option class="list-group-item"><input class="form-check-input me-1" type="checkbox" id="service"
+                            name="services[]" value="{{ $state->id }}"></option>
+                            <label>for="service">{{ $state->name }}</label></li> --}}
                     <option value="<?= $state['id'] ?>"><?= $state['name'] ?></option>
-                   
                 @endforeach
+
             </select>
             <label for="commentary">Commentaire</label>
             <input type="text" id="commentary" name="commentary">
-
-            {{-- ne fonctionne pas --}}
-
-            {{-- <label for="name" class="form-label">Administrateur</label>
-
-                <select class="form-select" name="state" id="states">
-
+            <div>
+                {{-- on pourrait changer l'administrateur si c'est un autre admin qui change l'incident? --}}
+                {{-- <label for="name" class="form-label">Administrateur</label>
+                <select class="form-select" name="user" id="users">
                     <option value="user" selected="selected" disabled>
                         {{ $incident->adminIncident($incident->user_id)->first()->first_name }}
-                        {{ $incident->adminIncident($incident->user_id)->first()->last_name }}</option>
+                        {{ $incident->adminIncident($incident->user_id)->first()->last_name }}</option> --}}
 
-                    {{-- @foreach ($users as $user) --}}
-            {{-- <option> {{ $incident->adminIncident($incident->user_id)->first()->first_name }} </option> --}}
-            {{-- @endforeach --}}
-
-            {{-- </select> --}}
-            @endforeach
-
+                </select>
+            </div>
         </div>
         <input type="submit" value="Enregistrer" class="btn btn-primary">
         <a href="{{ route('admin.incidents.index') }}" class="btn btn-secondary"> Retour </a>

@@ -85,9 +85,11 @@ class IncidentController extends Controller
         $incident->commentary = $request->commentary;
         $incident->user_id = User::first()->id;
         $incident->state_id = $request->state;
+        // dd($request->state_id);
+        if ($incident->state_id == 1) {
+            $incident->end_date = now();
+        }
         $incident->save();
-        // dd($request->state);
-
         return redirect()->route('admin.incidents.index')->with('success', 'L\'incident a été modifié!');
     }
 }
