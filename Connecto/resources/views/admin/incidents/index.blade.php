@@ -29,6 +29,15 @@
                                         for="service">{{ $service->name }}</label></li>
                             </ul>
                         @endforeach
+                        {{-- code pour afficher seulement les services qui ne sont pas affectés a une panne. Problème de requête à résoudre --}}
+                        {{-- @foreach ($services as $service)
+                            <ul class="list-group">
+                                <li class="list-group-item"><input class="form-check-input me-1" type="checkbox" id="service"
+                                    name="services[]" value="{{ $service->id }}">
+                                    <label for="service">{{ $service->hiddeService($service->id)}}</label></li>
+                                </ul>
+                                @endforeach --}}
+
                         <hr />
                         <div class="mb-3">
                             <label for="states">État du service</label>
@@ -89,7 +98,8 @@
                                 {{-- <td><img src="{{ asset('image/ {$service->get_service_image($service->id}' )}}" alt="icone"/></td> --}}
                                 <td>{{ $incident->commentary }}</td>
                                 <td>{{ $incident->start_date }}</td>
-                                <td>{{ $incident->adminIncident($incident->user_id)->first()->first_name }} {{ $incident->adminIncident($incident->user_id)->first()->last_name }}
+                                <td>{{ $incident->adminIncident($incident->user_id)->first()->first_name }}
+                                    {{ $incident->adminIncident($incident->user_id)->first()->last_name }}
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-warning">
