@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use App\Models\Service;
 use App\Models\Report;
 
-class ReportService.php extends Model
+class ReportService extends Model
 
 {
     use HasFactory;
