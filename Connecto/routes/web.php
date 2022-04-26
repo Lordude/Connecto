@@ -24,11 +24,13 @@ Route::prefix('home')->name('home.')->group(function () {
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::redirect('/', 'admin/services');
     Route::redirect('/', '/admin/incidents');
+    Route::redirect('/', '/admin/reports_services');
     Route::resource('services', Admin\ServiceController::class);
     Route::resource('incidents', Admin\IncidentController::class);
     Route::resource('states', Admin\StateController::class);
     Route::resource('accounts', Admin\AuthController::class);
-    Route::resource('reports_services', Admin\Reports_Services::class);
+    Route::resource('reports_services', Admin\ReportServiceController::class);
+    Route::resource('reports.reports_services', Admin\ReportServiceController::class);
 });
 
 Route::prefix('home')->name('home.')->group(function () {

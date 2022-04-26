@@ -12,6 +12,10 @@ class Service extends Model
 {
     use HasFactory;
 
+    public function reports()
+    {
+        return $this->belongsToMany(Report::class);
+    }
 
 
     public function incidents()

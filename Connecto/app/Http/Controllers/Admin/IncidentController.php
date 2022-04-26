@@ -9,6 +9,7 @@ use App\Models\Service;
 use App\Models\State;
 use App\Models\User;
 
+
 class IncidentController extends Controller
 {
     public function index()
