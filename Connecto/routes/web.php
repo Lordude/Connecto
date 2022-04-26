@@ -28,6 +28,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('incidents', Admin\IncidentController::class);
     Route::resource('states', Admin\StateController::class);
     Route::resource('accounts', Admin\AuthController::class);
+    Route::resource('reports_services', Admin\Reports_Services::class);
 });
 
 Route::prefix('home')->name('home.')->group(function () {
