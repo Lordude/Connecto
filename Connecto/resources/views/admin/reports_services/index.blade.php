@@ -1,52 +1,39 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Reports_Services')
+@section('title', 'Accueil')
 
 @section('content')
 
-    <h1><img style="width: 200px" src="{{ asset('image/RectangleText.png') }}"></h1>
-
-    <h2>Gestion des signalements</h2>
-
-
-                       
-    {{-- vue des signalements en cours --}}
-    <tbody>
-        <div>
-            <table class="table container-md">
+    <h1>Signalement</h1>
+  
+   
+   
+        @if($services->count() > 0)
+            <table class="table">
                 <thead>
-                    <h2>Signalements</h2>
-
-                    <th>Service affecté</th>
-                    <th>Report</th>
-                    <th></th>
-                    <th>Description</th>
-                    <th>Date</th>
-                   
-                   
-
+                    <th>Nom du service</th>
+                    
                 </thead>
                 <tbody>
-                    @foreach ($reports as $report)
-                
-                            <tr>
-                                <td>
-                                    @foreach ($report->services as $service)
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item">{{ $service->name }}</li>
-                                        </ul>
-                                    @endforeach
-                                </td>
-                                <td>{{ $service->get_service_state($service->id)->first()->name }}</td>
-                                <td><img src="{{ asset('image/') . $service->get_service_image($service->id) }}"
-                                        alt="icone" /></td>
-                                {{-- <td><img src="{{ asset('image/ {$service->get_service_image($service->id}' )}}" alt="icone"/></td> --}}
-                                </td>
+                    @foreach ($services as $service)
+                        <tr>
+                            <td> {{$service->name}} </td>
+                 
+                            <td><form method="POST" action="{{ route('admin.services.destroy', ['service' => $service]) }}" class="mb-0">
+                                @csrf
+                                @method('DELETE')
 
-                            </tr>
+                                <input type="submit" value="detail" class="btn btn-link link-danger" onclick="return confirm('Are you sure?')" />
+                              </form></td>
+                            
+                        </tr>
+                    @endforeach
                 </tbody>
-               
-              
-                @endforeach
             </table>
-        @endsection
+        @else
+            <p> Aucun produit à afficher pour le moment ! </p>
+        @endif
+
+    <a href="{{ route('admin.services.create') }}">Ajouter un service </a>
+
+@endsection
