@@ -11,12 +11,9 @@
 
     <img style="width: 200px" src="{{ asset('image/RectangleText.png') }}">
 
-    @if (session('logfail'))
-               <p class="MessageSession">{{session('logfail')}}</p>
-    @endif
-
     @if(session()->has('emailUser'))
     <a href="{{ route('admin.accounts.index') }}" class="btn btn-warning">Déconnexion</a>
+    <a href="" class="btn btn-warning">Mon Compte</a>
    @endif
    
    @if(session('TypeRole') == '2')
@@ -25,6 +22,10 @@
 
     @if (session('messagelogout'))
                <p class="MessageSession">{{session('messagelogout')}}</p>
+    @endif
+
+    @if (session('logfail'))
+               <p class="MessageSession">{{session('logfail')}}</p>
     @endif
 
      <div class="container mt-5">         

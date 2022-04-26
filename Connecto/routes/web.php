@@ -40,3 +40,4 @@ Route::prefix('home')->name('home.')->group(function () {
     Route::resource('reports', ReportController::class)->except('show');
 });
 
+Route::get('/MyAccount', [Admin\AuthController::class, 'show'])->name('MyAccount');
