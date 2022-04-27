@@ -1,6 +1,5 @@
 @include('layouts.includes.head')
-
-<p class="MessageSession">text</p>
+@include('layouts.admin.headerAdmin')
 
 <h1>Mon compte</h1>
 
@@ -8,8 +7,8 @@
 <p>Votre courriel est {{ $resultUser->email }} </p>
 <p>Vous avez été embauché le {{ $resultUser->date_hired }}</p>
 <p>Votre mot de passe est : {{ $resultUser->password }}</p>
-<p>Vous avez mangé des pâtes aux fruits de mer avec du parmesan</p>
-<p>Vous devriez faire attention à votre cardio</p>
+<p>Votre rôle est : {{ $resultUser->role_id }} </p>
+
 
 <form action="">
 
