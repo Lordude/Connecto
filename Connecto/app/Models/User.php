@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Incident;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -46,5 +47,16 @@ class User extends Authenticatable
     public function incidents()
     {
         return $this->hasMany(Incident::class);
+    }
+
+
+//pour l'affichage du compte de l'admin
+    public static function getUserInfo($email)
+    {
+        $resultUser = DB::table('users')
+        ->where("email", '=', $email)
+        ->first();
+
+        return $resultUser; 
     }
 }

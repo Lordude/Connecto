@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Service;
+use App\Models\ReportService;
 
 
 
@@ -41,7 +42,7 @@ class Report extends Model
      */
     public function services()
     {
-        return $this->belongsTo(Service::class);
+        return $this->belongsToMany(Service::class);
     }
 }
 

@@ -11,6 +11,7 @@ use App\Http\Requests\StoreReportRequest;
 
 
 
+
 class ReportController extends Controller
 {
     /**
