@@ -9,6 +9,7 @@ use App\Models\Service;
 use App\Models\State;
 use App\Models\User;
 
+
 class IncidentController extends Controller
 {
     public function index()
@@ -51,7 +52,7 @@ class IncidentController extends Controller
     {
         $incident = new Incident;
         $incident->commentary = $request->commentary;
-        $incident->start_date = $request->date;
+        $incident->start_date = now();
         $incident->user_id = User::first()->id;
         $incident->state_id = $request->state;
         $incident->save();
@@ -68,32 +69,28 @@ class IncidentController extends Controller
     {
         $incident = Incident::findOrFail($id);
         $services = Service::all();
-        $selected_services = $incident->services->pluck('id')->toArray();
+        $incident_services = $incident->services->pluck('id')->toArray();
         $states = State::all();
-        $selected_states = $incident->states->pluck('id')->toArray();
 
         return view('admin.incidents.edit', [
             'incident' => $incident,
             'services' => $services,
-            'selected_services' => $selected_services,
+            'incident_services' => $incident_services,
             'states' => $states,
-            'selected_states' => $selected_states,
         ]);
     }
 
     public function update(Request $request, $id)
     {
         $incident = Incident::findOrFail($id);
-        //a modifier
         $incident->commentary = $request->commentary;
-        $incident->start_date = $request->start_date;
-        $incident->end_date = $request->end_date;
-        $incident->services()->sync($request->services);
-        $incident->categories()->sync($request->categories);
-        $incident->users()->sync($request->users);
-
+        $incident->user_id = User::first()->id;
+        $incident->state_id = $request->state;
+        // dd($request->state_id);
+        if ($incident->state_id == 1) {
+            $incident->end_date = now();
+        }
         $incident->save();
-
         return redirect()->route('admin.incidents.index')->with('success', 'L\'incident a été modifié!');
     }
 }

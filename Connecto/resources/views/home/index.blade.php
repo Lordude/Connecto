@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('../admin/accounts/index')
 
 @section('title', 'Services')
 

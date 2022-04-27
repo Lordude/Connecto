@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Report;
 use App\Http\Controllers\Controller;
-use App\Models\Service;
+use App\Http\Requests\StoreReportRequest;
+
+
 
 
 
@@ -27,11 +29,11 @@ class ReportController extends Controller
     }
     public function show($id)
     {
-        $report = Report::findOrFail($id);
+        $reports = Report::findOrFail($id);
 
         return view('home.reports.show', [
-            'report' => $report,
-            'report_options' => $report->report_options()->get()
+            'report' => $reports,
+            'report_options' => $reports->report_options()->get()
         ]);
     }
 
@@ -55,10 +57,10 @@ class ReportController extends Controller
      */
     public function store(Request $request)
     {
-        $reports = Report::create($request->validate([
+        $report = Report::create($request->validate([
             'name' => ['required'],
             'email' => ['required'],
-            'report' => ['required'],
+            'detail' => ['required'],
             
         ]));
 
@@ -75,7 +77,7 @@ class ReportController extends Controller
     {
         $reports = Report::findOrFail($id);
 
-        return view('home.reports.edit', ['Report' => $reports]);
+        return view('home.reports.edit', ['Reports' => $reports]);
     }
 
 

@@ -8,24 +8,40 @@
 
     <h2>Gestion des incidents</h2>
 
-    <button type="button" class="btn btn-warning">Créer un incident</button>
+    <button onClick="incidentForm()" type="button" class="btn btn-warning">Créer un incident</button>
     <div>
         {{-- quand on clic sur 'créer un incident' le formulaire ci-dessous apparait --}}
         <div class="row">
             <div class="col6 col-lg-6">
-                <form method="POST" action="{{ route('admin.incidents.store') }}">
+
+                <form id="hidden" method="POST" action="{{ route('admin.incidents.store') }}">
                     @csrf
 
                     <h3>Nouvel incident</h3>
-
-                    <div class="mb-3">
+                    {{-- {{$incidents->incidentFormClose()}} --}}
+                    <div class="mb-3 container">
                         <label for="services">Choisir les services affectés</label>
 
                         @foreach ($services as $service)
-                            <input type="checkbox" id="service" name="services[]" value="{{ $service->id }}"><label
-                                for="service">{{ $service->name }}</label>
+                            {{-- si l'incident est ouvert (requete dans model service)
+                            on affiche les services reliés grisés pour éviter de créer 2 fois le même service en panne --}}
+                            @if ($service->hasOpenIncident())
+                                <ul class="list-group">
+                                    <li class="list-group-item disabled text-danger"><input class="form-check-input me-1"
+                                            type="checkbox" id="service" name="services[]"
+                                            value="{{ $service->id }}"><label for="service">{{ $service->name }}
+                                            (incident en cours)
+                                        </label></li>
+                                </ul>
+                                {{-- si il n'y a pas d'incident relié, on affiche les services normalement --}}
+                            @else
+                                <ul class="list-group">
+                                    <li class="list-group-item"><input class="form-check-input me-1" type="checkbox"
+                                            id="service" name="services[]" value="{{ $service->id }}"><label
+                                            for="service">{{ $service->name }}</label></li>
+                                </ul>
+                            @endif
                         @endforeach
-
                         <hr />
                         <div class="mb-3">
                             <label for="states">État du service</label>
@@ -34,15 +50,19 @@
                                 <?php
                             use App\Models\State;
                             $states = State::all();
-                            foreach ($states as $state){ ?>
+                            foreach ($states as $state){
+                                if($state['id'] > 1){
+                                ?>
+
                                 <option value="<?= $state['id'] ?>"><?= $state['name'] ?></option>
-                                <?php } ?>
+                                <?php }} ?>
                             </select>
                             <hr />
+                            <label for="commentary">Commentaire</label>
                             <input type="text" id="commentary" name="commentary">
                             <hr />
                             <hr />
-                            <input type="date" id="date" name="date">
+                            <input type="hidden" id="start_date" name="start_date">
 
                             <input type="submit" value="créer le nouvel incident" class="btn btn-primary">
                             <a href="{{ route('admin.incidents.index') }}" class="btn btn-secondary">Annuler</a>
@@ -51,49 +71,55 @@
         </div>
     </div>
     {{-- vue des incidents en cours --}}
-    <form>
-        <table class="table">
-            <thead>
-                <h2>Incidents</h2>
+    <tbody>
+        <div>
+            <table class="table container-md">
+                <thead>
+                    <h2>Incidents</h2>
 
-                <th>Service affecté</th>
-                <th>État</th>
-                <th>Description</th>
-                <th>Date de début</th>
-                <th>Date de fin</th>
-                <th>Option</th>
-            </thead>
-            <tbody>
+                    <th>Service affecté</th>
+                    <th>État</th>
+                    <th></th>
+                    <th>Commentaire</th>
+                    <th>Début de l'incident</th>
+                    <th>Dure depuis:</th>
+                    <th>Administrateur</th>
+                    <th>Option</th>
+                </thead>
+                <tbody>
+                    @foreach ($incidents as $incident)
+                        @if ($incident->end_date == null)
+                            <tr>
+                                <td>
+                                    @foreach ($incident->services as $service)
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">{{ $service->name }}</li>
+                                        </ul>
+                                    @endforeach
+                                </td>
+                                <td>{{ $service->get_service_state($service->id)->first()->name }}</td>
+                                <td><img src="{{ asset('image/') . $service->get_service_image($service->id) }}"
+                                        alt="icone" /></td>
+                                {{-- <td><img src="{{ asset('image/ {$service->get_service_image($service->id}' )}}" alt="icone"/></td> --}}
+                                <td>{{ $incident->commentary }}</td>
+                                <td>{{ $incident->start_date }}</td>
+                                <td>{{ $incident->timeIncident() }}</td>
+                                <td>{{ $incident->adminIncident($incident->user_id)->first()->first_name }}
+                                    {{ $incident->adminIncident($incident->user_id)->first()->last_name }}
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-warning">
+                                        <a href="{{ route('admin.incidents.edit', ['incident' => $incident]) }}"
+                                            class="btn btn-link">Modifier</a>
+                                    </button>
+                                    {{-- en cliquant sur modifier, le formulaire va devenir éditable --}}
+                                </td>
 
-                @foreach ($incidents as $incident)
-                    <tr>
-                        <td>
-                            @foreach ($incident->services as $service)
-                                {
-
-                                {{ $service->name }}
-                                }
-                            @endforeach
-                        </td>
-                        <td>{{ $incident->states_id }}</td>
-                        {{-- <td>@foreach ($incident->states as $state) {
-
-                        {{ $state->name}} </td>
-                     }@endforeach --}}
-                        <td>{{ $incident->commentary }}</td>
-                        <td>{{ $incident->start_date }}</td>
-                        <td>{{ $incident->end_date }}</td>
-                        <td>
-                            <button type="button" class="btn btn-warning"><a
-                                    href="{{ route('admin.incidents.index', ['incident' => $incident]) }}"
-                                    class="btn btn-link">Modifier</a></button>
-                            {{-- en cliquant sur modifier, le formulaire va devenir éditable --}}
-                        </td>
+                            </tr>
+                </tbody>
+                {{-- @else --}}
+                {{-- <p> Aucun services à afficher présentement </p> --}}
+                @endif
                 @endforeach
-                </tr>
-
-            </tbody>
-        </table>
-    </form>
-
-@endsection
+            </table>
+        @endsection
