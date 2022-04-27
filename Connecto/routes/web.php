@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin;
+use App\Http\Controllers\SuperAdmin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReportController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +22,14 @@ Route::prefix('home')->name('home.')->group(function () {
     Route::redirect('/', 'home');
     Route::resource('home', HomeController::class);
 });
+
+
+Route::prefix('superadmin')->name('superadmin.')->group(function() {
+    Route::redirect('/', 'superadmin/users');
+    Route::resource('users', SuperAdmin\UserController::class);
+});
+
+
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::redirect('/', 'admin/services');
