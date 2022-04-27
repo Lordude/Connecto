@@ -23,21 +23,25 @@
                         <label for="services">Choisir les services affectés</label>
 
                         @foreach ($services as $service)
-                            <ul class="list-group">
-                                <li class="list-group-item"><input class="form-check-input me-1" type="checkbox" id="service"
-                                        name="services[]" value="{{ $service->id }}"><label
-                                        for="service">{{ $service->name }}</label></li>
-                            </ul>
-                        @endforeach
-                        {{-- code pour afficher seulement les services qui ne sont pas affectés a une panne. Problème de requête à résoudre --}}
-                        {{-- @foreach ($services as $service)
-                            <ul class="list-group">
-                                <li class="list-group-item"><input class="form-check-input me-1" type="checkbox" id="service"
-                                    name="services[]" value="{{ $service->id }}">
-                                    <label for="service">{{ $service->hiddeService($service->id)}}</label></li>
+                            {{-- si l'incident est ouvert (requete dans model service)
+                            on affiche les services reliés grisés pour éviter de créer 2 fois le même service en panne --}}
+                            @if ($service->hasOpenIncident())
+                                <ul class="list-group">
+                                    <li class="list-group-item disabled text-danger"><input class="form-check-input me-1"
+                                            type="checkbox" id="service" name="services[]"
+                                            value="{{ $service->id }}"><label for="service">{{ $service->name }}
+                                            (incident en cours)
+                                        </label></li>
                                 </ul>
-                                @endforeach --}}
-
+                                {{-- si il n'y a pas d'incident relié, on affiche les services normalement --}}
+                            @else
+                                <ul class="list-group">
+                                    <li class="list-group-item"><input class="form-check-input me-1" type="checkbox"
+                                            id="service" name="services[]" value="{{ $service->id }}"><label
+                                            for="service">{{ $service->name }}</label></li>
+                                </ul>
+                            @endif
+                        @endforeach
                         <hr />
                         <div class="mb-3">
                             <label for="states">État du service</label>
@@ -76,8 +80,9 @@
                     <th>Service affecté</th>
                     <th>État</th>
                     <th></th>
-                    <th>Description</th>
-                    <th>Date de début</th>
+                    <th>Commentaire</th>
+                    <th>Début de l'incident</th>
+                    <th>Dure depuis:</th>
                     <th>Administrateur</th>
                     <th>Option</th>
                 </thead>
@@ -98,6 +103,7 @@
                                 {{-- <td><img src="{{ asset('image/ {$service->get_service_image($service->id}' )}}" alt="icone"/></td> --}}
                                 <td>{{ $incident->commentary }}</td>
                                 <td>{{ $incident->start_date }}</td>
+                                <td>{{ $incident->timeIncident() }}</td>
                                 <td>{{ $incident->adminIncident($incident->user_id)->first()->first_name }}
                                     {{ $incident->adminIncident($incident->user_id)->first()->last_name }}
                                 </td>
