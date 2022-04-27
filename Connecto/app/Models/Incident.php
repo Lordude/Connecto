@@ -82,4 +82,26 @@ class Incident extends Model
             return $result;
         }
     }
+
+    protected $dates = ['created_at', 'updated_at'];
+
+    public function timeIncident()
+    {
+        $start_date = Incident::first()->start_date;
+        $end_date =  now();
+        // $result = $start_date->diff($end_date);
+        // $result = Incident::select('end_date')
+        Incident::whereBetween('created_at', [$start_date, $end_date])->get();
+        // ->select('start_date')
+                    // ->orderBy('created_at', 'DESC')
+                    // ->limit(10)
+                    // ->get();
+        // $result = DB::table('incidents')
+        // ->select('start_date','end_date')
+        // ->whereBetween('created_at', [$start_date, $end_date])->get();
+        // $result= Incident::whereBetween('created_at', [$start_date, $crated_at])->get();
+        // if ($result->count()) {
+            // return $result;
+        // }
+    }
 }
