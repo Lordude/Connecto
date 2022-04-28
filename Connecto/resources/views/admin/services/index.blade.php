@@ -1,3 +1,5 @@
+@include('layouts.admin.headerAdmin')
+
 @extends('layouts.admin.app')
 
 @section('title', 'Accueil')
@@ -8,10 +10,9 @@
     <a href="{{route('admin.incidents.index')}}"> Gestion des incidents </a>
 <hr/><a href="{{route('admin.reports_services.index')}}"> Gestion des signalements </a>
     @if (session('logsuccess'))
-            <div class="alert alert-sucess">
-                {{session('logsuccess')}}
-            </div>
+        <p class="MessageSession">{{session('logsuccess')}}</p>
     @endif
+    
    
         @if($services->count() > 0)
             <table class="table">

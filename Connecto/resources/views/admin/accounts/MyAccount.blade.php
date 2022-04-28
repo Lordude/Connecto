@@ -1,5 +1,6 @@
-@include('layouts.includes.head')
 @include('layouts.admin.headerAdmin')
+
+@if(session()->has('emailUser'))
 
 <h1>Mon compte</h1>
 
@@ -21,3 +22,6 @@
 
 <button type="submit">Modifier le mot de passe</button>
 </form>
+@else
+<p class="MessageSession">Vous n'avez pas l'autorisation pour accéder à cette page</p>
+@endif

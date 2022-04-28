@@ -1,3 +1,5 @@
+@include('layouts.admin.headerAdmin')
+
 @extends('layouts.admin.app')
 
 @section('title', 'Accueil')

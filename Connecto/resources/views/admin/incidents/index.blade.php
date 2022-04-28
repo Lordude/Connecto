@@ -1,3 +1,5 @@
+@include('layouts.admin.headerAdmin')
+
 @extends('layouts.admin.incidents.app')
 
 @section('title', 'Incidents')

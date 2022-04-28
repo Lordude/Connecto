@@ -21,15 +21,6 @@
 
     <img style="width: 200px" src="{{ asset('image/RectangleText.png') }}">
 
-    @if(session()->has('emailUser'))
-    <a href="{{ route('admin.accounts.index') }}" class="btn btn-warning">Déconnexion</a>
-    <a href="" class="btn btn-warning">Mon Compte</a>
-   @endif
-   
-   @if(session('TypeRole') == '2')
-    <a href="" class="btn btn-warning">Bouton pour le superadmin</a>
-   @endif
-
     @if (session('messagelogout'))
                <p class="MessageSession">{{session('messagelogout')}}</p>
     @endif
@@ -38,9 +29,9 @@
                <p class="MessageSession">{{session('logfail')}}</p>
     @endif
 
-     <div class="container mt-5">         
-        @yield('content')
-    </div> 
+    <!-- @if(session('TypeRole') == '2')
+    <a href="" class="btn btn-warning">Bouton pour le superadmin</a>
+   @endif -->
 
     <div class="form-popup" id="myForm">
     <form action="{{ route('admin.accounts.store') }}" method="POST" class="form-container">
