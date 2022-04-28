@@ -34,6 +34,5 @@
             <p> Aucun produit à afficher pour le moment ! </p>
         @endif
 
-    <a href="{{ route('admin.services.create') }}">Ajouter un service </a>
-
+    
 @endsection
