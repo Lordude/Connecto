@@ -86,7 +86,7 @@ class Incident extends Model
 
     public function incidentOpenSince()
     {
-        $start_date = DB::table('incidents')->first()->created_at;
+        $start_date = $this->created_at;
         $result = Carbon::now()->diffInHours($start_date);
         return $result;
     }
