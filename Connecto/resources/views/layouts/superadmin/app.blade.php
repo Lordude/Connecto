@@ -1,5 +1,5 @@
 <html>
-    @include('layouts.admin.includes.head')
+    @include('layouts.superadmin.includes.head')
 
     <body>
         <nav class="navbar navbar-expand-lg">

@@ -30,14 +30,16 @@ class Service extends Model
 
     public function get_service_state($service_id)
     {
+
         $result = DB::table('services')
-            ->Join('incident_service', 'services.id', '=', 'incident_service.service_id')
-            ->join('incidents', 'incident_service.incident_id', '=', 'incidents.id')
-            ->join('states', 'incidents.state_id', '=', 'states.id')
-            ->select('states.name')
-            ->whereNull('incidents.end_date')
-            ->where('services.id', '=', $service_id)
-            ->get();
+                    ->join('incident_service', 'services.id', '=', 'incident_service.service_id')
+                    ->join('incidents', 'incident_service.incident_id', '=', 'incidents.id')
+                    ->join('states', 'incidents.state_id', '=', 'states.id')
+                    ->select('states.name')
+                    ->whereNull('incidents.end_date')
+                    ->where('services.id', '=', $service_id)
+                    ->get();
+
 
         if ($result->count()) {
             return $result;
@@ -48,6 +50,7 @@ class Service extends Model
     }
     public function get_service_image($service_id)
     {
+
         $result = DB::table('services')
             ->Join('incident_service', 'services.id', '=', 'incident_service.service_id')
             ->join('incidents', 'incident_service.incident_id', '=', 'incidents.id')
@@ -56,6 +59,7 @@ class Service extends Model
             ->whereNull('incidents.end_date')
             ->where('services.id', '=', $service_id)
             ->get();
+
 
         if ($result->count()) {
             return $result;
