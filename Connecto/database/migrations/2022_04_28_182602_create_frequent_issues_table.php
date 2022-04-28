@@ -13,17 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reports', function (Blueprint $table) {
+        Schema::create('frequent_issues', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email');
-            $table->mediumText('detail');
-            $table->date('date')->nullable();;
+            $table->string('problem');
             $table->timestamps();
+
         });
 
         Artisan::call('db:seed', [
-            '--class' => 'ReportSeeder'
+            '--class' => 'FrequentIssuesSeeder'
         ]);
     }
 
@@ -34,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reports');
+        Schema::dropIfExists('frequent_issues');
     }
 };

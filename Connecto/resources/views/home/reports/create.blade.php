@@ -6,18 +6,18 @@
 
     <h1><img style="width: 200px" src="{{ asset('image/RectangleText.png') }}"></h1>
 
-  <h3>Signalement</h3>
+    <h3>Signalement</h3>
 
-  <div class="row">
-    
-    <div class="col-6 col-lg-6">
-      <form method="POST" action="{{ route('home.reports.store') }}">
-       
-        @csrf
+    <div class="row">
 
-        @include('home.reports.partials.form')
-       
-      </form>
+        <div class="col-6 col-lg-6">
+            <form method="POST" action="{{ route('home.reports.store') }}">
+
+                @csrf
+
+                @include('home.reports.partials.form')
+
+            </form>
+        </div>
     </div>
-  </div>
 @endsection

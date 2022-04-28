@@ -7,11 +7,7 @@
 
     <h1>Signaler une panne</h1>
 
-
-      
-
-            <p> Votre système epprouve des difficultés remplissez ce formualaire et on vous aidera ! </p>
-       
+    <p> Votre système epprouve des difficultés remplissez ce formualaire et on vous aidera ! </p>
 
     <a href="{{ route('home.reports.create') }}">Formulaire </a>
 
