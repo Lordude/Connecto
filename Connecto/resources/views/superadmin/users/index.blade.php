@@ -11,7 +11,7 @@
                 {{session('logsuccess')}}
             </div>
     @endif
-   
+       <a href="{{ route('superadmin.users.create') }}">Ajouter un compte </a>
         @if($users->count() > 0)
             <table class="table">
                 <thead>
@@ -29,8 +29,8 @@
                             <td> {{$user->date_hired}}</td>
                             <td> {{$user->password}}</td>
                             <td> {{$user->role_id}}</td>
-                            <td><a href="#">Modifier </a> </td>
-                            <td><form method="POST" action="" class="mb-0">
+                            <td><a href="{{route('superadmin.users.edit', ['user' => $user])}}">Modifier </a> </td>
+                            <td><form method="POST" action="{{route('superadmin.users.destroy', ['user' => $user])}}" class="mb-0">
                                 @csrf
                                 @method('DELETE')
 
@@ -42,9 +42,9 @@
                 </tbody>
             </table>
         @else
-            <p> Aucun produit à afficher pour le moment ! </p>
+            <p> Il n'y a presentement pas de compte utilisateur ! *bruit de X-files parce qu'il faut etre utilisateur pour voir cet ecran * </p>
         @endif
 
-    <a href="{{ route('admin.services.create') }}">Ajouter un service </a>
+
 
 @endsection

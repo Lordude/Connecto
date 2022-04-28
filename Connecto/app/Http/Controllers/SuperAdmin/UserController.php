@@ -17,14 +17,14 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('admin.users.create');
+        return view('superadmin.users.create');
     }
 
     public function edit($id)
     {
         $user = User::findOrFail($id);
 
-        return view('admin.users.edit', ['user' => $user]);
+        return view('superadmin.users.edit', ['user' => $user]);
     }
 
     public function update(Request $request, $id)
@@ -35,7 +35,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect()->route('admin.users.index')->with('success', 'Le user a été créé ! ');
+        return redirect()->route('superadmin.users.index')->with('success', 'Le user a été créé ! ');
     }
 
     public function store(Request $request)
@@ -46,14 +46,14 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect()->route('admin.users.index')->with('success', 'Le user a été créé ! ');
+        return redirect()->route('superadmin.users.index')->with('success', 'Le user a été créé ! ');
     }
 
     public function destroy(Request $request, $id)
     {
         User::destroy($id);
 
-        return redirect()->route('admin.users.index')->with('success', 'Le produit a été supprimé.');;
+        return redirect()->route('superadmin.users.index')->with('success', 'Le produit a été supprimé.');;
     }
 }
 

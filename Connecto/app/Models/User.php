@@ -53,6 +53,7 @@ class User extends Authenticatable
     }
 
 
+
 //pour l'affichage du compte de l'admin
     public static function getUserInfo($email)
     {

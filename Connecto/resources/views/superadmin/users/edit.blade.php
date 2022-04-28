@@ -8,6 +8,7 @@
 
     <form method="POST" action="{{ route('superadmin.users.store') }}">
         @csrf 
+        @method('PUT')
 
         <div>
             <label for="first_name" class="form-label">Prénom</label>
@@ -34,5 +35,6 @@
     <a href="{{ route('superadmin.users.index') }}" class="btn btn-secondary"> Retour </a>
 
     </form>
+
     
 @endsection

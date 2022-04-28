@@ -5,6 +5,7 @@ use App\Http\Controllers\SuperAdmin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\SuperAdmin\UserController;
 
 /*
 |--------------------------------------------------------------------------

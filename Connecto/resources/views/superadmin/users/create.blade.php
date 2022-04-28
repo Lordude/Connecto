@@ -7,7 +7,8 @@
     <h1>Ajouter un compte utilisateur</h1>
 
     <form method="POST" action="{{ route('superadmin.users.store') }}">
-        @csrf 
+        @csrf
+        @method('PUT')
 
         <div>
             <label for="first_name" class="form-label">Prénom</label>
