@@ -24,25 +24,17 @@
                 <option value="state" selected="selected" disabled>
                     {{ $service->get_service_state($service->id)->first()->name }}
                 </option>
-                
+
                 @foreach ($states as $state)
                     {{-- <option class="list-group-item"><input class="form-check-input me-1" type="checkbox" id="service"
                             name="services[]" value="{{ $state->id }}"></option>
                             <label>for="service">{{ $state->name }}</label></li> --}}
                     <option value="<?= $state['id'] ?>"><?= $state['name'] ?></option>
                 @endforeach
-
             </select>
             <label for="commentary">Commentaire</label>
             <input type="text" id="commentary" name="commentary">
             <div>
-                {{-- on pourrait changer l'administrateur si c'est un autre admin qui change l'incident? --}}
-                {{-- <label for="name" class="form-label">Administrateur</label>
-                <select class="form-select" name="user" id="users">
-                    <option value="user" selected="selected" disabled>
-                        {{ $incident->adminIncident($incident->user_id)->first()->first_name }}
-                        {{ $incident->adminIncident($incident->user_id)->first()->last_name }}</option> --}}
-
                 </select>
             </div>
         </div>

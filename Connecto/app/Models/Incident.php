@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use App\Models\Service;
 use App\Models\State;
 use App\Models\User;
@@ -67,7 +68,7 @@ class Incident extends Model
         }
     }
 
-    public function adminIncident($user_id)
+    public function adminCreateIncident($user_id)
     {
         $result = DB::table('incidents')
             ->join('users', 'incidents.user_id', '=', 'users.id')
@@ -83,25 +84,10 @@ class Incident extends Model
         }
     }
 
-    protected $dates = ['created_at', 'updated_at'];
-
-    public function timeIncident()
+    public function incidentOpenSince()
     {
-        $start_date = Incident::first()->start_date;
-        $end_date =  now();
-        // $result = $start_date->diff($end_date);
-        // $result = Incident::select('end_date')
-        Incident::whereBetween('created_at', [$start_date, $end_date])->get();
-        // ->select('start_date')
-                    // ->orderBy('created_at', 'DESC')
-                    // ->limit(10)
-                    // ->get();
-        // $result = DB::table('incidents')
-        // ->select('start_date','end_date')
-        // ->whereBetween('created_at', [$start_date, $end_date])->get();
-        // $result= Incident::whereBetween('created_at', [$start_date, $crated_at])->get();
-        // if ($result->count()) {
-            // return $result;
-        // }
+        $start_date = DB::table('incidents')->first()->created_at;
+        $result = Carbon::now()->diffInHours($start_date);
+        return $result;
     }
 }

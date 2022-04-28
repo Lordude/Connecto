@@ -15,6 +15,7 @@
             <div class="col6 col-lg-6">
 
                 <form id="hidden" method="POST" action="{{ route('admin.incidents.store') }}">
+                    <a href="{{ route('admin.incidents.index') }}" class="btn btn-secondary">Annuler</a>
                     @csrf
 
                     <h3>Nouvel incident</h3>
@@ -102,17 +103,16 @@
                                         alt="icone" /></td>
                                 {{-- <td><img src="{{ asset('image/ {$service->get_service_image($service->id}' )}}" alt="icone"/></td> --}}
                                 <td>{{ $incident->commentary }}</td>
-                                <td>{{ $incident->start_date }}</td>
-                                <td>{{ $incident->timeIncident() }}</td>
-                                <td>{{ $incident->adminIncident($incident->user_id)->first()->first_name }}
-                                    {{ $incident->adminIncident($incident->user_id)->first()->last_name }}
+                                <td>{{ $incident->created_at }}</td>
+                                <td>{{ $incident->incidentOpenSince() }} heures</td>
+                                <td>{{ $incident->adminCreateIncident($incident->user_id)->first()->first_name }}
+                                    {{ $incident->adminCreateIncident($incident->user_id)->first()->last_name }}
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-warning">
                                         <a href="{{ route('admin.incidents.edit', ['incident' => $incident]) }}"
                                             class="btn btn-link">Modifier</a>
                                     </button>
-                                    {{-- en cliquant sur modifier, le formulaire va devenir éditable --}}
                                 </td>
 
                             </tr>
