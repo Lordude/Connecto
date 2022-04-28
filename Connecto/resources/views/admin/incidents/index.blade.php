@@ -98,7 +98,7 @@
                                         </ul>
                                     @endforeach
                                 </td>
-                                <td>{{ $service->get_service_state($service->id)->first()->name }}</td>
+                                <td>{{ $service->get_service_state()->first()->name }}</td>
                                 <td><img src="{{ asset('image/') . $service->get_service_image($service->id) }}"
                                         alt="icone" /></td>
                                 {{-- <td><img src="{{ asset('image/ {$service->get_service_image($service->id}' )}}" alt="icone"/></td> --}}

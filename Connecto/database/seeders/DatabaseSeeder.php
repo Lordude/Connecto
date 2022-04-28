@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             ServiceSeeder::class,
             UserSeeder::class,
             IncidentSeeder::class,
-            IncidentServiceSeeder::class
+            IncidentServiceSeeder::class,
+            FrequentIssuesSeeder::class,
         ]);
     }
 }

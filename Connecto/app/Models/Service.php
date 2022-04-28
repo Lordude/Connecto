@@ -28,7 +28,7 @@ class Service extends Model
         return $this->hasOne(State::class);
     }
 
-    public function get_service_state($service_id)
+    public function get_service_state()
     {
 
         $result = DB::table('services')
@@ -37,7 +37,7 @@ class Service extends Model
                     ->join('states', 'incidents.state_id', '=', 'states.id')
                     ->select('states.name')
                     ->whereNull('incidents.end_date')
-                    ->where('services.id', '=', $service_id)
+                    ->where('services.id', '=', $this->id)
                     ->get();
 
 
