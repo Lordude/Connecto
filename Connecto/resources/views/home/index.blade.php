@@ -1,3 +1,5 @@
+@include('admin.accounts.HeaderPublic')
+
 @extends('layouts.admin.app')
 
 @section('title', 'Signaler une panne')
