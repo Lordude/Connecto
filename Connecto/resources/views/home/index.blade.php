@@ -1,12 +1,13 @@
-@extends('../admin/accounts/index')
+@extends('layouts.admin.app')
 
-@section('title', 'Services')
+@section('title', 'Signaler une panne')
 
 @section('content')
+
     <h1>Services Connecto</h1>
     <h2> uptime() </h2>
     <button type="button" class="btn"><a href="{{ route('admin.services.index') }}" >Accès admin Service</a></button>
-    <button type="button" class="btn btn-warning" ><a href="{{route('home.reports.index')}}"> Signaler une panne</a> </button>
+    <button type="button" class="btn btn-warning" ><a href="{{route('home.reports.create')}}"> Signaler une panne</a> </button>
     <button type="button" class="btn btn-warning" ><a href="{{route('superadmin.users.index')}}"> USERS SUPER ADMIN</a> </button>
     @if($services->count() > 0)
         <table class="table">
