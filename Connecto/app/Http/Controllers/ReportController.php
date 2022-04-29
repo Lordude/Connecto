@@ -57,11 +57,15 @@ class ReportController extends Controller
      */
     public function store(Request $request)
     {
-        $report = Report::create($request->validate([
+
+         Report::create($request->validate([
+
             'name' => ['required'],
             'email' => ['required'],
             'detail' => ['required'],
-            
+            'date' => ['required'],
+            'frequent_issue_id' => ['required'],
+
         ]));
 
         return redirect()->route('home.reports.index')->withSuccess('Le signalement a été créée');
@@ -81,7 +85,7 @@ class ReportController extends Controller
     }
 
 
-   
+
     /**
      * Remove the specified resource from storage.
      *
@@ -95,6 +99,6 @@ class ReportController extends Controller
         return redirect()->route('home.reports.index');
     }
 
-   
-    
+
+
 }

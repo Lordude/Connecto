@@ -27,7 +27,8 @@ class Report extends Model
         'email',
         'detail',
         'date',
-       
+        'frequent_issue_id',
+
     ];
 /**
      * The attributes that should be cast.
@@ -40,9 +41,9 @@ class Report extends Model
     /**
      * Get the product that owns the ProductOption.
      */
-    public function services()
+    public function frequentIssues()
     {
-        return $this->belongsToMany(Service::class);
+        return $this->belongsToMany(Report::class);
     }
 }
 
