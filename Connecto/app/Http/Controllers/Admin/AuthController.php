@@ -37,4 +37,13 @@ class AuthController extends Controller
 
         return view("admin.accounts.MyAccount", ["resultUser"=> $resultUser]);
     }
+
+
+   public function update(Request $request){
+
+    User::UpdatePSW($request->session()->get("emailUser"), $request->newPassword);
+
+    return back()->with("MessageChange", "Changement du mot de passe réussi!!!");
+
+    }
 }

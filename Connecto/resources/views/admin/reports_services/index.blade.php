@@ -12,8 +12,8 @@
 
         @if($services->count() > 0)
             <table class="table">
-                <p>nombre de signalements par heure</p>
-                <input type="submit" value="signalement/heure" class="btn btn-link link-danger" onclick="return confirm('Are you sure?')" />
+                
+               
                 <thead>
                     <th>Nom du service</th>
 

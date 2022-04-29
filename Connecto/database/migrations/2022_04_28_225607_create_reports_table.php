@@ -21,7 +21,7 @@ return new class extends Migration
             $table->date('date')->nullable();;
             $table->timestamps();
 
-            $table->foreignId('frequent_issues_id')
+            $table->foreignId('frequent_issue_id')
             ->constrained()
             ->onDelete('cascade')
             ->nullable();
