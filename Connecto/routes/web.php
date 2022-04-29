@@ -54,3 +54,4 @@ Route::prefix('home')->name('home.')->group(function () {
 });
 
 Route::get('/MyAccount', [Admin\AuthController::class, 'show'])->name('MyAccount');
+Route::post('/MyAccount', [Admin\AuthController::class, 'update'])->name('UpdatePassWord');

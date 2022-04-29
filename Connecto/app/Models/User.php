@@ -63,4 +63,11 @@ class User extends Authenticatable
 
         return $resultUser; 
     }
+
+    public static function UpdatePSW($email, $newPassword)
+    {
+         DB::table('users')
+        ->where("email", '=', $email)
+        ->update(["password" => $newPassword]);
+    }
 }
