@@ -17,7 +17,6 @@ class Service extends Model
         return $this->belongsToMany(Report::class);
     }
 
-
     public function incidents()
     {
         return $this->belongsToMany(Incident::class);
@@ -27,6 +26,8 @@ class Service extends Model
     {
         return $this->hasOne(State::class);
     }
+
+    
 
     public function get_service_state()
     {
