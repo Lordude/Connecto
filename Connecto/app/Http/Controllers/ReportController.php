@@ -68,6 +68,7 @@ class ReportController extends Controller
 
         ]));
 
+
         return redirect()->route('home.reports.index')->withSuccess('Le signalement a été créée');
     }
 

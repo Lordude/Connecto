@@ -8,7 +8,7 @@
 
     <form method="POST" action="{{ route('superadmin.users.store') }}">
         @csrf
-        @method('PUT')
+
 
         <div>
             <label for="first_name" class="form-label">Prénom</label>
@@ -20,13 +20,15 @@
             <label for="email" class="form-label">Courriel</label>
             <input id="email" name="email" type="email" class="form-control">
 
-            <label for="date_hired" class="form-label">Date d'embauche</label>
-            <input id="date_hired" name="date_hired" type="date" value="{{Carbon::now()}}" class="form-control">
+            <label for="password" class="form-label">Mot de passe :</label>
+            <input id="password" name="password" type="password" class="form-control">
 
-            @foreach($roles as $role) {
-                <input type="radio" id="role_id" name="role_id" value="{{$role->id}}" class="form-control">
-                <label for="role_id"> {{$role->name}} </label><br/>
-            }
+            <label for="date_hired" class="form-label">Date d'embauche</label>
+            <input id="date_hired" name="date_hired" type="date" value="" class="form-control">
+
+            <label for="role_id" class="form-label">Accès rôle</label>
+            <input id="role_id" name="role_id" type="number" class="form-control">
+
 
         </div>
 

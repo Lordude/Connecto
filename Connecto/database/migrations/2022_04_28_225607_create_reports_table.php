@@ -23,7 +23,8 @@ return new class extends Migration
 
             $table->foreignId('frequent_issue_id')
             ->constrained()
-            ->onDelete('cascade');
+            ->onDelete('cascade')
+            ->nullable();
         });
 
         Artisan::call('db:seed', [

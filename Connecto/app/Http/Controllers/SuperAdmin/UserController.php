@@ -31,7 +31,10 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
-        $user->name = $request->name;
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->role_id = $request->role_id;
 
         $user->save();
 
@@ -42,7 +45,12 @@ class UserController extends Controller
     {
         $user = new User;
 
-        $user->name = $request->name;
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->date_hired = $request->date_hired;
+        $user->role_id = $request->role_id;
 
         $user->save();
 

@@ -4,29 +4,24 @@
 
 @section('content')
 
-    <h1>Ajouter un compte utilisateur</h1>
+    <h1>Modifier un compte utilisateur</h1>
 
-    <form method="POST" action="{{ route('superadmin.users.store') }}">
+    <form method="POST" action="{{ route('superadmin.users.update', ['user' => $user])}}">
         @csrf 
         @method('PUT')
 
         <div>
             <label for="first_name" class="form-label">Prénom</label>
-            <input id="first_name" name="first_name" type="text" class="form-control">
+            <input id="first_name" name="first_name" value="{{ $user->first_name }}" type="text" class="form-control">
 
             <label for="last_name" class="form-label">Nom</label>
-            <input id="last_name" name="last_name" type="text" class="form-control">
+            <input id="last_name" name="last_name" value="{{ $user->last_name }}" type="text" class="form-control">
 
             <label for="email" class="form-label">Courriel</label>
-            <input id="email" name="email" type="email" class="form-control">
+            <input id="email" name="email" value="{{ $user->email }}" type="email" class="form-control">
 
-            <label for="date_hired" class="form-label">Date d'embauche</label>
-            <input id="date_hired" name="date_hired" type="date" value="{{Carbon::now()}}" class="form-control">
-
-            @foreach($roles as $role) {
-                <input type="radio" id="role_id" name="role_id" value="{{$role->id}}" class="form-control">
-                <label for="role_id"> {{$role->name}} </label><br/>
-            }
+            <label for="role_id" class="form-label">Accès administrateur</label>
+            <input id="role_id" name="role_id" type="number" class="form-control">
 
         </div>
 
