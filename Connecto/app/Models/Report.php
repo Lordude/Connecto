@@ -45,5 +45,10 @@ class Report extends Model
     {
         return $this->belongsToMany(Report::class);
     }
+
+    public function services()
+    {
+        return $this->belongsToMany(Service::class);
+    }
 }
 
