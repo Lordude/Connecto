@@ -52,8 +52,10 @@
                 </span>
                 @enderror
             </div>
+            <hr/>
+            <h5>Pour mieux vous aider, nous spécifier la date que le problème à commencé.</h5>
             <input type="date" id="date" name="date">
-
+<hr/>
             <input type="submit" value="Envoyer" class="btn btn-primary">
             <a href="{{ route('home.reports.index') }}" class="btn btn-secondary">Annuler</a>
     </form>

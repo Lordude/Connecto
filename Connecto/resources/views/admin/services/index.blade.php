@@ -24,6 +24,7 @@
                     @foreach ($services as $service)
                         <tr>
                             <td> {{$service->name}} </td>
+                            <td> <img width="42px" height="42px" src="../image/{{$service->get_service_image($service->id)->first()->image;}}" alt="Icone de l\'etat du service {{$service->get_service_image($service->id)->first()->image;}}"></td>
                             <td><a href="{{route('admin.services.edit', ['service' => $service]) }}">Modifier </a> </td>
                             <td><form method="POST" action="{{ route('admin.services.destroy', ['service' => $service]) }}" class="mb-0">
                                 @csrf

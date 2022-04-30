@@ -68,6 +68,42 @@ class Incident extends Model
         }
     }
 
+    public function get_incident_state($incident_id)
+    {
+
+        $result = DB::table('incidents')
+            ->join('states', 'incidents.state_id', '=', 'states.id')
+            ->select('states.name')
+            ->where('incidents.id', '=', $incident_id)
+            ->get();
+
+
+        if ($result->count()) {
+            return $result;
+        } else {
+            $result = DB::table('states')->where('states.id', '=', '1')->select('states.image')->get();
+            return $result;
+        }
+    }
+
+    public function get_incident_image($incident_id)
+    {
+
+        $result = DB::table('incidents')
+            ->join('states', 'incidents.state_id', '=', 'states.id')
+            ->select('states.image')
+            ->where('incidents.id', '=', $incident_id)
+            ->get();
+
+
+        if ($result->count()) {
+            return $result;
+        } else {
+            $result = DB::table('states')->where('states.id', '=', '1')->select('states.image')->get();
+            return $result;
+        }
+    }
+
     public function adminCreateIncident($user_id)
     {
         $result = DB::table('incidents')

@@ -6,8 +6,6 @@
 
 @section('content')
 
-    <h1><img style="width: 200px" src="{{ asset('image/RectangleText.png') }}"></h1>
-
     <h2>Gestion des incidents</h2>
 
     <button onClick="incidentForm()" type="button" class="btn btn-warning">Créer un incident</button>
@@ -65,7 +63,7 @@
                             <input type="text" id="commentary" name="commentary">
                             <hr />
                             <hr />
-                            <input type="hidden" id="start_date" name="start_date">
+                            <input type="hidden" id="start_date" name="start_date" value="">
 
                             <input type="submit" value="créer le nouvel incident" class="btn btn-primary">
                             <a href="{{ route('admin.incidents.index') }}" class="btn btn-secondary">Annuler</a>
@@ -90,6 +88,7 @@
                     <th>Option</th>
                 </thead>
                 <tbody>
+                    <h3 class="text-center"> Incident ouvert </h3>
                     @foreach ($incidents as $incident)
                         @if ($incident->end_date == null)
                             <tr>
@@ -100,10 +99,10 @@
                                         </ul>
                                     @endforeach
                                 </td>
-                                <td>{{ $service->get_service_state()->first()->name }}</td>
-                                <td><img src="{{ asset('image/') . $service->get_service_image($service->id) }}"
-                                        alt="icone" /></td>
-                                {{-- <td><img src="{{ asset('image/ {$service->get_service_image($service->id}' )}}" alt="icone"/></td> --}}
+
+                                <td>{{ $service->get_service_state($service->id)->first()->name }}</td>
+                                <td> <img width="42px" height="42px" src="../image/{{$incident->get_incident_image($incident->id)->first()->image;}}" alt="Icone de l\'etat du service {{$service->get_service_image($service->id)->first()->image;}}"></td>
+
                                 <td>{{ $incident->commentary }}</td>
                                 <td>{{ $incident->created_at }}</td>
                                 <td>{{ $incident->incidentOpenSince() }} heures</td>
@@ -123,5 +122,6 @@
                 {{-- <p> Aucun services à afficher présentement </p> --}}
                 @endif
                 @endforeach
+
             </table>
         @endsection
