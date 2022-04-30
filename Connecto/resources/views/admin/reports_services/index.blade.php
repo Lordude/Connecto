@@ -6,24 +6,44 @@
 
 @section('content')
 
+
+
+
+
+
+
     <h1>Signalement</h1>
 
 
+      @foreach ($reports as $report)
+      <div class="d-flex justify-content-between">  
+        <p style="background-color: #DDFDFC;">{{ $report->reportOpenSinceOneHour() }}  signalement en 24 heure</p>
+       
+   
+    </div>
+              
+  @endforeach
 
+
+
+  
         @if($services->count() > 0)
             <table class="table">
                 
+             
+
+
+
+
 
                 <thead>
                     <th>Nom du service</th>
                   
-                    @foreach ($report->services as $service)
-               
-                      <p>{{ $report->get_report_sub_hours() }} signalement</p>
-                    @endforeach
+                   
 
                   
 
+                 
 
                     
             

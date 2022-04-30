@@ -6,9 +6,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Service;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use App\Models\ReportService;
-
-
 
 
 class Report extends Model
@@ -38,9 +38,7 @@ class Report extends Model
     protected $casts = [
         'start_date' => 'date',
     ];
-    /**
-     * Get the product that owns the ProductOption.
-     */
+    
     public function frequentIssues()
     {
         return $this->belongsToMany(Report::class);
@@ -50,5 +48,38 @@ class Report extends Model
     {
         return $this->belongsToMany(Service::class);
     }
+
+    public function reports_services()
+    {
+        return $this->belongsToMany(Report_Service::class);
+    }
+
+
+
+
+
+public function reportOpenSinceOneHour()
+{
+    $Report = $this->select([
+        DB::raw('HOUR(created_at) AS hour'),
+        
+
+    ])
+    ->whereBetween('created_at', [Carbon::now()->subHours(24), Carbon::now()])
+    ->get();
+
+ 
+    foreach ($Report as $reports) {
+        $ReportByHour[$reports['hour']] = $reports['count'];
+    }
+
+  
+    return count($ReportByHour);
+
+    
 }
+
+}
+
+
 

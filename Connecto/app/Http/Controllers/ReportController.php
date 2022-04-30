@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Report;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreReportRequest;
+use App\Models\ReportService;
+
 
 
 
@@ -22,9 +23,12 @@ class ReportController extends Controller
     public function index()
     {
         $reports = Report::all();
+        $report = Report::this();
 
         return view('home.reports.index',
-         ['reports' => $reports]
+         ['reports' => $reports],
+         ['report' => $report]
+
         );
     }
     public function show($id)
@@ -99,7 +103,13 @@ class ReportController extends Controller
 
         return redirect()->route('home.reports.index');
     }
-
+   
+    public function update(Request $request, $id)
+    {
+       $report = Report::findOrFail($id);
+       $report->save();
+       
+    }
 
 
 }
