@@ -15,6 +15,8 @@
         <img style="width: 200px" src="{{ asset('image/RectangleText.png') }}">
             
         <p style="background-color: #DDFDFC;">X nombre de signalement depuis les dernières 24 heures</p>
+    
+      
     </div>
     
 

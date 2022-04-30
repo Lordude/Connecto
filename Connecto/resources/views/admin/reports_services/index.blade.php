@@ -13,10 +13,20 @@
         @if($services->count() > 0)
             <table class="table">
                 
-               
+
                 <thead>
                     <th>Nom du service</th>
+                  
+                    @foreach ($report->services as $service)
+               
+                      <p>{{ $report->get_report_sub_hours() }} signalement</p>
+                    @endforeach
 
+                  
+
+
+                    
+            
                 </thead>
                 <tbody>
                     @foreach ($services as $service)

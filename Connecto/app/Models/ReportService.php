@@ -83,5 +83,13 @@ class ReportService extends Model
         }
 
     }
+    public function get_report_sub_hours($report_id)
+    {
+        $reports = Report::where('report_id', 'active')
+        ->where( 'created_at', '>', Carbon::now()->subHours(24))
+        ->get();
+
+    }
 }
+
 
