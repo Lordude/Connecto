@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+
 
 class Authentification extends Model
 {
@@ -14,14 +16,20 @@ class Authentification extends Model
 
         $result = DB::table("users")
             ->where("email", '=', $email)
-            ->where("password", '=', $psw)
-            ->get();
-            
-            if($result->count() > 0){
-                return true;
-            }else{
-                return false;
-            }
+            //->where("password", '=', $psw)
+            ->first();
+
+             if(!$result == null)
+             {
+                if(Hash::check($psw, $result->password))
+                {
+                    return true;
+                }
+                    return false;
+            //
+             }else{
+                 return false;
+             }
     }
     
     static function getRole($email){
