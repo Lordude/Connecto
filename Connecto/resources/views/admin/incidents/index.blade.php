@@ -6,8 +6,6 @@
 
 @section('content')
 
-    <h1><img style="width: 200px" src="{{ asset('image/RectangleText.png') }}"></h1>
-
     <h2>Gestion des incidents</h2>
 
     <button onClick="incidentForm()" type="button" class="btn btn-warning">Créer un incident</button>
