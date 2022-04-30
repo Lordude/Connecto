@@ -9,7 +9,6 @@ use App\Models\Service;
 use App\Models\State;
 use App\Models\User;
 
-
 class IncidentController extends Controller
 {
     public function index()
@@ -92,5 +91,12 @@ class IncidentController extends Controller
         }
         $incident->save();
         return redirect()->route('admin.incidents.index')->with('success', 'L\'incident a été modifié!');
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        Incident::destroy($id);
+
+        return redirect()->route('admin.incidents.index')->with('success', 'Le service a été supprimé.');;
     }
 }

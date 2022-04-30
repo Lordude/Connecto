@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Incident;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -64,10 +65,11 @@ class User extends Authenticatable
         return $resultUser; 
     }
 
+//pour la modification du mot de passe de l'admin
     public static function UpdatePSW($email, $newPassword)
     {
          DB::table('users')
         ->where("email", '=', $email)
-        ->update(["password" => $newPassword]);
+        ->update(["password" => Hash::make($newPassword)]);
     }
 }
