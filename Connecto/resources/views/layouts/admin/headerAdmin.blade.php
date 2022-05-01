@@ -12,9 +12,9 @@
     <div class=" p-4 mb-2 filll"></div>
 
     <div class="d-flex justify-content-between">
-        <img style="width: 200px" src="{{ asset('image/RectangleText.png') }}">
+        <img class="LogoHeader" src="{{ asset('image/RectangleText.png') }}">
             
-        <p style="background-color: #DDFDFC;">X nombre de signalement depuis les dernières 24 heures</p>
+        <p class="NbSignal">X signalements depuis les dernières 24 heures</p>
     
       
     </div>

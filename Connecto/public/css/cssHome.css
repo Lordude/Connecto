@@ -66,6 +66,7 @@
 }
 
 
+/* pour le header */
 .fill {
   margin-bottom: 0 !important;
 }
@@ -80,3 +81,65 @@
   text-align: center;
 }
 
+.NbSignal {
+  text-align: center;
+  background-color: #DDFDFC;
+  border-radius: 15px; 
+  padding: 6px;
+  margin: 15px;
+}
+
+.LogoHeader{
+  width: 200px;
+  margin: 15px;
+}
+
+/* Pour le menu de nav on the side */
+.sidenavDiv {
+  padding-top: 80px;
+}
+
+.sidenav  {
+  border-radius: 50px;
+  text-align: center;
+  padding: 6px 6px 6px 16px;
+  margin: 30px;
+  text-decoration: none;
+  display: block;
+  color: black;
+  background-color:#E3E9F1;
+}
+
+.sidenav:hover {
+  color: white;
+  background-color:#2A4A9B;
+}
+
+.main {
+  margin-left: 160px; 
+  padding: 0px 10px;
+}
+
+/* pour le bouton de modification de mot de passe */
+#btnModPSW {
+  border-radius: 50px;
+  text-align: center;
+  padding: 6px 6px 6px 6px;
+  margin-top: 30px;
+  text-decoration: none;
+  display: block;
+  color: black;
+  background-color:#E3E9F1;
+  border: none;
+
+}
+
+#btnModPSW:hover {
+  color: white;
+  background-color:#2A4A9B;
+}
+
+footer {
+  text-align: center;
+  margin-top: 150px;
+}

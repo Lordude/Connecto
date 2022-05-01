@@ -19,7 +19,7 @@
     </div>
     <div class=" p-4 mb-2 filll"></div>
 
-    <img style="width: 200px" src="{{ asset('image/RectangleText.png') }}">
+    <img class="LogoHeader" src="{{ asset('image/RectangleText.png') }}">
 
     @if (session('messagelogout'))
                <p class="MessageSession">{{session('messagelogout')}}</p>
