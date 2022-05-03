@@ -39,10 +39,7 @@ class Report extends Model
         'start_date' => 'date',
     ];
     
-    public function frequentIssues()
-    {
-        return $this->belongsToMany(Report::class);
-    }
+
 
     public function services()
     {
@@ -51,14 +48,14 @@ class Report extends Model
 
     public function reports_services()
     {
-        return $this->belongsToMany(Report_Service::class);
+        return $this->belongsToMany(ReportService::class);
     }
 
 
 
 
 
-public function reportOpenSinceOneHour()
+public static function reportOpenSinceOneHour()
 {
     $Report = Report::select([
         DB::raw('HOUR(created_at) AS hour'),
@@ -79,7 +76,20 @@ public function reportOpenSinceOneHour()
     
 }
 
+
+public function get_report_sub_hours($report_id)
+{
+    $reports = Report::where('report_id', 'active')
+    ->where( 'created_at', '>', Carbon::now()->subHours(24))
+    ->get();
+
+
+
 }
+}
+
+
+
 
 
 

@@ -5,41 +5,54 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Service;
 use App\Models\Report;
 use App\Models\ReportService;
 
+
 class ReportServiceController extends Controller
 { 
+/**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $reports = Report::all();
+        $services = Service::all();
+        $reports_services = ReportService::all();
+        $data = ReportService::join('services', 'services.id', '=', 'report_service.service_id')
+                    ->join('reports', 'reports.id', '=', 'report_service.report_id')                   
+                    ->get([ 'services.name', 'reports.detail']);
 
-public function index()
-{
-  
-    $services = Service::all();
-    $reports = Report::all();
-  
 
-    return view(
+        return view (
         'admin.reports_services.index',
-        ['reports' => $reports],
-        ['services' => $services]
-        
+         [ 'data' => $data],
+        ['reports'=> $reports],
+        ['services'=> $services],
+        ['reports_services => $reports_services']
     );
-}
+       
+    
+        }
+
+
+
+
 
 public function show($id)
 {
     $report_service = ReportService::findOrFail($id);
 
-    return view('admin.reports_services.show', [
+    return view('admin.report_service.show', [
         'report' => $report_service,
         'services' => $report_service->services()->get()
     ]);
 }
     
- 
-   
+
     
     /**
      * Remove the specified resource from storage.
@@ -49,11 +62,10 @@ public function show($id)
      */
     public function destroy($id)
     {
-        Report::findOrFail($id)->delete();
+        ReportService::findOrFail($id)->delete();
 
         return redirect()->route('admin.reports_services.index');
     }
 
-   
-    
+      
 }

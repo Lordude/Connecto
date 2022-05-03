@@ -8,11 +8,6 @@ use App\Http\Controllers\Controller;
 use App\Models\ReportService;
 
 
-
-
-
-
-
 class ReportController extends Controller
 {
     /**
@@ -23,11 +18,11 @@ class ReportController extends Controller
     public function index()
     {
         $reports = Report::all();
-        $report = Report::this();
+
 
         return view('home.reports.index',
          ['reports' => $reports],
-         ['report' => $report]
+         
 
         );
     }
