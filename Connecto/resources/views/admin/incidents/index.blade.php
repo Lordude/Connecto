@@ -8,9 +8,9 @@
 
     <h2>Gestion des incidents</h2>
     <h3>
-    <?php 
+    <?php
     // echo App\Models\Incident::get_Uptime();
-    
+
         ?>
     </h3>
 
@@ -105,8 +105,8 @@
                                     @foreach ($incident->services as $service)
                                         <button type="button" class="btn btn-warning">
                                             <form method="POST"
-                                                action="{{ route('admin.incidents.destroy', ['incident', $incident]) }}"
-                                                {{-- action="{{ $incident->services()->detach(); }}" --}} class="mb-0">
+                                                action="{{ route('admin.services.deleteServiceFromIncidentService', $service->id) }}"
+                                                class="mb-0">
                                                 @csrf
                                                 @method('DELETE')
                                                 <input type="submit" value="X" class="btn btn-link link-danger"

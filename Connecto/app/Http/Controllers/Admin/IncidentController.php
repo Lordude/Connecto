@@ -18,14 +18,14 @@ class IncidentController extends Controller
         $services = Service::all();
         $states = State::all();
         $users = User::all();
- // $incident_service = IncidentService::all();
+        // $incident_service = IncidentService::all();
         return view(
             'admin.incidents.index',
             ['incidents' => $incidents],
             ['services' => $services],
             ['states' => $states],
             ['users' => $users]
-              // ['incident_service' => $incident_service]
+            // ['incident_service' => $incident_service]
         );
     }
     public function show($id)
@@ -39,7 +39,7 @@ class IncidentController extends Controller
         ]);
     }
 
-     /**
+    /**
      * Show the form to create a new blog post.
      *
      * @return \Illuminate\View\View
@@ -54,18 +54,16 @@ class IncidentController extends Controller
             'incident_service' => array(),
         ]);
     }
- /**
+    /**
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-         $validated = $request->validate([
+        $validated = $request->validate([
             'commentary' => 'required|max:255',
-            // 'description' => 'required',
-            // 'price' => 'required|numeric',
-            // 'is_active' => 'required',
+
         ]);
 
         $incident = new Incident;
@@ -77,21 +75,9 @@ class IncidentController extends Controller
 
         $incident->save();
 
-        $incident->services()->sync( $request->services);
+        $incident->services()->sync($request->services);
 
         $incident->save();
-
-        // $incident = new Incident;
-        // $incident->commentary = $request->commentary;
-        // $incident->start_date = now();
-        // $incident->user_id = User::first()->id;
-        // $incident->state_id = $request->state;
-        // $incident->save();
-
-        // $incident->services()->sync($request->services);
-        // // dd($request->services);
-
-        // $incident->save();
 
         return redirect()->route('admin.incidents.index')->with('success', 'L\'incident a été créé!');
     }
@@ -123,39 +109,6 @@ class IncidentController extends Controller
         }
         $incident->save();
         return redirect()->route('admin.incidents.index')->with('success', 'L\'incident a été modifié!');
-    }
-
-    public function destroy(Request $request, $id)
-    {
-
-        $incidents = Incident::table("incidents")
-        ->join('incident_service', 'incidents.incident_id', '=', 'incident_service.incident_id')
-        ->select('incident_id', 'service_id')
-        // ->where('incidents.id', '=', 'incident_service.incident_id')
-        ->get();
-
-        $incidents->destroy($id);
-        // dd($incidents);
-
-
-        // foreach ($incidents as $incident) {
-        //     foreach ($incident->services as $service) {
-        //     }
-        // }
-
-        //    $service_id =  Service::findOrFail($id);
-        //    dd($service_id);
-        //     $service_id->incidents()->detach($service_id);
-
-        // Service::destroy($service_id);
-        // Incident::where('service_id', $service_id)->delete();
-
-        // $request = Incident::find($incident_id)->delete();
-        // $request->services->detach($service_id, $incident_id);
-
-        // Incident::find($incident_id)->delete();
-        // Service::find($service_id)->delete();
-        return redirect()->route('admin.incidents.index')->with('success', 'Le service a été retiré de l\'incident.');
     }
 
 }

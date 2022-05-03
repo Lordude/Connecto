@@ -26,7 +26,7 @@ Route::resource('reports', ReportController::class);
 
 
 
-Route::prefix('superadmin')->name('superadmin.')->group(function() {
+Route::prefix('superadmin')->name('superadmin.')->group(function () {
     Route::redirect('/', 'superadmin/users');
     Route::resource('users', SuperAdmin\UserController::class);
 });
@@ -38,6 +38,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::redirect('/', '/admin/incidents');
     Route::redirect('/', '/admin/reports_services');
     Route::resource('services', Admin\ServiceController::class);
+    Route::delete('detachService/{id}', [Admin\ServiceController::class, 'deleteServiceFromIncidentService'])->name('services.deleteServiceFromIncidentService');
     Route::resource('incidents', Admin\IncidentController::class);
     Route::resource('states', Admin\StateController::class);
     Route::resource('accounts', Admin\AuthController::class);
