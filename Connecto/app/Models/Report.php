@@ -60,7 +60,7 @@ class Report extends Model
 
 public function reportOpenSinceOneHour()
 {
-    $Report = $this->select([
+    $Report = Report::select([
         DB::raw('HOUR(created_at) AS hour'),
         
 
@@ -68,12 +68,12 @@ public function reportOpenSinceOneHour()
     ->whereBetween('created_at', [Carbon::now()->subHours(24), Carbon::now()])
     ->get();
 
- 
+    $ReportByHour = [];
     foreach ($Report as $reports) {
         $ReportByHour[$reports['hour']] = $reports['count'];
     }
 
-  
+    ksort($ReportByHour);
     return count($ReportByHour);
 
     
