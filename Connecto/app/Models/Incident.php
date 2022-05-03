@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use App\Models\Service;
 use App\Models\State;
 use App\Models\User;
@@ -126,4 +126,35 @@ class Incident extends Model
         $result = Carbon::now()->diffInHours($start_date);
         return $result;
     }
+
+    public static function get_Uptime() {
+
+        $currentTime = Carbon::now();
+        $threeMonthsAgo = Carbon::now()->subDays(90);
+        $downTime = 0;
+
+
+        $incidents = Incident::all();
+
+        foreach ($incidents as $incident) {
+            $start = $incident->start_date;
+            if($incident->end_date){
+                $end = $incident->end_date;
+            }else{
+                $end = Carbon::now();
+            }
+
+            $total = $end - $start;
+            $downTime = $downTime + $total;
+        }
+
+        $totalTime = $currentTime->diffInHours($threeMonthsAgo);
+
+        $totalUpTime = (($totalTime - $downTime)/ $totalTime) * 100; 
+
+        return $totalUpTime;
+
+    }
+
+
 }

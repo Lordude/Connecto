@@ -7,6 +7,12 @@
 @section('content')
 
     <h2>Gestion des incidents</h2>
+    <h3>
+    <?php 
+    // echo App\Models\Incident::get_Uptime();
+    
+        ?>
+    </h3>
 
     <button onClick="incidentForm()" type="button" class="btn btn-warning">Créer un incident</button>
     <div>

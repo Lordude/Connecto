@@ -10,6 +10,10 @@
   <a class="sidenav" href="">Historique des incidents</a>
   <a class="sidenav" href="">Gestion des incident</a>
   <a class="sidenav" href="">Mon compte</a>
+  
+  <a class="sidenav" href="">Superadmin</a>
+  <!-- @if(session('TypeRole') == '2')
+    @endif -->
 
   <footer>@2022 Algorithmus</footer>
 </div>
@@ -33,7 +37,7 @@
     <form action="{{ route('UpdatePassWord') }}" method="post">
     @csrf
         <label for="newPassword">Nouveau mot de passe</label>
-        <input name="newPassword" type="password" id="newPassword">
+        <input name="newPassword" type="password" id="newPassword" required>
 
         <br>
         <button id="btnModPSW" type="submit">Modifier le mot de passe</button>
