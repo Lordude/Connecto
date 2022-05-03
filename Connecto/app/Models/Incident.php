@@ -131,26 +131,31 @@ class Incident extends Model
 
         $currentTime = Carbon::now();
         $threeMonthsAgo = Carbon::now()->subDays(90);
+        $totalDownTime = 0;
         $downTime = 0;
 
 
         $incidents = Incident::all();
 
         foreach ($incidents as $incident) {
-            $start = $incident->start_date;
+
+
+
+            $start = Carbon::parse($incident->start_date);
             if($incident->end_date){
-                $end = $incident->end_date;
+                $end = Carbon::parse($incident->end_date);
             }else{
                 $end = Carbon::now();
             }
 
-            $total = $end - $start;
-            $downTime = $downTime + $total;
+
+            $downTime = $end->diffInMinutes($start);
+            $totalDownTime = $downTime + $totalDownTime;
         }
 
-        $totalTime = $currentTime->diffInHours($threeMonthsAgo);
+        $totalTime = $currentTime->diffInMinutes($threeMonthsAgo);
 
-        $totalUpTime = (($totalTime - $downTime)/ $totalTime) * 100; 
+        $totalUpTime = (($totalTime - $totalDownTime)/ $totalTime) * 100; 
 
         return $totalUpTime;
 
