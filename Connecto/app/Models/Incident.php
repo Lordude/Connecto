@@ -40,7 +40,7 @@ class Incident extends Model
 
     public function services()
     {
-        return $this->belongsToMany(Service::class);
+        return $this->belongsToMany(Service::class, "incident_service");
     }
 
     public function user()

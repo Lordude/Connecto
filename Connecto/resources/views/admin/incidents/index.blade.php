@@ -14,7 +14,8 @@
         <div class="row">
             <div class="col6 col-lg-6">
 
-                <form id="hidden" method="POST" action="{{ route('admin.incidents.store') }}">
+                <form data-status='@if($errors->any())open @endif' id="incidentForm" method="POST"
+                    action="{{ route('admin.incidents.store') }}">
                     <a href="{{ route('admin.incidents.index') }}" class="btn btn-secondary">Annuler</a>
                     @csrf
 
@@ -29,8 +30,9 @@
                             @if ($service->hasOpenIncident())
                                 <ul class="list-group">
                                     <li class="list-group-item disabled text-danger"><input class="form-check-input me-1"
-                                            type="checkbox" id="service" name="services[]"
-                                            value="{{ $service->id }}"><label for="service">{{ $service->name }}
+                                            type="checkbox" id="service_{{ $service->id }}" name="services[]"
+                                            value="{{ $service->id }}"><label
+                                            for="service_{{ $service->id }}">{{ $service->name }}
                                             (incident en cours)
                                         </label></li>
                                 </ul>
@@ -38,8 +40,9 @@
                             @else
                                 <ul class="list-group">
                                     <li class="list-group-item"><input class="form-check-input me-1" type="checkbox"
-                                            id="service" name="services[]" value="{{ $service->id }}"><label
-                                            for="service">{{ $service->name }}</label></li>
+                                            id="service_{{ $service->id }}" name="services[]"
+                                            value="{{ $service->id }}"><label
+                                            for="service_{{ $service->id }}">{{ $service->name }}</label></li>
                                 </ul>
                             @endif
                         @endforeach
@@ -94,6 +97,17 @@
                             <tr>
                                 <td>
                                     @foreach ($incident->services as $service)
+                                        <button type="button" class="btn btn-warning">
+                                            <form method="POST"
+                                                action="{{ route('admin.incidents.destroy', ['incident', $incident]) }}"
+                                                {{-- action="{{ $incident->services()->detach(); }}" --}} class="mb-0">
+                                                @csrf
+                                                @method('DELETE')
+                                                <input type="submit" value="X" class="btn btn-link link-danger"
+                                                    onclick="return confirm('Are you sure?')" />
+                                            </form>
+                                        </button>
+
                                         <ul class="list-group list-group-flush">
                                             <li class="list-group-item">{{ $service->name }}</li>
                                         </ul>
@@ -101,7 +115,10 @@
                                 </td>
 
                                 <td>{{ $service->get_service_state($service->id)->first()->name }}</td>
-                                <td> <img width="42px" height="42px" src="../image/{{$incident->get_incident_image($incident->id)->first()->image;}}" alt="Icone de l\'etat du service {{$service->get_service_image($service->id)->first()->image;}}"></td>
+                                <td> <img width="42px" height="42px"
+                                        src="../image/{{ $incident->get_incident_image($incident->id)->first()->image }}"
+                                        alt="Icone de l\'etat du service {{ $service->get_service_image($service->id)->first()->image }}">
+                                </td>
 
                                 <td>{{ $incident->commentary }}</td>
                                 <td>{{ $incident->created_at }}</td>
