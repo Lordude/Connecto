@@ -9,6 +9,14 @@ function openForm() {
   }
 
   function incidentForm() {
-    document.getElementById("hidden").style.display = "block";
+    document.getElementById("incidentForm").style.display = "block";
   }
-  
+
+  window.onload = function (event){
+   let form = document.getElementById("incidentForm")
+   if(form != null ){
+       if(form.dataset.status.trim() == 'open'){
+        form.style.display = "block";
+       }
+   }
+  }

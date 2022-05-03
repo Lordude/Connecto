@@ -61,7 +61,7 @@
 
 /*formulaire création incident*/
 
-#hidden{
+#incidentForm{
     display: none;
 }
 
@@ -84,7 +84,7 @@
 .NbSignal {
   text-align: center;
   background-color: #DDFDFC;
-  border-radius: 15px; 
+  border-radius: 15px;
   padding: 6px;
   margin: 15px;
 }
@@ -116,7 +116,7 @@
 }
 
 .main {
-  margin-left: 160px; 
+  margin-left: 160px;
   padding: 0px 10px;
 }
 
