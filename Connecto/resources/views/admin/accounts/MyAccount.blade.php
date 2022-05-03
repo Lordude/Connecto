@@ -5,13 +5,13 @@
 <div class="row">
 
 <div class="sidenavDiv col-3">
-  <a class="sidenav" href="">État des services</a>
-  <a class="sidenav" href="">Signalement des clients</a>
+  <a class="sidenav" href="admin/services">État des services</a>
+  <a class="sidenav" href="admin/reports_services">Signalement des clients</a>
   <a class="sidenav" href="">Historique des incidents</a>
-  <a class="sidenav" href="">Gestion des incident</a>
-  <a class="sidenav" href="">Mon compte</a>
+  <a class="sidenav" href="admin/incidents">Gestion des incident</a>
+  <a class="sidenav" href="/MyAccount">Mon compte</a>
   
-  <a class="sidenav" href="">Superadmin</a>
+  <a class="sidenav" href="superadmin/users">Gestion des comptes</a>
   <!-- @if(session('TypeRole') == '2')
     @endif -->
 
