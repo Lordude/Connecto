@@ -23,11 +23,9 @@ class ReportController extends Controller
     public function index()
     {
         $reports = Report::all();
-        $report = Report::this();
 
         return view('home.reports.index',
          ['reports' => $reports],
-         ['report' => $report]
 
         );
     }
@@ -103,12 +101,12 @@ class ReportController extends Controller
 
         return redirect()->route('home.reports.index');
     }
-   
+
     public function update(Request $request, $id)
     {
        $report = Report::findOrFail($id);
        $report->save();
-       
+
     }
 
 
