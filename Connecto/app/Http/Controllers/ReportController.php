@@ -19,12 +19,7 @@ class ReportController extends Controller
     {
         $reports = Report::all();
 
-
-        return view('home.reports.index',
-         ['reports' => $reports],
-         
-
-        );
+        
     }
     public function show($id)
     {
@@ -98,12 +93,12 @@ class ReportController extends Controller
 
         return redirect()->route('home.reports.index');
     }
-   
+
     public function update(Request $request, $id)
     {
        $report = Report::findOrFail($id);
        $report->save();
-       
+
     }
 
 

@@ -21,6 +21,8 @@
 
     <img class="LogoHeader" src="{{ asset('image/RectangleText.png') }}">
 
+    <p class="MessageSession"> {{ session('AccessDenided') }} </p>
+
     @if (session('messagelogout'))
                <p class="MessageSession">{{session('messagelogout')}}</p>
     @endif

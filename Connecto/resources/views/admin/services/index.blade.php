@@ -6,7 +6,7 @@
 
 @section('content')
     <h1>Service</h1>
-    <a href="#" class="nav navbar-nav navbar-left">Accès home</a>
+    <a href="{{route('home')}}" class="nav navbar-nav navbar-left">Accès home</a>
     <a href="{{route('admin.incidents.index')}}"> Gestion des incidents </a>
 <hr/><a href="{{route('admin.reports_services.index')}}"> Gestion des signalements </a>
     @if (session('logsuccess'))

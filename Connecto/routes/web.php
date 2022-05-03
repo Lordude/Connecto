@@ -17,14 +17,13 @@ use App\Http\Controllers\SuperAdmin\UserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [HomeController::class, 'index']);
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::resource('reports', ReportController::class);
 
 
-Route::prefix('home')->name('home.')->group(function () {
-    Route::redirect('/', 'home');
-    Route::resource('home', HomeController::class);
+// Route::resource('home', HomeController::class);
 
-});
 
 
 Route::prefix('superadmin')->name('superadmin.')->group(function() {
@@ -46,12 +45,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('reports.reports_services', Admin\ReportServiceController::class);
 });
 
+
 Route::prefix('home')->name('home.')->group(function () {
-    Route::redirect('/', 'home/reports');
+    // Route::redirect('/', 'home/reports');
     Route::resource('reports', ReportController::class);
     Route::resource('reports.report_options', ReportController::class)->only(['create', 'store']);
     Route::resource('reports', ReportController::class)->except('show');
 });
 
-Route::get('/MyAccount', [Admin\AuthController::class, 'show'])->name('MyAccount');
+Route::get('/MyAccount', [Admin\AuthController::class, 'show'])->name('MyAccount')->middleware('check_session');
 Route::post('/MyAccount', [Admin\AuthController::class, 'update'])->name('UpdatePassWord');
