@@ -14,14 +14,14 @@
     <h1>Signalement</h1>
 
 
-      @foreach ($reports as $report)
+
       <div class="d-flex justify-content-between">  
-        <p style="background-color: #DDFDFC;">{{ $report->reportOpenSinceOneHour() }}  signalement en 24 heure</p>
+        <p style="background-color: #DDFDFC;"><?php echo App\Models\Report::reportOpenSinceOneHour(); ?>  signalement en 24 heure</p>
        
    
     </div>
               
-  @endforeach
+
 
 
 

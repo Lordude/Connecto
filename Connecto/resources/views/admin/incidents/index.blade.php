@@ -7,9 +7,9 @@
 @section('content')
 
     <h2>Gestion des incidents</h2>
-    <h3>
+    <h3> GET THE UPTIME B*TCHES
     <?php 
-    // echo App\Models\Incident::get_Uptime();
+    echo App\Models\Incident::get_Uptime(). '%';
     
         ?>
     </h3>
@@ -89,7 +89,7 @@
                     <th></th>
                     <th>Commentaire</th>
                     <th>Début de l'incident</th>
-                    <th>Dure depuis:</th>
+                    <th>Dure depuis </th>
                     <th>Administrateur</th>
                     <th>Option</th>
                 </thead>
@@ -110,7 +110,7 @@
                                 <td> <img width="42px" height="42px" src="../image/{{$incident->get_incident_image($incident->id)->first()->image;}}" alt="Icone de l\'etat du service {{$service->get_service_image($service->id)->first()->image;}}"></td>
 
                                 <td>{{ $incident->commentary }}</td>
-                                <td>{{ $incident->created_at }}</td>
+                                <td>{{ $incident->start_date }}</td>
                                 <td>{{ $incident->incidentOpenSince() }} heures</td>
                                 <td>{{ $incident->adminCreateIncident($incident->user_id)->first()->first_name }}
                                     {{ $incident->adminCreateIncident($incident->user_id)->first()->last_name }}
@@ -128,6 +128,46 @@
                 {{-- <p> Aucun services à afficher présentement </p> --}}
                 @endif
                 @endforeach
+
+                <tbody>
+                    <div>
+                        <table class="table container-md">
+                            <thead>
+                                <h2>Incidents</h2>
+            
+                                <th>Service affecté</th>
+                                <th>Commentaire</th>
+                                <th>Début de l'incident</th>
+                                <th>Fermé </th>
+                                <th>Administrateur</th>
+                            </thead>
+                            <tbody>
+                                <h3 class="text-center"> Incident fermé </h3>
+                                @foreach ($incidents as $incident)
+                                    @if ($incident->end_date != null)
+                                        <tr>
+                                            <td>
+                                                @foreach ($incident->services as $service)
+                                                    <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item">{{ $service->name }}</li>
+                                                    </ul>
+                                                @endforeach
+                                            </td>
+                                            <td>{{ $incident->commentary }}</td>
+                                            <td>{{ $incident->start_date }}</td>
+                                            <td>{{ $incident->end_date}} </td>
+                                            <td>{{ $incident->adminCreateIncident($incident->user_id)->first()->first_name }}
+                                                {{ $incident->adminCreateIncident($incident->user_id)->first()->last_name }}
+                                            </td>
+
+
+            
+                                        </tr>
+                            </tbody>
+
+                            @endif
+                            @endforeach
+                
 
             </table>
         @endsection

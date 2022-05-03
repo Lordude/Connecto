@@ -10,6 +10,7 @@ use App\Models\Service;
 use App\Models\State;
 use App\Models\User;
 
+
 class IncidentController extends Controller
 {
     public function index()
@@ -52,7 +53,7 @@ class IncidentController extends Controller
     {
         $incident = new Incident;
         $incident->commentary = $request->commentary;
-        $incident->start_date = now();
+        $incident->start_date = Carbon::now()->format('Y-m-d H:i:s');
         $incident->user_id = User::first()->id;
         $incident->state_id = $request->state;
         $incident->save();
@@ -88,7 +89,7 @@ class IncidentController extends Controller
         $incident->state_id = $request->state;
         // dd($request->state_id);
         if ($incident->state_id == 1) {
-            $incident->end_date = now();
+            $incident->end_date = Carbon::now()->format('Y-m-d H:i:s');
         }
         $incident->save();
         return redirect()->route('admin.incidents.index')->with('success', 'L\'incident a été modifié!');

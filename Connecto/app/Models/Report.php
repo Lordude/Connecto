@@ -58,7 +58,7 @@ class Report extends Model
 
 
 
-public function reportOpenSinceOneHour()
+public static function reportOpenSinceOneHour()
 {
     $Report = Report::select([
         DB::raw('HOUR(created_at) AS hour'),
