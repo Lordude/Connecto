@@ -9,7 +9,7 @@ function openForm() {
   }
 
   function incidentForm() {
-    document.getElementById("hidden").style.display = "block";
+    document.getElementById("incidentForm").style.display = "block";
   }
 
   window.onload = function (event){

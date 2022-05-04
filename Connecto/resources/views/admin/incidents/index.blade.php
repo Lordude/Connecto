@@ -103,17 +103,7 @@
                             <tr>
                                 <td>
                                     @foreach ($incident->services as $service)
-                                        <button type="button" class="btn btn-warning">
-                                            <form method="POST"
-                                                action="{{ route('admin.services.deleteServiceFromIncidentService', $service->id) }}"
-                                                class="mb-0">
-                                                @csrf
-                                                @method('DELETE')
-                                                <input type="submit" value="X" class="btn btn-link link-danger"
-                                                    onclick="return confirm('Are you sure?')" />
-                                            </form>
-                                        </button>
-
+                                        
                                         <ul class="list-group list-group-flush">
                                             <li class="list-group-item">{{ $service->name }}</li>
                                         </ul>

@@ -6,19 +6,28 @@
 
 @section('content')
     <h2>Modifier le statut</h2>
+    <div>
+        @foreach ($incident->services as $service)
+                                    <button type="button" class="btn btn-warning">
+                                        <form method="POST"
+                                            action="{{ route('admin.services.deleteServiceFromIncidentService', $service->id) }}"
+                                            class="mb-0">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="submit" value="X" class="btn btn-link link-danger"
+                                                onclick="return confirm('Are you sure?')" />
+                                        </form>
+                                    </button>
+
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">{{ $service->name }}</li>
+                                    </ul>
+                                @endforeach
+        <h4 class="text-danger">Actuellement :{{ $service->get_service_state($service->id)->first()->name }}</h4>
+    </div>
     <form method="POST" action="{{ route('admin.incidents.update', ['incident' => $incident]) }}">
         @csrf
         @method('PUT')
-        <div>
-            @foreach ($incident->services as $service)
-                <h3>
-                    <ul class="list-group">
-                        <li class="list-group-item">Service: {{ $service->name }} </li>
-                    </ul>
-                </h3>
-            @endforeach
-            <h4 class="text-danger">Actuellement :{{ $service->get_service_state($service->id)->first()->name }}</h4>
-        </div>
         <div>
             <label for="name" class="form-label">État du service</label>
             <select class="form-select" name="state" id="states">
