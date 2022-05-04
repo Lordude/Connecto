@@ -33,7 +33,8 @@ class IncidentController extends Controller
 
         return view('admin.incidents.show', [
             'incident' => $incident,
-            'services' => $incident->services()->get()
+            'services' => $incident->services()->get(),
+            'states' => $incident->states()->get()
         ]);
     }
 
@@ -50,20 +51,32 @@ class IncidentController extends Controller
 
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'state' => 'required',
+
+        ],
+        [
+        'state.required' => 'Choisissez un statut!',
+        ]);
+
         $incident = new Incident;
         $incident->commentary = $request->commentary;
-        $incident->start_date = now();
+        $incident->start_date = Carbon::now()->format('Y/m/d H:i:s');
+
+        // $incident->commentary = $validated['commentary'];
         $incident->user_id = User::first()->id;
-        $incident->state_id = $request->state;
+        // $incident->start_date = now();
+        $incident->state_id = $validated['state'];
+
         $incident->save();
 
         $incident->services()->sync($request->services);
-        // dd($request->services);
 
         $incident->save();
 
         return redirect()->route('admin.incidents.index')->with('success', 'L\'incident a été créé!');
     }
+
 
     public function edit($id)
     {

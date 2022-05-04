@@ -56,4 +56,14 @@ class ServiceController extends Controller
 
         return redirect()->route('admin.services.index')->with('success', 'Le produit a été supprimé.');;
     }
+
+    public function deleteServiceFromIncidentService(Request $request, $id)
+    {
+
+        $service =  Service::findOrFail($id);
+        $incident = $service->incidents()->whereNull('end_date')->first();
+        $service->incidents()->detach($incident);
+
+        return redirect()->route('admin.incidents.index')->with('success', 'Le service a été retiré de l\'incident.');;
+    }
 }

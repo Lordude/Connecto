@@ -39,6 +39,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::redirect('/', '/admin/reports_services');
     Route::resource('services', Admin\ServiceController::class);
     Route::resource('incidents', Admin\IncidentController::class);
+    Route::delete('detachService/{id}', [Admin\ServiceController::class, 'deleteServiceFromIncidentService'])->name('services.deleteServiceFromIncidentService');
     Route::resource('states', Admin\StateController::class);
     Route::resource('accounts', Admin\AuthController::class);
     Route::resource('reports_services', Admin\ReportServiceController::class);
