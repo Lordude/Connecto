@@ -55,31 +55,6 @@
                 {{-- <p> Aucun services à afficher présentement </p> --}}
               
                 @endforeach
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
-
-
-@endsection
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
         détail du signalement
@@ -103,3 +78,4 @@
           </div>
         </div>
       </div>
+@endsection
