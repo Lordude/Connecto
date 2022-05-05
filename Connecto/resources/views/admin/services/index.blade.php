@@ -9,10 +9,9 @@
     <a href="{{route('home')}}" class="nav navbar-nav navbar-left">Accès home</a>
     <a href="{{route('admin.incidents.index')}}"> Gestion des incidents </a>
 <hr/><a href="{{route('admin.reports_services.index')}}"> Gestion des signalements </a>
-    @if (session('logsuccess'))
+@if (session('logsuccess'))
         <p class="MessageSession">{{session('logsuccess')}}</p>
-    @endif
-    
+@endif
    
         @if($services->count() > 0)
             <table class="table">

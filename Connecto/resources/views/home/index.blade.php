@@ -1,4 +1,4 @@
-@include('admin.accounts.HeaderPublic')
+@include('home.HeaderPublic')
 
 @extends('layouts.admin.app')
 

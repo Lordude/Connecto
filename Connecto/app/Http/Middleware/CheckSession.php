@@ -17,7 +17,16 @@ class CheckSession
     public function handle(Request $request, Closure $next)
     {
 
-        if(session()->has('emailUser')){
+        if(session()->has('emailUser'))
+        {
+
+            // if(session('TypeRole') == '2')
+            // {
+            //     return $next($request);
+            // }
+            // else{
+            //     return redirect(route('home'))->with('AccessAdminDenided','Accès refusé');
+            // }
 
             return $next($request);
         }

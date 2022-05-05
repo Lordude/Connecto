@@ -139,6 +139,10 @@
   background-color:#2A4A9B;
 }
 
+.row {
+  flex-wrap:nowrap !important;
+}
+
 footer {
   text-align: center;
   margin-top: 150px;

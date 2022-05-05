@@ -40,7 +40,7 @@ class Incident extends Model
 
     public function services()
     {
-        return $this->belongsToMany(Service::class);
+        return $this->belongsToMany(Service::class, "incident_service");
     }
 
     public function user()
@@ -127,34 +127,39 @@ class Incident extends Model
         return $result;
     }
 
-    public static function get_Uptime() {
+    // public static function get_Uptime() {
 
-        $currentTime = Carbon::now();
-        $threeMonthsAgo = Carbon::now()->subDays(90);
-        $downTime = 0;
+    //     $currentTime = Carbon::now();
+    //     $threeMonthsAgo = Carbon::now()->subDays(90);
+    //     $totalDownTime = 0;
+    //     $downTime = 0;
 
 
-        $incidents = Incident::all();
+    //     $incidents = Incident::all();
 
-        foreach ($incidents as $incident) {
-            $start = $incident->start_date;
-            if($incident->end_date){
-                $end = $incident->end_date;
-            }else{
-                $end = Carbon::now();
-            }
+    //     foreach ($incidents as $incident) {
 
-            $total = $end - $start;
-            $downTime = $downTime + $total;
-        }
 
-        $totalTime = $currentTime->diffInHours($threeMonthsAgo);
 
-        $totalUpTime = (($totalTime - $downTime)/ $totalTime) * 100; 
+    //         $start = Carbon::parse($incident->start_date);
+    //         if($incident->end_date){
+    //             $end = Carbon::parse($incident->end_date);
+    //         }else{
+    //             $end = Carbon::now();
+    //         }
 
-        return $totalUpTime;
 
-    }
+    //         $downTime = $end->diffInMinutes($start);
+    //         $totalDownTime = $downTime + $totalDownTime;
+    //     }
+
+    //     $totalTime = $currentTime->diffInMinutes($threeMonthsAgo);
+
+    //     $totalUpTime = (($totalTime - $totalDownTime)/ $totalTime) * 100; 
+
+    //     return $totalUpTime;
+
+    // }
 
 
 }

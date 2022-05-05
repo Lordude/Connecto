@@ -19,7 +19,7 @@ class Service extends Model
 
     public function incidents()
     {
-        return $this->belongsToMany(Incident::class);
+        return $this->belongsToMany(Incident::class, "incident_service");
     }
 
     public function states()
@@ -27,7 +27,7 @@ class Service extends Model
         return $this->hasOne(State::class);
     }
 
-    
+
 
     public function get_service_state()
     {
