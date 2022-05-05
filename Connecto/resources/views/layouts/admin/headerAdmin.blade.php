@@ -18,6 +18,21 @@
     
       
     </div>
-    
+    <div class="row">    
+        <div class="sidenavDiv col-3">
+        <nav>
+            <a class="sidenav" href="{{ route('admin.services.index') }}">État des services</a>
+            <a class="sidenav" href="{{ route('admin.reports_services.index') }}">Signalement des clients</a>
+            <a class="sidenav" href="">Historique des incidents</a>
+            <a class="sidenav" href="{{ route('admin.incidents.index') }} ">Gestion des incident</a>
+            <a class="sidenav" href="{{ route('MyAccount') }}">Mon compte</a>
+        
+            <a class="sidenav" href="{{ route('superadmin.users.index') }}">Gestion des comptes</a>
+             <!-- @if(session('TypeRole') == '2')
+            @endif -->
+        </nav>
+        <footer>@2022 Algorithmus</footer>
+        </div>
+        
 
 
