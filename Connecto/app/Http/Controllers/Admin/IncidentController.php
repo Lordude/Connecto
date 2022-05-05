@@ -34,7 +34,8 @@ class IncidentController extends Controller
         return view('admin.incidents.show', [
             'incident' => $incident,
             'services' => $incident->services()->get(),
-            'states' => $incident->states()->get()
+            'states' => $incident->states()->get(),
+            'start_date' => Carbon::now()
         ]);
     }
 
@@ -53,24 +54,20 @@ class IncidentController extends Controller
     {
         $validated = $request->validate([
             'state' => 'required',
-
-        ],
-        [
-        'state.required' => 'Choisissez un statut!',
+            'commentary' => 'required',
+            'services' => 'required',
+            'emailUser' => 'required',
         ]);
 
         $incident = new Incident;
-        $incident->commentary = $request->commentary;
-        $incident->start_date = Carbon::now()->format('Y/m/d H:i:s');
-
-        // $incident->commentary = $validated['commentary'];
-        $incident->user_id = User::first()->id;
-        // $incident->start_date = now();
+        $incident->start_date = Carbon::now()->toDateTimeString();
+        $incident->commentary = $validated['commentary'];
+        $incident->user_id = $validated['emailUser'];
         $incident->state_id = $validated['state'];
 
         $incident->save();
 
-        $incident->services()->sync($request->services);
+        $incident->services()->sync($validated['services']);
 
         $incident->save();
 
@@ -95,9 +92,13 @@ class IncidentController extends Controller
 
     public function update(Request $request, $id)
     {
+        $validated = $request->validate([
+            'state' => 'required',
+            'commentary' => 'required',
+        ]);
+
         $incident = Incident::findOrFail($id);
-        $incident->commentary = $request->commentary;
-        $incident->user_id = User::first()->id;
+        $incident->commentary = $validated['commentary'];
         $incident->state_id = $request->state;
         // dd($request->state_id);
         if ($incident->state_id == 1) {
@@ -111,7 +112,7 @@ class IncidentController extends Controller
     {
         Incident::destroy($id);
 
-        return redirect()->route('admin.incidents.index')->with('success', 'Le service a été supprimé.');;
+        return redirect()->route('admin.incidents.index')->with('success', 'L\incident a été supprimé.');;
     }
 
 

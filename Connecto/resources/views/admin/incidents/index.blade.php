@@ -6,29 +6,33 @@
 
 @section('content')
 
-    <h2>Gestion des incidents</h2>
+    <h2>
+        Gestion des incidents</h2>
 
     <h3> GET THE UPTIME B*TCHES
-    <?php
-    echo App\Models\Incident::get_Uptime(). '%';
+        <?php
+        echo App\Models\Incident::get_Uptime() . '%';
         ?>
     </h3>
-
+    <?php
+    echo App\Models\Incident::time();
+    ?>
+    <hr />
     <button onClick="incidentForm()" type="button" class="btn btn-warning">Créer un incident</button>
     <div>
         {{-- quand on clic sur 'créer un incident' le formulaire ci-dessous apparait --}}
         <div class="row">
             <div class="col6 col-lg-6">
 
-                <form data-status='@if($errors->any())open @endif' id="incidentForm" method="POST"
+                <form data-status='@if ($errors->any()) open @endif' id="incidentForm" method="POST"
                     action="{{ route('admin.incidents.store') }}">
+
                     <a href="{{ route('admin.incidents.index') }}" class="btn btn-secondary">Annuler</a>
                     @csrf
-
                     <h3>Nouvel incident</h3>
                     {{-- {{$incidents->incidentFormClose()}} --}}
                     <div class="mb-3 container">
-                        <label for="services">Choisir les services affectés</label>
+                        <label for="services">Choisir les services affectés*</label>
 
                         @foreach ($services as $service)
                             {{-- si l'incident est ouvert (requete dans model service)
@@ -46,15 +50,24 @@
                             @else
                                 <ul class="list-group">
                                     <li class="list-group-item"><input class="form-check-input me-1" type="checkbox"
-                                            id="service_{{ $service->id }}" name="services[]"
-                                            value="{{ $service->id }}"><label
-                                            for="service_{{ $service->id }}">{{ $service->name }}</label></li>
+                                            id="service_{{ $service->id }}" name="services[]" value="{{ $service->id }}"
+                                            class="@error('services[]') is-invalid @enderror">
+
+                                        @error('services[]')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                        <label for="service_{{ $service->id }}">{{ $service->name }}</label>
+                                    </li>
                                 </ul>
                             @endif
                         @endforeach
                         <hr />
                         <div class="mb-3">
-                            <label for="states">État du service</label>
+                            {{-- @if ($errors->any())
+                        <div class="alert alert-danger">
+                            {{ 'Choisissez un état svp!' }}</div>
+                        @endif --}}
+                            <label for="states">État du service*</label>
                             <select name="state" id="states">
                                 <option value="" selected="selected" disabled>choisir</option>
                                 <?php
@@ -63,19 +76,35 @@
                             foreach ($states as $state){
                                 if($state['id'] > 1){
                                 ?>
-
                                 <option value="<?= $state['id'] ?>"><?= $state['name'] ?></option>
                                 <?php }} ?>
                             </select>
                             <hr />
                             <label for="commentary">Commentaire</label>
-                            <input type="text" id="commentary" name="commentary">
+                            <input type="text" id="commentary" name="commentary"
+                                class="@error('commentary') is-invalid @enderror">
+
+                            @error('commentary')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                             <hr />
+
+                            <?php
+                            use App\Models\User;
+                            $users = User::all();
+                            ?>
+                            @foreach ($users as $user)
+
+                                @if (session('emailUser') == $user->email)
+                                    <input type="hidden" id="emailUser" name="emailUser" value="{{ $user->id }}">
+                                @endif
+                            @endforeach
                             <hr />
                             <input type="hidden" id="start_date" name="start_date" value="">
 
                             <input type="submit" value="créer le nouvel incident" class="btn btn-primary">
                             <a href="{{ route('admin.incidents.index') }}" class="btn btn-secondary">Annuler</a>
+                        </div>
                 </form>
             </div>
         </div>
@@ -103,7 +132,6 @@
                             <tr>
                                 <td>
                                     @foreach ($incident->services as $service)
-                                        
                                         <ul class="list-group list-group-flush">
                                             <li class="list-group-item">{{ $service->name }}</li>
                                         </ul>
@@ -162,7 +190,7 @@
                                             </td>
                                             <td>{{ $incident->commentary }}</td>
                                             <td>{{ $incident->start_date }}</td>
-                                            <td>{{ $incident->end_date}} </td>
+                                            <td>{{ $incident->end_date }} </td>
                                             <td>{{ $incident->adminCreateIncident($incident->user_id)->first()->first_name }}
                                                 {{ $incident->adminCreateIncident($incident->user_id)->first()->last_name }}
                                             </td>
@@ -171,10 +199,9 @@
 
                                         </tr>
                             </tbody>
-
                             @endif
                             @endforeach
 
 
-            </table>
-        @endsection
+                        </table>
+                    @endsection
