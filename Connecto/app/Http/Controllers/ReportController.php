@@ -19,7 +19,7 @@ class ReportController extends Controller
     {
         $reports = Report::all();
 
-        
+
     }
     public function show($id)
     {
@@ -63,7 +63,7 @@ class ReportController extends Controller
         ]));
 
 
-        return redirect()->route('home.reports.index')->withSuccess('Le signalement a été créée');
+        return redirect()->route('admin.services.index')->withSuccess('Le signalement a été créée');
     }
 
     /**
