@@ -10,6 +10,7 @@
         Gestion des incidents</h2>
 
     <h3> GET THE UPTIME B*TCHES
+
         <?php
         // echo App\Models\Incident::get_Uptime() . '%';
      ?>
@@ -203,4 +204,6 @@
 
 
                             </table>
+
                         @endsection
+
