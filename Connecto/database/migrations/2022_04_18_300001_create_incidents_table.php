@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('incidents', function (Blueprint $table) {
             $table->id();
-            $table->date('start_date');
-            $table->date('end_date')->nullable();
+            $table->datetime('start_date');
+            $table->datetime('end_date')->nullable();
             $table->mediumText('commentary')->nullable();
             $table->timestamps();
 

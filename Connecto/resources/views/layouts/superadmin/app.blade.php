@@ -1,7 +1,7 @@
 <html>
     @include('layouts.superadmin.includes.head')
 
-    <body>
+    <!-- <body>
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <a class="navbar-brand" href="">Connecto</a>
@@ -13,7 +13,7 @@
                 <div class="alert alert-sucess">
                     {{session('success')}}
                 </div>
-            @endif
+            @endif -->
             
             @yield('content')
         </div>
