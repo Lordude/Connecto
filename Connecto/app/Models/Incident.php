@@ -127,6 +127,14 @@ class Incident extends Model
         return $result;
     }
 
+    public static function time()
+    {
+        // $datetime = Carbon::now()->toDateTimeString();
+        $cur_time = Carbon::now()->format('Y/m/d H:i:s');
+        echo "Date et heure actuelle: $cur_time";
+    }
+
+
     // public static function get_Uptime() {
 
     //     $currentTime = Carbon::now();
@@ -155,7 +163,7 @@ class Incident extends Model
 
     //     $totalTime = $currentTime->diffInMinutes($threeMonthsAgo);
 
-    //     $totalUpTime = (($totalTime - $totalDownTime)/ $totalTime) * 100; 
+    //     $totalUpTime = (($totalTime - $totalDownTime)/ $totalTime) * 100;
 
     //     return $totalUpTime;
 
