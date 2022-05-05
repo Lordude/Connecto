@@ -19,6 +19,7 @@
                     <th>Service affecté</th>
                     <th>courriel</th>
                     <th>Commentaire</th>
+                    <th>Type de problème</th>
                    
                 </thead>
                 <tbody>
@@ -39,8 +40,12 @@
                                
 
                                 {{-- <td>{{ $report->get_report_detail($report->id)->first()->detail }}</td> --}}
-                                <td>{{ $report->created_at }}</td>
+                                <td>{{ $report->email }}</td>
+                                <td>{{ $report->detail }}</td>
+                                <td>{{ $report->frequent_issue_id }}</td>
                              
+                               
+                               
                                
      
 
