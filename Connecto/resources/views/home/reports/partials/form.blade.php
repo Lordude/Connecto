@@ -10,7 +10,7 @@
             <input id="email" name="email" type="text" value="" class="form-control ">
 
             <label for="services">Service affecté :</label>
-            <select name="report" id="reports">
+            <select name="services" id="services">
                 <option value="" selected="selected" disabled>choisir</option>
 
 
