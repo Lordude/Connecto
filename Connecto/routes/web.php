@@ -21,6 +21,7 @@ use App\Http\Controllers\LoginController;
 |
 */
 
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::resource('reports', ReportController::class);
 
@@ -34,8 +35,6 @@ Route::prefix('superadmin')->name('superadmin.')->middleware('check_session')->g
 
     Route::redirect('/', 'superadmin/users');
     Route::resource('users', SuperAdmin\UserController::class);
-});
-
 
 
 Route::prefix('admin')->name('admin.')->middleware('check_session')->group(function () {
