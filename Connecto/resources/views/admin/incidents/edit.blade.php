@@ -5,6 +5,7 @@
 @section('title', 'Modifier un statut')
 
 @section('content')
+<div class="col-9">
     <h2>Modifier le statut</h2>
     <div>
         @foreach ($incident->services as $service)
@@ -52,4 +53,6 @@
         <input type="submit" value="Enregistrer" class="btn btn-primary">
         <a href="{{ route('admin.incidents.index') }}" class="btn btn-secondary"> Retour </a>
     </form>
+    </div>
+</div>
 @endsection
