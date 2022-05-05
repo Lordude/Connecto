@@ -5,7 +5,7 @@
 @section('title', 'Accueil')
 
 @section('content')
-
+<div class="col-9">
 
 <h1>Signalement</h1>
 
@@ -74,6 +74,8 @@
  
                             </tr>
                 </tbody>
+              </div>
+            </div>
                 {{-- @else --}}
                 {{-- <p> Aucun services à afficher présentement </p> --}}
               
