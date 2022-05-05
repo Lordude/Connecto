@@ -17,9 +17,8 @@
 
 
                     <th>Service affecté</th>
-                    <th>État</th>
+                    <th>courriel</th>
                     <th>Commentaire</th>
-                    <th>Date de création</th>
                    
                 </thead>
                 <tbody>
