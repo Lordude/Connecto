@@ -6,6 +6,8 @@
 
 @section('content')
 
+<div class="col-9">
+
     <h2>
         Gestion des incidents</h2>
 
@@ -22,7 +24,7 @@
     <button onClick="incidentForm()" type="button" class="btn btn-warning">Créer un incident</button>
     <div>
         {{-- quand on clic sur 'créer un incident' le formulaire ci-dessous apparait --}}
-        <div class="row">
+        <!-- <div class="row"> -->
             <div class="col6 col-lg-6">
 
                 <form data-status='@if ($errors->any()) open @endif' id="incidentForm" method="POST"
@@ -204,6 +206,8 @@
 
 
                             </table>
+                        </div>
+                    </div>
 
                         @endsection
 
