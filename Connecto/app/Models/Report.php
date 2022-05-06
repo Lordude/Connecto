@@ -27,6 +27,7 @@ class Report extends Model
         'email',
         'detail',
         'date',
+        'created_at',
         'frequent_issue_id',
 
     ];

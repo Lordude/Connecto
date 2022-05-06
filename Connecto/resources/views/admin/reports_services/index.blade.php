@@ -20,6 +20,7 @@
                     <th>courriel</th>
                     <th>Commentaire</th>
                     <th>Type de problème</th>
+                    <th>Date</th>
                    
                 </thead>
                 <tbody>
@@ -36,10 +37,9 @@
                                     @endforeach
                                 </td>
 
-                                {{-- <td>{{ $service->get_service_state($service->id)->first()->name }}</td> --}}
+                             
 
 
-                                {{-- <td>{{ $report->get_report_detail($report->id)->first()->detail }}</td> --}}
                               <td>  <a href="mailto:{{ $report->email }}">{{ $report->email }}</a></td>
                              
 
@@ -71,6 +71,7 @@
                                           </div>
                                         </div> </td>
                                 <td>{{ $report->frequent_issue_id }}</td>
+                                <td>{{ $report->created_at }}</td>
  
                             </tr>
                 </tbody>
