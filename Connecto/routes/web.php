@@ -7,7 +7,6 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SuperAdmin\UserController;
 use App\Http\Controllers\LoginController;
-
 /*
 
 /*
@@ -31,7 +30,7 @@ Route::resource('reports', ReportController::class);
 
 
 
-Route::prefix('superadmin')->name('superadmin.')->middleware('check_session')->group(function() {
+Route::prefix('superadmin')->name('superadmin.')->middleware('is_super')->group(function() {
 
     Route::redirect('/', 'superadmin/users');
     Route::resource('users', SuperAdmin\UserController::class);

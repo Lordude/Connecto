@@ -18,7 +18,7 @@
             <p style="background-color: #DDFDFC;">
                 <?php echo App\Models\Report::reportOpenSinceOneHour() ?>
             
-                signalement en 24 heure</p>
+                signalements en 24 heures</p>
                 </div>
     
       
@@ -31,10 +31,9 @@
             <a class="sidenav" href="">Historique des incidents</a>
             <a class="sidenav" href="{{ route('admin.incidents.index') }} ">Gestion des incidents</a>
             <a class="sidenav" href="{{ route('MyAccount') }}">Mon compte</a>
-        
+            @if(session('TypeRole') == '2')
             <a class="sidenav" href="{{ route('superadmin.users.index') }}">Gestion des comptes</a>
-             <!-- @if(session('TypeRole') == '2')
-            @endif -->
+            @endif
         </nav>
         <footer>@2022 Algorithmus</footer>
         </div>
