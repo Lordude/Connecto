@@ -12,6 +12,7 @@
 @if (session('logsuccess'))
         <p class="MessageSession">{{session('logsuccess')}}</p>
 @endif
+<p class="MessageSession"> {{ session('NotSuper') }} </p>
    
         @if($services->count() > 0)
             <table class="table">
