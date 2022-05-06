@@ -127,12 +127,18 @@ class Incident extends Model
         return $result;
     }
 
+    public function incidentOpenSinceDays()
+    {
+        $start_date = $this->start_date;
+        $result = Carbon::now()->diffInDays($start_date);
+        return $result;
+    }
+
     public static function time()
     {
         $cur_time = Carbon::now()->format('Y/m/d H:i:s');
         echo "Date et heure actuelle: $cur_time";
     }
-
 
     // public static function get_Uptime() {
 

@@ -8,8 +8,7 @@
 
     <div class="col-9">
 
-        <h2>
-            Gestion des incidents</h2>
+        <h2>Gestion des incidents</h2>
 
         <h3> GET THE UPTIME B*TCHES
 
@@ -32,11 +31,9 @@
             {{-- quand on clic sur 'créer un incident' le formulaire ci-dessous apparait --}}
             <div class="row">
                 <div class="col6 col-lg-6">
-
                     <form data-status='@if ($errors->any()) open @endif' id="incidentForm" method="POST"
                         action="{{ route('admin.incidents.store') }}">
-
-                        <a href="{{ route('admin.incidents.index') }}" class="btn btn-secondary">Annuler</a>
+                        <a href="{{ route('admin.incidents.index') }}" class="btn">Annuler</a>
                         @csrf
                         <h3>Nouvel incident</h3>
                         <div class="mb-3 container">
@@ -49,39 +46,34 @@
                                     <ul class="list-group">
                                         <li class="list-group-item disabled text-danger"><input class="form-check-input me-1"
                                                 type="checkbox" id="service_{{ $service->id }}" name="services[]"
-                                                value="{{ $service->id }}"><label
-                                                for="service_{{ $service->id }}">{{ $service->name }}
+                                                value="{{ $service->id }}">
+                                            <label for="service_{{ $service->id }}">{{ $service->name }}
                                                 (incident en cours)
-                                            </label></li>
+                                            </label>
+                                        </li>
                                     </ul>
                                     {{-- si il n'y a pas d'incident relié, on affiche les services normalement --}}
                                 @else
                                     <ul class="list-group">
-                                        <li class="list-group-item"><input class="form-check-input me-1" type="checkbox"
-                                                id="service_{{ $service->id }}" name="services[]"
+                                        <a href="#" class="list-group-item"><input class="form-check-input me-1"
+                                                type="checkbox" id="service_{{ $service->id }}" name="services[]"
                                                 value="{{ $service->id }}">
-
-
                                             <label for="service_{{ $service->id }}">{{ $service->name }}</label>
-                                        </li>
+                                        </a>
                                     </ul>
                                 @endif
                             @endforeach
                             <hr />
                             <div class="mb-3">
-                                {{-- @if ($errors->any())
-                        <div class="alert alert-danger">
-                            {{ 'Choisissez un état svp!' }}</div>
-                        @endif --}}
                                 <label for="states">État du service*</label>
                                 <select name="state" id="states">
                                     <option value="" selected="selected" disabled>choisir</option>
                                     <?php
-                            use App\Models\State;
-                            $states = State::all();
-                            foreach ($states as $state){
-                                if($state['id'] > 1){
-                                ?>
+                                        use App\Models\State;
+                                        $states = State::all();
+                                        foreach ($states as $state){
+                                        if($state['id'] > 1){
+                                        ?>
                                     <option value="<?= $state['id'] ?>"><?= $state['name'] ?></option>
                                     <?php }} ?>
                                 </select>
@@ -114,7 +106,6 @@
         {{-- vue des incidents en cours --}}
         <div>
             <table class="table container-md">
-                <h2>Incidents</h2>
                 <thead>
                     <th>Service affecté</th>
                     <th>État</th>
@@ -160,7 +151,7 @@
                             </tr>
                 </tbody>
                 {{-- @else
-            <p> Aucun services à afficher présentement </p> --}}
+                <p> Aucun services à afficher présentement </p> --}}
                 @endif
                 @endforeach
 
@@ -168,37 +159,47 @@
                     <div>
                         <table class="table container-md">
                             <thead>
-                                <h2>Incidents</h2>
-
                                 <th>Service affecté</th>
                                 <th>Commentaire</th>
                                 <th>Début de l'incident</th>
-                                <th>Fermé </th>
+                                <th>Fermé</th>
+                                <th>Durée en heure </th>
+                                <th>Durée en jour </th>
                                 <th>Administrateur</th>
                             </thead>
+                            <tbody>
+                                <h3 class="text-center"> Incident ouvert </h3>
+                                @foreach ($incidents as $incident)
+                                    @if ($incident->end_date !== null)
+                                        <tr>
+                                            <td>
+                                                @foreach ($incident->services as $service)
+                                                    <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item">{{ $service->name }}</li>
+                                                    </ul>
+                                                @endforeach
+                                            </td>
 
-                            <h3 class="text-center"> Incident fermé </h3>
-                            @foreach ($incidents as $incident)
-                                @if ($incident->end_date != null)
-                                    <tr>
-                                        <td>
-                                            @foreach ($incident->services as $service)
-                                                <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item">{{ $service->name }}</li>
-                                                </ul>
-                                            @endforeach
-                                        </td>
-                                        <td>{{ $incident->commentary }}</td>
-                                        <td>{{ $incident->start_date }}</td>
-                                        <td>{{ $incident->end_date }} </td>
-                                        <td>{{ $incident->adminCreateIncident($incident->user_id)->first()->first_name }}
-                                            {{ $incident->adminCreateIncident($incident->user_id)->first()->last_name }}
-                                        </td>
-                                    </tr>
-                </tbody>
-                @endif
-                @endforeach
-            </table>
+                                            {{-- <td>{{ $service->get_service_state($service->id)->first()->name }}</td> --}}
+                                            <td>{{ $incident->commentary }}</td>
+                                            <td>{{ $incident->start_date }}</td>
+                                            <td>{{ $incident->end_date }} </td>
+                                            <td>{{ $incident->incidentOpenSince() }} heures</td>
+                                            @if ($incident->incidentOpenSinceDays() > 0)
+                                                <td>{{ $incident->incidentOpenSinceDays() }} jours</td>
+                                            @else
+                                                <td> / </td>
+                                            @endif
+                                            <td>{{ $incident->adminCreateIncident($incident->user_id)->first()->first_name }}
+                                                {{ $incident->adminCreateIncident($incident->user_id)->first()->last_name }}
+                                            </td>
+                                        </tr>
+                            </tbody>
+                            {{-- @else
+                            <p> Aucun services à afficher présentement </p> --}}
+                            @endif
+                            @endforeach
+                        </table>
+                    </div>
         </div>
-    </div>
-@endsection
+    @endsection
