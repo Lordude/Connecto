@@ -6,25 +6,22 @@
 
 @section('content')
 
-<div class="col-9">
+    <div class="col-9">
 
-    <h2>
-        Gestion des incidents</h2>
+        <h2>
+            Gestion des incidents</h2>
 
-    <h3> GET THE UPTIME B*TCHES
+        <h3> GET THE UPTIME B*TCHES
 
-        <?php
-        // echo App\Models\Incident::get_Uptime() . '%';
-     ?>
-    </h3>
-    <?php
-    echo App\Models\Incident::time();
-    ?>
-    <hr />
-    <button onClick="incidentForm()" type="button" class="btn btn-warning">Créer un incident</button>
-    <div>
-        {{-- quand on clic sur 'créer un incident' le formulaire ci-dessous apparait --}}
-        <!-- <div class="row"> -->
+            <?php
+            // echo App\Models\Incident::get_Uptime() . '%';
+            ?>
+        </h3>
+        <hr />
+        <button onClick="incidentForm()" type="button" class="btn btn-warning">Créer un incident</button>
+        <div>
+            {{-- quand on clic sur 'créer un incident' le formulaire ci-dessous apparait --}}
+             <div class="row">
             <div class="col6 col-lg-6">
 
                 <form data-status='@if ($errors->any()) open @endif' id="incidentForm" method="POST"
@@ -33,7 +30,6 @@
                     <a href="{{ route('admin.incidents.index') }}" class="btn btn-secondary">Annuler</a>
                     @csrf
                     <h3>Nouvel incident</h3>
-                    {{-- {{$incidents->incidentFormClose()}} --}}
                     <div class="mb-3 container">
                         <label for="services">Choisir les services affectés*</label>
 
@@ -110,27 +106,76 @@
                 </form>
             </div>
         </div>
-        </div>
-        {{-- vue des incidents en cours --}}
-        <tbody>
-            <div>
-                <table class="table container-md">
-                    <thead>
-                        <h2>Incidents</h2>
+    </div>
+    {{-- vue des incidents en cours --}}
+    <div>
+        <table class="table container-md">
+            <h2>Incidents</h2>
+            <thead>
+                <th>Service affecté</th>
+                <th>État</th>
+                <th></th>
+                <th>Commentaire</th>
+                <th>Début de l'incident</th>
+                <th>Dure depuis </th>
+                <th>Administrateur</th>
+                <th>Option</th>
+            </thead>
+            <tbody>
+                <h3 class="text-center"> Incident ouvert </h3>
+                @foreach ($incidents as $incident)
+                    @if ($incident->end_date == null)
+                        <tr>
+                            <td>
+                                @foreach ($incident->services as $service)
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">{{ $service->name }}</li>
+                                    </ul>
+                                @endforeach
+                            </td>
 
-                        <th>Service affecté</th>
-                        <th>État</th>
-                        <th></th>
-                        <th>Commentaire</th>
-                        <th>Début de l'incident</th>
-                        <th>Dure depuis </th>
-                        <th>Administrateur</th>
-                        <th>Option</th>
-                    </thead>
-                    <tbody>
-                        <h3 class="text-center"> Incident ouvert </h3>
+                            <td>{{ $service->get_service_state($service->id)->first()->name }}</td>
+                            <td> <img width="42px" height="42px"
+                                    src="../image/{{ $incident->get_incident_image($incident->id)->first()->image }}"
+                                    alt="Icone de l\'etat du service {{ $service->get_service_image($service->id)->first()->image }}">
+                            </td>
+
+                            <td>{{ $incident->commentary }}</td>
+                            <td>{{ $incident->start_date }}</td>
+                            <td>{{ $incident->incidentOpenSince() }} heures</td>
+                            <td>{{ $incident->adminCreateIncident($incident->user_id)->first()->first_name }}
+                                {{ $incident->adminCreateIncident($incident->user_id)->first()->last_name }}
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-warning">
+                                    <a href="{{ route('admin.incidents.edit', ['incident' => $incident]) }}"
+                                        class="btn btn-link">Modifier</a>
+                                </button>
+                            </td>
+
+                        </tr>
+            </tbody>
+            {{-- @else
+            <p> Aucun services à afficher présentement </p> --}}
+            @endif
+            @endforeach
+
+            <tbody>
+                <div>
+                    <table class="table container-md">
+                        <thead>
+                            <h2>Incidents</h2>
+
+                            <th>Service affecté</th>
+                            <th>Commentaire</th>
+                            <th>Début de l'incident</th>
+                            <th>Fermé </th>
+                            <th>Administrateur</th>
+                        </thead>
+
+                        <h3 class="text-center"> Incident fermé </h3>
                         @foreach ($incidents as $incident)
-                            @if ($incident->end_date == null)
+                            @if ($incident->end_date != null)
                                 <tr>
                                     <td>
                                         @foreach ($incident->services as $service)
@@ -139,75 +184,17 @@
                                             </ul>
                                         @endforeach
                                     </td>
-
-                                    <td>{{ $service->get_service_state($service->id)->first()->name }}</td>
-                                    <td> <img width="42px" height="42px"
-                                            src="../image/{{ $incident->get_incident_image($incident->id)->first()->image }}"
-                                            alt="Icone de l\'etat du service {{ $service->get_service_image($service->id)->first()->image }}">
-                                    </td>
-
                                     <td>{{ $incident->commentary }}</td>
                                     <td>{{ $incident->start_date }}</td>
-                                    <td>{{ $incident->incidentOpenSince() }} heures</td>
+                                    <td>{{ $incident->end_date }} </td>
                                     <td>{{ $incident->adminCreateIncident($incident->user_id)->first()->first_name }}
                                         {{ $incident->adminCreateIncident($incident->user_id)->first()->last_name }}
                                     </td>
-                                    <td>
-                                        <button type="button" class="btn btn-warning">
-                                            <a href="{{ route('admin.incidents.edit', ['incident' => $incident]) }}"
-                                                class="btn btn-link">Modifier</a>
-                                        </button>
-                                    </td>
-
                                 </tr>
-                    </tbody>
-                    {{-- @else --}}
-                    {{-- <p> Aucun services à afficher présentement </p> --}}
-                    @endif
-                    @endforeach
-
-                    <tbody>
-                        <div>
-                            <table class="table container-md">
-                                <thead>
-                                    <h2>Incidents</h2>
-
-                                    <th>Service affecté</th>
-                                    <th>Commentaire</th>
-                                    <th>Début de l'incident</th>
-                                    <th>Fermé </th>
-                                    <th>Administrateur</th>
-                                </thead>
-                                <tbody>
-                                    <h3 class="text-center"> Incident fermé </h3>
-                                    @foreach ($incidents as $incident)
-                                        @if ($incident->end_date != null)
-                                            <tr>
-                                                <td>
-                                                    @foreach ($incident->services as $service)
-                                                        <ul class="list-group list-group-flush">
-                                                            <li class="list-group-item">{{ $service->name }}</li>
-                                                        </ul>
-                                                    @endforeach
-                                                </td>
-                                                <td>{{ $incident->commentary }}</td>
-                                                <td>{{ $incident->start_date }}</td>
-                                                <td>{{ $incident->end_date }} </td>
-                                                <td>{{ $incident->adminCreateIncident($incident->user_id)->first()->first_name }}
-                                                    {{ $incident->adminCreateIncident($incident->user_id)->first()->last_name }}
-                                                </td>
-
-
-
-                                            </tr>
-                                </tbody>
-                                @endif
-                                @endforeach
-
-
-                            </table>
-                        </div>
-                    </div>
-
-                        @endsection
-
+            </tbody>
+            @endif
+            @endforeach
+        </table>
+    </div>
+    </div>
+@endsection

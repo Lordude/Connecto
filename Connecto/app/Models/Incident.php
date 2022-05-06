@@ -34,7 +34,7 @@ class Incident extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'start_date' => 'date',
+
     ];
 
 
@@ -122,14 +122,13 @@ class Incident extends Model
 
     public function incidentOpenSince()
     {
-        $start_date = $this->created_at;
+        $start_date = $this->start_date;
         $result = Carbon::now()->diffInHours($start_date);
         return $result;
     }
 
     public static function time()
     {
-        // $datetime = Carbon::now()->toDateTimeString();
         $cur_time = Carbon::now()->format('Y/m/d H:i:s');
         echo "Date et heure actuelle: $cur_time";
     }
