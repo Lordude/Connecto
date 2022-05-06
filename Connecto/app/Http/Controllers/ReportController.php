@@ -7,7 +7,6 @@ use App\Models\Report;
 use App\Http\Controllers\Controller;
 use App\Models\ReportService;
 
-
 class ReportController extends Controller
 {
     /**
@@ -18,8 +17,6 @@ class ReportController extends Controller
     public function index()
     {
         $reports = Report::all();
-
-
     }
     public function show($id)
     {
@@ -31,7 +28,7 @@ class ReportController extends Controller
         ]);
     }
 
- /**
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -40,7 +37,18 @@ class ReportController extends Controller
     {
         $reports = new Report;
 
-        return view('home.reports.create', ['report' => $reports]);
+        return view(
+            'home.reports.create',
+            ['report' => $reports],
+            ['report_service' => array()]
+        );
+
+        // return view('admin.reports.index', [
+        //     'report' => new Report,
+        //     'services' => Service::all(),
+        //     'states' => State::all(),
+        //     'report_service' => array(),
+        // ]);
     }
 
     /**
@@ -49,11 +57,10 @@ class ReportController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    
     public function store(Request $request)
     {
 
-         Report::create($request->validate([
+        $report = Report::create($request->validate([
 
             'name' => ['required'],
             'email' => ['required'],
@@ -62,9 +69,31 @@ class ReportController extends Controller
             'frequent_issue_id' => ['required'],
 
         ]));
-
+        $report->services()->sync($request->services);
 
         return redirect()->route('admin.services.index')->withSuccess('Le signalement a été créée');
+
+        // $validated = $request->validate([
+        //     'name' => 'required',
+        //     'email' => 'required',
+        //     'detail' => 'required',
+        //     'date' => 'required',
+        //     'frequent_issue_id' => 'required',
+        // ]);
+
+        // $reports = new Report;
+        // $reports->name = $validated['commentary'];
+        // $reports->email = $validated['email'];
+        // $reports->detail = $validated['emailUser'];
+        // $reports->state_id = $validated['state'];
+
+        // $reports->save();
+
+        // $reports->services()->sync($validated['services']);
+
+        // $reports->save();
+
+        // return redirect()->route('admin.reports.index')->with('success', 'Le signalement a été créé!');
     }
 
     /**
@@ -79,7 +108,6 @@ class ReportController extends Controller
 
         return view('home.reports.edit', ['Reports' => $reports]);
     }
-
 
 
     /**
@@ -97,10 +125,8 @@ class ReportController extends Controller
 
     public function update(Request $request, $id)
     {
-       $report = Report::findOrFail($id);
-       $report->save();
-
+        $report = Report::findOrFail($id);
+        $report->save();
     }
-
-
 }
+

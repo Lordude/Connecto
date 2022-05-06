@@ -2,23 +2,6 @@
 
 @if(session()->has('emailUser'))
 
-
-
-<!-- <div class="sidenavDiv col-3">
-  <nav>
-    <a class="sidenav" href="admin/services">État des services</a>
-    <a class="sidenav" href="admin/reports_services">Signalement des clients</a>
-    <a class="sidenav" href="">Historique des incidents</a>
-    <a class="sidenav" href="admin/incidents">Gestion des incident</a>
-    <a class="sidenav" href="/MyAccount">Mon compte</a>
-  
-    <a class="sidenav" href="superadmin/users">Gestion des comptes</a>
-    @if(session('TypeRole') == '2')
-      @endif
-  </nav>
-  <footer>@2022 Algorithmus</footer>
-</div> -->
-
 <div class="col-9" style="background-color: #E3E9F1; min-height:600px; border-radius: 30px 0px 0px 0px;">
 
 <h2>Mon compte</h2>
