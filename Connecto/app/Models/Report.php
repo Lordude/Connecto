@@ -30,15 +30,15 @@ class Report extends Model
         'frequent_issue_id',
 
     ];
-/**
+    /**
      * The attributes that should be cast.
      *
      * @var array<string, string>
      */
     protected $casts = [
-        'start_date' => 'date',
+
     ];
-    
+
 
 
     public function services()
@@ -51,45 +51,30 @@ class Report extends Model
         return $this->belongsToMany(ReportService::class);
     }
 
+    public static function reportOpenSinceOneHour()
+    {
+        $Report = Report::select([
+            DB::raw('HOUR(created_at) AS hour'),
 
 
+        ])
+            ->whereBetween('created_at', [Carbon::now()->subHours(24), Carbon::now()])
+            ->get();
 
+        $ReportByHour = [];
+        foreach ($Report as $reports) {
+            $ReportByHour[$reports['hour']] = $reports['count'];
+        }
 
-public static function reportOpenSinceOneHour()
-{
-    $Report = Report::select([
-        DB::raw('HOUR(created_at) AS hour'),
-        
-
-    ])
-    ->whereBetween('created_at', [Carbon::now()->subHours(24), Carbon::now()])
-    ->get();
-
-    $ReportByHour = [];
-    foreach ($Report as $reports) {
-        $ReportByHour[$reports['hour']] = $reports['count'];
+        ksort($ReportByHour);
+        return count($ReportByHour);
     }
 
-    ksort($ReportByHour);
-    return count($ReportByHour);
 
-    
+    public function get_report_sub_hours($report_id)
+    {
+        $reports = Report::where('report_id', 'active')
+            ->where('created_at', '>', Carbon::now()->subHours(24))
+            ->get();
+    }
 }
-
-
-public function get_report_sub_hours($report_id)
-{
-    $reports = Report::where('report_id', 'active')
-    ->where( 'created_at', '>', Carbon::now()->subHours(24))
-    ->get();
-
-
-
-}
-}
-
-
-
-
-
-

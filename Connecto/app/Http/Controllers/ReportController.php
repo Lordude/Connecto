@@ -42,13 +42,6 @@ class ReportController extends Controller
             ['report' => $reports],
             ['report_service' => array()]
         );
-
-        // return view('admin.reports.index', [
-        //     'report' => new Report,
-        //     'services' => Service::all(),
-        //     'states' => State::all(),
-        //     'report_service' => array(),
-        // ]);
     }
 
     /**
@@ -73,27 +66,6 @@ class ReportController extends Controller
 
         return redirect()->route('admin.services.index')->withSuccess('Le signalement a été créée');
 
-        // $validated = $request->validate([
-        //     'name' => 'required',
-        //     'email' => 'required',
-        //     'detail' => 'required',
-        //     'date' => 'required',
-        //     'frequent_issue_id' => 'required',
-        // ]);
-
-        // $reports = new Report;
-        // $reports->name = $validated['commentary'];
-        // $reports->email = $validated['email'];
-        // $reports->detail = $validated['emailUser'];
-        // $reports->state_id = $validated['state'];
-
-        // $reports->save();
-
-        // $reports->services()->sync($validated['services']);
-
-        // $reports->save();
-
-        // return redirect()->route('admin.reports.index')->with('success', 'Le signalement a été créé!');
     }
 
     /**
