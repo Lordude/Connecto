@@ -8,6 +8,15 @@
     <div class="col-9">
         <h2>Modifier le statut</h2>
         <div>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             @foreach ($incident->services as $service)
                 @if ($incident->services->count() > 1)
                     <button type="button" class="btn btn-warning">
@@ -39,9 +48,6 @@
                     </option>
 
                     @foreach ($states as $state)
-                        {{-- <option class="list-group-item"><input class="form-check-input me-1" type="checkbox" id="service"
-                            name="services[]" value="{{ $state->id }}"></option>
-                            <label>for="service">{{ $state->name }}</label></li> --}}
                         <option value="<?= $state['id'] ?>"><?= $state['name'] ?></option>
                     @endforeach
                 </select>
