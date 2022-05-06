@@ -40,8 +40,8 @@
 
 
                                 {{-- <td>{{ $report->get_report_detail($report->id)->first()->detail }}</td> --}}
-                                <td>{{ $report->email }}</td>
-                                
+                              <td>  <a href="mailto:{{ $report->email }}">{{ $report->email }}</a></td>
+                             
 
               
                                
@@ -83,6 +83,7 @@
 
 
 
+                
 
 
 
