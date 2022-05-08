@@ -5,6 +5,7 @@
 @section('title', 'Ajouter un service')
 
 @section('content')
+<div class="col-9">
 
     <h1>Ajouter un service</h1>
 
@@ -21,5 +22,7 @@
     <a href="{{ route('admin.services.index') }}" class="btn btn-secondary"> Retour </a>
 
     </form>
+    </div>
+</div>
     
 @endsection

@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="col-9">
-        <h2>Modifier le statut</h2>
+        <h1>Modifier le statut</h1>
         {{-- <div> --}}
         @if ($errors->any())
             <div class="alert alert-danger">

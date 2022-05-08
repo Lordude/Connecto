@@ -2,9 +2,9 @@
     @include('layouts.admin.includes.head')
 
     <body>
-        <div class="container mt-5">
+        <div>
             @if (session('success'))
-                <div class="alert alert-sucess">
+                <div>
                     {{session('success')}}
                 </div>
             @endif

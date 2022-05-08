@@ -2,18 +2,17 @@
 
 @if(session()->has('emailUser'))
 
-<div class="col-9" style="background-color: #E3E9F1; min-height:600px; border-radius: 30px 0px 0px 0px;">
+<div class="col-9">
 
-<h2>Mon compte</h2>
+<h1>Mon compte</h1>
 
-
-<div class="main" style="background-color: white; min-height:300px; width:60%; border-radius: 15px;">
+<div class="main">
 
     <p class="MessageSession">{{ session('MessageChange') }} </p>
 
-    <p>{{ $resultUser->first_name}} {{ $resultUser->last_name}}</p>
-    <p>Votre courriel est {{ $resultUser->email }} </p>
-    <p>Vous avez été embauché le {{ $resultUser->date_hired }}</p>
+    <p> <strong>{{ $resultUser->first_name}} {{ $resultUser->last_name}}</strong></p>
+    <p>Votre courriel est : {{ $resultUser->email }} </p>
+    <p>Vous avez été embauché le : {{ $resultUser->date_hired }}</p>
     <!-- <p>Votre mot de passe est : {{ $resultUser->password }}</p> -->
     <!-- <p>Votre rôle est : {{ $resultUser->role_id }} </p> -->
 

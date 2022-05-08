@@ -15,10 +15,10 @@
         <img class="LogoHeader" src="{{ asset('image/RectangleText.png') }}">
             
         <div class="d-flex justify-content-between">  
-            <p style="background-color: #DDFDFC;">
+            <p id="NbSignalement">
                 <?php echo App\Models\Report::reportOpenSinceOneHour() ?>
             
-                signalements en 24 heures</p>
+                signalements depuis les dernière 24 heures</p>
                 </div>
     
       

@@ -7,7 +7,7 @@
 @section('content')
 <div class="col-9">
 
-    <h1>Service</h1>
+    <h1>Gestion des administrateurs</h1>
     <a href="#" class="nav navbar-nav navbar-left">Accès home</a>
 
     @if (session('logsuccess'))

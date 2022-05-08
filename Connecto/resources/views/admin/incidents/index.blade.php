@@ -8,7 +8,7 @@
 
     <div class="col-9">
 
-        <h2>Gestion des incidents</h2>
+        <h1>Gestion des incidents</h1>
 
         <h3> GET THE UPTIME B*TCHES
 
