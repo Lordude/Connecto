@@ -8,6 +8,7 @@
 <div class="col-9">
 
     <h1>Ajouter un service</h1>
+    <hr>
 
     <form method="POST" action="{{ route('admin.services.store') }}">
         @csrf 

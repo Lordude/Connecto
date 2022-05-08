@@ -7,6 +7,7 @@
 @section('content')
 <div class="col-9">
     <h1>Modifier un service</h1>
+    <hr>
 
     <form method="POST" action="{{ route('admin.services.update', ['service' => $service]) }}">
         @csrf

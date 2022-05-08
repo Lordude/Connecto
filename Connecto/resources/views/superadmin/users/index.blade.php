@@ -8,6 +8,7 @@
 <div class="col-9">
 
     <h1>Gestion des administrateurs</h1>
+    <hr>
     <a href="#" class="nav navbar-nav navbar-left">Accès home</a>
 
     @if (session('logsuccess'))

@@ -12,7 +12,7 @@
     <div class=" p-4 mb-2 filll"></div>
 
     <div class="d-flex justify-content-between">
-        <img class="LogoHeader" src="{{ asset('image/RectangleText.png') }}">
+      <a href="{{ route('home') }}"><img class="LogoHeader" src="{{ asset('image/RectangleText.png') }}"></a> 
             
         <div class="d-flex justify-content-between">  
             <p id="NbSignalement">
@@ -26,6 +26,7 @@
     <div class="row">    
         <div class="sidenavDiv col-3">
         <nav>
+            <a class="sidenav" href="{{route('home')}}">Accueil publique</a>
             <a class="sidenav" href="{{ route('admin.services.index') }}">État des services</a>
             <a class="sidenav" href="{{ route('admin.reports_services.index') }}">Signalement des clients</a>
             <a class="sidenav" href="">Historique des incidents</a>

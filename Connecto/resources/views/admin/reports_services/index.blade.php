@@ -8,6 +8,7 @@
 <div class="col-9">
 
 <h1>Signalement</h1>
+<hr>
 
 
 <tbody>

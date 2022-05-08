@@ -5,6 +5,7 @@
 @section('content')
 
     <h1>Ajouter un compte utilisateur</h1>
+    <hr>
 
     <form method="POST" action="{{ route('superadmin.users.store') }}">
         @csrf

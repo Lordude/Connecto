@@ -5,6 +5,7 @@
 <div class="col-9">
 
 <h1>Mon compte</h1>
+<hr>
 
 <div class="main">
 
