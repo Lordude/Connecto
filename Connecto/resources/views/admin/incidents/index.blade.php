@@ -10,10 +10,9 @@
 
         <h1>Gestion des incidents</h1>
 
-        <h3> GET THE UPTIME B*TCHES
-
+        <h3> Taux de disponibilité :  
             <?php
-            // echo App\Models\Incident::get_Uptime() . '%';
+            echo App\Models\Incident::get_Uptime() . '%';
             ?>
         </h3>
         <hr />
