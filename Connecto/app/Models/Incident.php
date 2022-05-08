@@ -173,21 +173,21 @@ class Incident extends Model
                 $curIncidentEnd = Carbon::parse($incident->end_date);
             }
     
-            if(($refIncidentEnd->diffInMinutes($curIncidentStart)) > 0){            // Si le debut de curIncident est avant la fin de refIncident == overlap
+            if(($refIncidentEnd->diffInMinutes($curIncidentStart)) > 0){                // Si le debut de curIncident est avant la fin de refIncident == overlap
                 if($curIncidentEnd->diffInMinutes($refIncidentEnd) < 0){                // Si la fin de curIncident est avant la fin de refIncident == complete overlap, completement a l'interieur de refIncident
-                    continue;                                                       // On ajoute rien au downtime vue que refIncident est deja dans le downtime
+                    continue;                                                           // On ajoute rien au downtime vue que refIncident est deja dans le downtime
                 }
             else{
                 $totalDownTime += $curIncidentEnd->diffInMinutes($refIncidentEnd);           //le debut de curIncident est a l'interieur de refIncident, on fait juste calculer la difference entre fin refIncident et fin curIncident
                 }
             }
-            if(($refIncidentEnd->diffInMinutes($curIncidentEnd)) > 0){
-                $totalDownTime += $curIncidentEnd->diffInMinutes($curIncidentStart);
-                $refIncidentStart = $curIncidentStart;
+            if(($curIncidentStart->diffInMinutes($refIncidentEnd)) > 0){                      //si le debut du curIncident est apres la fin du refIncident , 
+                $totalDownTime += $curIncidentEnd->diffInMinutes($curIncidentStart);           //rajouter la valeur complete du curIncident au downtime
+                $refIncidentStart = $curIncidentStart;                                      //fait du curIncident le nouvel refIncident 
                 $refIncidentEnd = $curIncidentEnd;
             }
 
-            } // fin du else fonctionnel 
+            }                   // fin du foreach incidents
 
         
             $totalUpTime = (($totalTime - $totalDownTime)/ $totalTime) * 100; 
