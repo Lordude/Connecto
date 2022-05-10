@@ -68,8 +68,7 @@
                                 <select name="state" id="states">
                                     <option value="" selected="selected" disabled>choisir</option>
                                     <?php
-                                        use App\Models\State;
-                                        $states = State::all();
+
                                         foreach ($states as $state){
                                         if($state['id'] > 1){
                                         ?>
@@ -80,13 +79,8 @@
                                 <label for="commentary">Commentaire</label>
                                 <input type="text" id="commentary" name="commentary">
 
-
                                 <hr />
 
-                                <?php
-                                use App\Models\User;
-                                $users = User::all();
-                                ?>
                                 @foreach ($users as $user)
                                     @if (session('emailUser') == $user->email)
                                         <input type="hidden" id="emailUser" name="emailUser" value="{{ $user->id }}">
@@ -148,10 +142,10 @@
                                 </td>
 
                             </tr>
-                </tbody>
-                {{-- @else
-                <p> Aucun services à afficher présentement </p> --}}
-                @endif
+                            @else
+                            <p> Aucun services à afficher présentement </p>
+                            @endif
+                        </tbody>
                 @endforeach
 
                 <tbody>

@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\frequentIssue;
+use App\Models\FrequentIssue;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Report;
 
-class frequentIssueController extends Controller
+class FrequentIssueController extends Controller
 {
     public function index()
     {
-        $frequent_issues = frequentIssue::all();
+        $frequent_issues = FrequentIssue::all();
+        $reports = Report::all();
 
-        return view('home.index', ['frequent_issues' => $frequent_issues]);
+        return view('home.index', ['frequent_issues' => $frequent_issues, 'reports' => $reports]);
     }
 }

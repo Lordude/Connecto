@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Report;
 use App\Http\Controllers\Controller;
 use App\Models\ReportService;
+use App\Models\FrequentIssue;
 
 class ReportController extends Controller
 {
@@ -17,7 +18,14 @@ class ReportController extends Controller
     public function index()
     {
         $reports = Report::all();
+        $frequent_issues = FrequentIssue::all();
+
+        return view (
+            'admin.reports_services.index',
+             ['reports'=> $reports,
+            'frequent_issues'=> $frequent_issues]);
     }
+
     public function show($id)
     {
         $reports = Report::findOrFail($id);

@@ -21,10 +21,10 @@ class IncidentController extends Controller
 
         return view(
             'admin.incidents.index',
-            ['incidents' => $incidents],
-            ['services' => $services],
-            ['states' => $states],
-            ['users' => $users]
+            ['incidents' => $incidents,
+            'services' => $services,
+            'states' => $states,
+            'users' => $users]
         );
     }
     public function show($id)
