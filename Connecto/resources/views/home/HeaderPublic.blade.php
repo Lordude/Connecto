@@ -33,6 +33,8 @@
                <p class="MessageSession">{{session('logfail')}}</p>
     @endif
 
+    <p class="MessageSession">{{ session('success') }} </p>
+
     <!-- @if(session('TypeRole') == '2')
     <a href="" class="btn btn-warning">Bouton pour le superadmin</a>
    @endif -->

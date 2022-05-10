@@ -72,7 +72,7 @@ class ReportController extends Controller
         ]));
         $report->services()->sync($request->services);
 
-        return redirect()->route('admin.services.index')->withSuccess('Le signalement a été créée');
+        return redirect()->route('home')->withSuccess('Le signalement a été créée');
 
     }
 
