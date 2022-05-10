@@ -10,7 +10,7 @@
 
         <h1>Gestion des incidents</h1>
 
-        <h3> Taux de disponibilité :  
+        <h3> Taux de disponibilité :
             <?php
             echo App\Models\Incident::get_Uptime() . '%';
             ?>
@@ -167,7 +167,7 @@
                                 <th>Administrateur</th>
                             </thead>
                             <tbody>
-                                <h3 class="text-center"> Incident ouvert </h3>
+                                <h3 class="text-center"> Incident fermé </h3>
                                 @foreach ($incidents as $incident)
                                     @if ($incident->end_date !== null)
                                         <tr>
