@@ -1,5 +1,3 @@
-@include('layouts.includes.head')
-
     <div class="p-2 mb-2 bg-dark text-white text-end fill">
         <a href="{{ route('login.index') }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-person-circle" onclick="" viewBox="0 0 16 16">
@@ -16,7 +14,7 @@
             
         <div class="d-flex justify-content-between">  
             <p id="NbSignalement">
-                <?php echo App\Models\Report::reportOpenSinceOneHour() ?>
+                <?php echo App\Models\Report::reportOpenSince24Hour() ?>
             
                 signalements depuis les dernière 24 heures</p>
                 </div>
