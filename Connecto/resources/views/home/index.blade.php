@@ -1,8 +1,6 @@
-@include('home.HeaderPublic')
+@extends('layouts.app')
 
-@extends('layouts.admin.app')
-
-@section('title', 'Signaler une panne')
+@section('title', 'Bienvenu')
 
 @section('content')
 
