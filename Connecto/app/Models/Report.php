@@ -57,23 +57,21 @@ class Report extends Model
         return $this->belongsToMany(ReportService::class);
     }
 
-    public static function reportOpenSinceOneHour()
+    public static function reportOpenSince24Hour()
     {
-        $Report = Report::select([
+        $Reports = Report::select([
             DB::raw('HOUR(created_at) AS hour'),
-
-
         ])
             ->whereBetween('created_at', [Carbon::now()->subHours(24), Carbon::now()])
             ->get();
 
-        $ReportByHour = [];
-        foreach ($Report as $reports) {
-            $ReportByHour[$reports['hour']] = $reports['count'];
+        $ReportBy24Hour = 0;
+        foreach ($Reports as $report) {
+           
+            $ReportBy24Hour = $ReportBy24Hour + 1; 
         }
 
-        ksort($ReportByHour);
-        return count($ReportByHour);
+        return $ReportBy24Hour;
     }
 
 

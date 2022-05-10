@@ -1,8 +1,6 @@
-@include('layouts.admin.headerAdmin')
-
 @extends('layouts.admin.app')
 
-@section('title', 'Accueil')
+@section('title', 'Signalement')
 
 @section('content')
     <div class="col-9">
@@ -78,7 +76,12 @@
                             </tr>
                     </tbody>
             </div>
+
     </div>
-    {{-- @else --}}
-    {{-- <p> Aucun services à afficher présentement </p> --}}
-    @endforeach
+
+                {{-- @else --}}
+                {{-- <p> Aucun services à afficher présentement </p> --}}
+
+                @endforeach
+@endsection
+

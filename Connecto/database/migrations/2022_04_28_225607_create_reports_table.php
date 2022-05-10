@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
-            $table->mediumText('detail');
+            $table->tinyText('detail');
             $table->date('date')->nullable();;
             $table->timestamps();
 

@@ -27,6 +27,8 @@ class IncidentController extends Controller
             'users' => $users]
         );
     }
+
+
     public function show($id)
     {
         $incident = Incident::findOrFail($id);

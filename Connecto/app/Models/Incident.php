@@ -140,6 +140,14 @@ class Incident extends Model
         echo "Date et heure actuelle: $cur_time";
     }
 
+    public static function show_historic()
+        {
+            $incidents = Incident::all();
+    
+            return view('home.incidents', ['incidents' => $incidents]);
+        }
+    
+
     public static function get_Uptime() { 
 
         $currentTime = Carbon::now();
@@ -149,8 +157,10 @@ class Incident extends Model
         $downTime = 0;
 
 
-        $incidents = Incident::orderBy('start_date', 'ASC')->get() ;                    //aller chercher tout les incidents et les classer par start_date ascendant,
-
+        $incidents = Incident::orderBy('start_date', 'ASC')->get() ; 
+        
+                                                                                        //aller chercher tout les incidents et les classer par start_date ascendant,
+        if(count($incidents) > 0) {
         $refIncident = $incidents->first();                                             //aller chercher le tout premier incident cree et en faire la reference ( refIncident )
         $refIncidentStart = Carbon::parse($refIncident->start_date);
         if(!$refIncident->end_date){
@@ -178,22 +188,19 @@ class Incident extends Model
                     continue;                                                           // On ajoute rien au downtime vue que refIncident est deja dans le downtime
                 }
             else{
-                $totalDownTime += $curIncidentEnd->diffInMinutes($refIncidentEnd);           //le debut de curIncident est a l'interieur de refIncident, on fait juste calculer la difference entre fin refIncident et fin curIncident
+                $totalDownTime += $curIncidentEnd->diffInMinutes($refIncidentEnd);
+                $refIncidentStart = $curIncidentStart;                                      //fait du curIncident le nouvel refIncident 
+                $refIncidentEnd = $curIncidentEnd;                                          //le debut de curIncident est a l'interieur de refIncident, on fait juste calculer la difference entre fin refIncident et fin curIncident
                 }
             }
-            if(($curIncidentStart->diffInMinutes($refIncidentEnd)) > 0){                      //si le debut du curIncident est apres la fin du refIncident , 
-                $totalDownTime += $curIncidentEnd->diffInMinutes($curIncidentStart);           //rajouter la valeur complete du curIncident au downtime
-                $refIncidentStart = $curIncidentStart;                                      //fait du curIncident le nouvel refIncident 
-                $refIncidentEnd = $curIncidentEnd;
-            }
-
             }                   // fin du foreach incidents
 
-        
-            $totalUpTime = (($totalTime - $totalDownTime)/ $totalTime) * 100; 
-            return $totalUpTime;
         }
-    
+            $totalUpTime = (($totalTime - $totalDownTime)/ $totalTime) * 100 ;
+
+            return round($totalUpTime, 2);
+        }
+
 
 
 }

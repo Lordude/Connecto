@@ -1,5 +1,3 @@
-@include('layouts.includes.head')
-
     <div class="p-2 mb-2 bg-dark text-white text-end fill">
         <a href="{{ route('login.index') }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-person-circle" onclick="" viewBox="0 0 16 16">
@@ -16,7 +14,7 @@
             
         <div class="d-flex justify-content-between">  
             <p id="NbSignalement">
-                <?php echo App\Models\Report::reportOpenSinceOneHour() ?>
+                <?php echo App\Models\Report::reportOpenSince24Hour() ?>
             
                 signalements depuis les dernière 24 heures</p>
                 </div>
@@ -27,11 +25,11 @@
         <div class="sidenavDiv col-3">
         <nav>
             <a class="sidenav" href="{{route('home')}}">Accueil publique</a>
-            <a class="sidenav" href="{{ route('admin.services.index') }}">État des services</a>
-            <a class="sidenav" href="{{ route('admin.reports_services.index') }}">Signalement des clients</a>
-            <a class="sidenav" href="">Historique des incidents</a>
-            <a class="sidenav" href="{{ route('admin.incidents.index') }} ">Gestion des incidents</a>
-            <a class="sidenav" href="{{ route('MyAccount') }}">Mon compte</a>
+            <a class="sidenav" href="{{route('admin.services.index') }}">État des services</a>
+            <a class="sidenav" href="{{route('admin.reports_services.index') }}">Signalement des clients</a>
+            <a class="sidenav" href="{{route('home.historic.index')}}">Historique des incidents</a>
+            <a class="sidenav" href="{{route('admin.incidents.index') }} ">Gestion des incidents</a>
+            <a class="sidenav" href="{{route('MyAccount') }}">Mon compte</a>
             @if(session('TypeRole') == '2')
             <a class="sidenav" href="{{ route('superadmin.users.index') }}">Gestion des comptes</a>
             @endif
