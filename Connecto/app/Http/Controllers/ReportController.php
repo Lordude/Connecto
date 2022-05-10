@@ -14,9 +14,14 @@ class ReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+   
+      
+    
+
     public function index()
     {
         $reports = Report::all();
+        
     }
     public function show($id)
     {

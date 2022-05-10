@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Service;
 use App\Models\Report;
 use App\Models\ReportService;
+use Carbon\Carbon;
 
 
 class ReportServiceController extends Controller
@@ -17,9 +18,17 @@ class ReportServiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function  index()
     {
-        $reports = Report::all();
+     
+$reports = Report::all();
+           
+        
+            $reports = Report::whereBetween('created_at', [Carbon::now()->subDays(90), Carbon::now()])
+            ->get();
+
+        
+    
         $services = Service::all();
         $reports_services = ReportService::all();
         $data = ReportService::join('services', 'services.id', '=', 'report_service.service_id')

@@ -23,4 +23,5 @@ class ReportSeeder extends Seeder
         ]);
 
     }
+    
 }
