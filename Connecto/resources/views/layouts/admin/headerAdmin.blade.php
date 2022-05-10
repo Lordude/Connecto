@@ -16,7 +16,7 @@
             
         <div class="d-flex justify-content-between">  
             <p id="NbSignalement">
-                <?php echo App\Models\Report::reportOpenSinceOneHour() ?>
+                <?php echo App\Models\Report::reportOpenSince24Hour() ?>
             
                 signalements depuis les dernière 24 heures</p>
                 </div>
