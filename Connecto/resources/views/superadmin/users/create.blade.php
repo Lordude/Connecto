@@ -1,4 +1,4 @@
-@extends('layouts.superadmin.app')
+@extends('layouts.admin.app')
 
 @section('title', 'Ajouter un compte')
 

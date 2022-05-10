@@ -1,6 +1,10 @@
-@include('layouts.admin.headerAdmin')
+@extends('layouts.admin.app')
+
+@section('title', 'Mon Compte')
 
 @if(session()->has('emailUser'))
+
+@section('content')
 
 <div class="col-9">
 
@@ -34,3 +38,4 @@
         </div>
     </div>
 </div>
+@endsection
