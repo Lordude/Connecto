@@ -72,6 +72,7 @@
                                           </div>
                                         </div> </td>
                                 <td>{{ $report->frequent_issue_id }}</td>
+                                <td>{{ $report->created_at }}</td>
 
                             </tr>
                 </tbody>
