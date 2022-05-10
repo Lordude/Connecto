@@ -6,8 +6,7 @@
     @include('home.HeaderPublic')
 
             
-            @yield('content')
-        </div>
+    @yield('content')
     </body>
 
 </html>
