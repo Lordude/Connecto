@@ -1,8 +1,6 @@
-@include('layouts.admin.headerAdmin')
+@extends('layouts.admin.app')
 
-@extends('layouts.superadmin.app')
-
-@section('title', 'Accueil')
+@section('title', 'Gestion des administrateurs')
 
 @section('content')
 <div class="col-9">
