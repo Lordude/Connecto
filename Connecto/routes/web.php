@@ -52,11 +52,13 @@ Route::prefix('admin')->name('admin.')->middleware('check_session')->group(funct
 
 Route::prefix('home')->name('home.')->group(function () {
     // Route::redirect('/', 'home/reports');
+    Route::resource('incidents', IncidentController::class);
     Route::resource('reports', ReportController::class);
     Route::resource('reports.report_options', ReportController::class)->only(['create', 'store']);
     Route::resource('reports', ReportController::class)->except('show');
 });
 
+Route::get('/historic', [Admin\IncidentController::class, 'show_all']);
 Route::get('/MyAccount', [Admin\AuthController::class, 'show'])->name('MyAccount')->middleware('check_session');
 Route::post('/MyAccount', [Admin\AuthController::class, 'update'])->name('UpdatePassWord');
 Route::resource('login', LoginController::class);

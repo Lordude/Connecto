@@ -1,18 +1,18 @@
-@extends('layouts.app')
+@extends('layouts.admin.app')
 
 @section('title', 'Historique')
 
 @section('content')
     <h1>Historique de disponibilité</h1>
-    <h2> uptime </h2>
 
-    <button type="button" class="btn"><a href="{{ route('home.index') }}" >Retour à l'accueil</a></button>
+    <button type="button" class="btn"><a href="" >Retour à l'accueil</a></button>
     @if($incidents->count() > 0)
         <table class="table">
             <thead>
                 <th>ID de l'incident</th>
                 <th>Date de début</th>
                 <th>Date de fin </th>
+                <th>Durée</th>
                 <th>Commentaire</th>
                 <th>Déclaré par </th>
                 <th>Incident(s) affecté(s)<th>
@@ -22,8 +22,22 @@
                     <tr>
                         <td>{{ $incident->id}} </td>
                         <td>{{ $incident->start_date}}</td>
-                        <td>{{ $incident->end_date}} </td>
-                        <td>{{ $incident->users->name}} </td>
+                        <td> @if(!$incident->end_date)En cours @else {{$incident->end_date}}  @endif </td>
+                        <td> 
+                            @if($incident->incidentOpenSince() < 1)
+                             Moins de 1 heure 
+                             @else {{$incident->incidentOpenSince();}} heure(s)
+                             @endif
+                        </td>
+                        <td> {{$incident->commentary}} </td>
+                        <td> {{$incident->user->first_name}} {{$incident->user->last_name}} </td>
+                        <td>
+                        @foreach ($incident->services as $service)
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">{{ $service->name }}</li>
+                        </ul>
+                        @endforeach
+                        </td>
                         
 
                     </tr>

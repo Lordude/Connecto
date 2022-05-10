@@ -140,6 +140,14 @@ class Incident extends Model
         echo "Date et heure actuelle: $cur_time";
     }
 
+    public static function show_historic()
+        {
+            $incidents = Incident::all();
+    
+            return view('home.incidents', ['incidents' => $incidents]);
+        }
+    
+
     public static function get_Uptime() { 
 
         $currentTime = Carbon::now();
