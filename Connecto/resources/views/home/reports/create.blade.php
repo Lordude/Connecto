@@ -1,11 +1,8 @@
-@extends('layouts.admin.app')
+@extends('layouts.app')
 
 @section('title', 'Signaler une panne')
 
 @section('content')
-
-
-    <h1><img style="width: 200px" src="{{ asset('image/RectangleText.png') }}"></h1>
 
     <h3>Signalement</h3>
 

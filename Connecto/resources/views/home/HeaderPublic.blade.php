@@ -1,5 +1,3 @@
-    @include('layouts.includes.head')
-
     <div class="p-2 mb-2 bg-dark text-white text-end fill">
     @if(session()->has('emailUser'))
     <a href="{{ route('login.index') }}">
