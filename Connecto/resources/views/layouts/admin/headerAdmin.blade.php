@@ -25,11 +25,11 @@
         <div class="sidenavDiv col-3">
         <nav>
             <a class="sidenav" href="{{route('home')}}">Accueil publique</a>
-            <a class="sidenav" href="{{ route('admin.services.index') }}">État des services</a>
-            <a class="sidenav" href="{{ route('admin.reports_services.index') }}">Signalement des clients</a>
-            <a class="sidenav" href="">Historique des incidents</a>
-            <a class="sidenav" href="{{ route('admin.incidents.index') }} ">Gestion des incidents</a>
-            <a class="sidenav" href="{{ route('MyAccount') }}">Mon compte</a>
+            <a class="sidenav" href="{{route('admin.services.index') }}">État des services</a>
+            <a class="sidenav" href="{{route('admin.reports_services.index') }}">Signalement des clients</a>
+            <a class="sidenav" href="{{route('home.historic.index')}}">Historique des incidents</a>
+            <a class="sidenav" href="{{route('admin.incidents.index') }} ">Gestion des incidents</a>
+            <a class="sidenav" href="{{route('MyAccount') }}">Mon compte</a>
             @if(session('TypeRole') == '2')
             <a class="sidenav" href="{{ route('superadmin.users.index') }}">Gestion des comptes</a>
             @endif

@@ -29,21 +29,6 @@ class IncidentController extends Controller
     }
 
 
-    public function show_all() {
-        $incidents = Incident::orderBy('start_date', 'desc')->get();
-        $services = Service::all();
-        $states = State::all();
-        $users = User::all();
-
-        return view('home.historic.index',
-        ['incidents' => $incidents],
-        ['services' => $services],
-        ['states' => $states],
-        ['users' => $users]
-    );
-    }
-
-
     public function show($id)
     {
         $incident = Incident::findOrFail($id);

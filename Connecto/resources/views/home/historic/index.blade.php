@@ -5,7 +5,6 @@
 @section('content')
     <h1>Historique de disponibilité</h1>
 
-    <button type="button" class="btn"><a href="" >Retour à l'accueil</a></button>
     @if($incidents->count() > 0)
         <table class="table">
             <thead>
