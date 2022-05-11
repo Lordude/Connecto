@@ -85,8 +85,11 @@
                                     @endif
                                 @endforeach
                                 <hr />
-                                <input type="hidden" id="start_date" name="start_date" value="">
-
+                                {{-- <input type="hidden" id="start_date" name="start_date" value=""> --}}
+                                <?php
+                                use Carbon\Carbon;
+                                ?>
+                                <input type="datetime-local" id="start_date" name="start_date" max="{{Carbon::now()->format('Y-m-d\Th:i:s')}}">
                                 <input type="submit" value="créer le nouvel incident" class="btn btn-primary">
                                 <a href="{{ route('admin.incidents.index') }}" class="btn btn-secondary">Annuler</a>
                             </div>

@@ -18,7 +18,7 @@ class IncidentController extends Controller
         $from = (new Carbon)->subDays(30)->startOfDay()->toDateString();
         $to = Carbon::now();
 
-        $incidents = Incident::whereBetween('created_at', [$from, $to])->get();
+        $incidents = Incident::whereBetween('start_date', [$from, $to])->get();
         $services = Service::all();
         $states = State::all();
         $users = User::all();
@@ -61,11 +61,14 @@ class IncidentController extends Controller
         $validated = $request->validate([
             'state' => 'required',
             'services' => 'required',
+            'start_date' => 'required',
             'emailUser' => 'required',
         ]);
 
         $incident = new Incident;
-        $incident->start_date = Carbon::now()->toDateTimeString();
+        // $incident->start_date = Carbon::now()->toDateTimeString();
+        $incident->start_date = $validated['start_date'];
+        // $incident->start_date = $request->start_date;
         $incident->commentary = $request->commentary;
         $incident->user_id = $validated['emailUser'];
         $incident->state_id = $validated['state'];
