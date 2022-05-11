@@ -14,17 +14,21 @@ class IncidentController extends Controller
 {
     public function index()
     {
-        $incidents = Incident::all();
+        //affichage seulement les incidents des 30 derniers jours
+        $from = (new Carbon)->subDays(30)->startOfDay()->toDateString();
+        $to = Carbon::now();
+
+        $incidents = Incident::whereBetween('created_at', [$from, $to])->get();
         $services = Service::all();
         $states = State::all();
         $users = User::all();
 
         return view(
             'admin.incidents.index',
-            ['incidents' => $incidents],
-            ['services' => $services],
-            ['states' => $states],
-            ['users' => $users]
+            ['incidents' => $incidents,
+            'services' => $services,
+            'states' => $states,
+            'users' => $users]
         );
     }
 
@@ -56,14 +60,13 @@ class IncidentController extends Controller
     {
         $validated = $request->validate([
             'state' => 'required',
-            'commentary' => 'required',
             'services' => 'required',
             'emailUser' => 'required',
         ]);
 
         $incident = new Incident;
         $incident->start_date = Carbon::now()->toDateTimeString();
-        $incident->commentary = $validated['commentary'];
+        $incident->commentary = $request->commentary;
         $incident->user_id = $validated['emailUser'];
         $incident->state_id = $validated['state'];
 
@@ -96,12 +99,11 @@ class IncidentController extends Controller
     {
         $validated = $request->validate([
             'state' => 'required',
-            'commentary' => 'required',
         ]);
 
         $incident = Incident::findOrFail($id);
-        $incident->commentary = $validated['commentary'];
-        $incident->state_id = $request->state;
+        $incident->commentary = $request->commentary;
+        $incident->state_id = $validated['state'];
         // dd($request->state_id);
         if ($incident->state_id == 1) {
             $incident->end_date = now();

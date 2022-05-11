@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Report;
 
-class frequentIssue extends Model
+class FrequentIssue extends Model
 {
     use HasFactory;
 

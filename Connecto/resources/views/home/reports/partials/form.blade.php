@@ -54,7 +54,10 @@
             </div>
             <hr/>
             <h5>Pour mieux vous aider, nous spécifier la date que le problème à commencé.</h5>
-            <input type="date" id="date" name="date">
+            <?php
+use Carbon\Carbon;
+?>
+<input type="date" id="date" name="date" max="{{Carbon::now()->format('Y-m-d')}}">
 <hr/>
             <input type="submit" value="Envoyer" class="btn btn-primary">
             <a href="{{ route('home.reports.index') }}" class="btn btn-secondary">Annuler</a>

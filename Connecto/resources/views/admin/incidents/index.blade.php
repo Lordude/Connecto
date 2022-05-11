@@ -66,8 +66,7 @@
                                 <select name="state" id="states">
                                     <option value="" selected="selected" disabled>choisir</option>
                                     <?php
-                                        use App\Models\State;
-                                        $states = State::all();
+
                                         foreach ($states as $state){
                                         if($state['id'] > 1){
                                         ?>
@@ -78,13 +77,8 @@
                                 <label for="commentary">Commentaire</label>
                                 <input type="text" id="commentary" name="commentary">
 
-
                                 <hr />
 
-                                <?php
-                                use App\Models\User;
-                                $users = User::all();
-                                ?>
                                 @foreach ($users as $user)
                                     @if (session('emailUser') == $user->email)
                                         <input type="hidden" id="emailUser" name="emailUser" value="{{ $user->id }}">
@@ -146,11 +140,12 @@
                                 </td>
 
                             </tr>
-                </tbody>
-                {{-- @else
-                <p> Aucun services à afficher présentement </p> --}}
-                @endif
-                @endforeach
+                            @endif
+                        </tbody>
+                        @endforeach
+                        @if($service->hasOpenIncident() == 0)
+                        <p class="bg-success p-2 text-dark bg-opacity-10 rounded-2"> Aucun incidents à afficher présentement </p>
+                        @endif
 
                 <tbody>
                     <div>
@@ -176,8 +171,6 @@
                                                     </ul>
                                                 @endforeach
                                             </td>
-
-                                            {{-- <td>{{ $service->get_service_state($service->id)->first()->name }}</td> --}}
                                             <td>{{ $incident->commentary }}</td>
                                             <td>{{ $incident->start_date }}</td>
                                             <td>{{ $incident->end_date }} </td>

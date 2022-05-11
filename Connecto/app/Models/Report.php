@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\ReportService;
 
 
+
 class Report extends Model
 {
     use HasFactory;
@@ -45,6 +46,10 @@ class Report extends Model
     public function services()
     {
         return $this->belongsToMany(Service::class);
+    }
+    public function frequent_issue()
+    {
+        return $this->belongsTo(frequentIssue::class);
     }
 
     public function reports_services()

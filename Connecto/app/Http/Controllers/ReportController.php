@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Report;
 use App\Http\Controllers\Controller;
 use App\Models\ReportService;
+use App\Models\FrequentIssue;
 
 class ReportController extends Controller
 {
@@ -23,6 +24,7 @@ class ReportController extends Controller
         $reports = Report::all();
         
     }
+
     public function show($id)
     {
         $reports = Report::findOrFail($id);
@@ -69,7 +71,7 @@ class ReportController extends Controller
         ]));
         $report->services()->sync($request->services);
 
-        return redirect()->route('admin.services.index')->withSuccess('Le signalement a été créée');
+        return redirect()->route('home')->withSuccess('Le signalement a été créée');
 
     }
 
