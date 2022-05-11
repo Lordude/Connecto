@@ -144,7 +144,7 @@
                         </tbody>
                         @endforeach
                         @if($service->hasOpenIncident() == 0)
-                        <p> Aucun incidents à afficher présentement </p>
+                        <p class="bg-success p-2 text-dark bg-opacity-10 rounded-2"> Aucun incidents à afficher présentement </p>
                         @endif
 
                 <tbody>
@@ -171,8 +171,6 @@
                                                     </ul>
                                                 @endforeach
                                             </td>
-
-                                            {{-- <td>{{ $service->get_service_state($service->id)->first()->name }}</td> --}}
                                             <td>{{ $incident->commentary }}</td>
                                             <td>{{ $incident->start_date }}</td>
                                             <td>{{ $incident->end_date }} </td>
