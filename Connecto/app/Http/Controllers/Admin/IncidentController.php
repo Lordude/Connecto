@@ -56,14 +56,13 @@ class IncidentController extends Controller
     {
         $validated = $request->validate([
             'state' => 'required',
-            'commentary' => 'required',
             'services' => 'required',
             'emailUser' => 'required',
         ]);
 
         $incident = new Incident;
         $incident->start_date = Carbon::now()->toDateTimeString();
-        $incident->commentary = $validated['commentary'];
+        $incident->commentary = $request->commentary;
         $incident->user_id = $validated['emailUser'];
         $incident->state_id = $validated['state'];
 
@@ -96,11 +95,10 @@ class IncidentController extends Controller
     {
         $validated = $request->validate([
             'state' => 'required',
-            'commentary' => 'required',
         ]);
 
         $incident = Incident::findOrFail($id);
-        $incident->commentary = $validated['commentary'];
+        $incident->commentary = $request->commentary;
         $incident->state_id = $request->state;
         // dd($request->state_id);
         if ($incident->state_id == 1) {
