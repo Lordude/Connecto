@@ -99,7 +99,7 @@ class IncidentController extends Controller
 
         $incident = Incident::findOrFail($id);
         $incident->commentary = $request->commentary;
-        $incident->state_id = $request->state;
+        $incident->state_id = $validated['state'];
         // dd($request->state_id);
         if ($incident->state_id == 1) {
             $incident->end_date = now();
