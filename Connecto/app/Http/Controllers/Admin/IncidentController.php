@@ -14,7 +14,11 @@ class IncidentController extends Controller
 {
     public function index()
     {
-        $incidents = Incident::all();
+        //affichage seulement les incidents des 30 derniers jours
+        $from = (new Carbon)->subDays(30)->startOfDay()->toDateString();
+        $to = Carbon::now();
+
+        $incidents = Incident::whereBetween('created_at', [$from, $to])->get();
         $services = Service::all();
         $states = State::all();
         $users = User::all();
