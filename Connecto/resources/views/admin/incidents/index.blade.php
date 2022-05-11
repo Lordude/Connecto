@@ -140,11 +140,12 @@
                                 </td>
 
                             </tr>
-                            @else
-                            <p> Aucun services à afficher présentement </p>
                             @endif
                         </tbody>
-                @endforeach
+                        @endforeach
+                        @if($service->hasOpenIncident() == 0)
+                        <p> Aucun incidents à afficher présentement </p>
+                        @endif
 
                 <tbody>
                     <div>
