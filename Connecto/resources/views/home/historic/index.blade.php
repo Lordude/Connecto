@@ -1,4 +1,4 @@
-@extends('layouts.admin.app')
+@extends(session()->has('emailUser') ? 'layouts.admin.app' : 'layouts.app' )
 
 @section('title', 'Historique')
 

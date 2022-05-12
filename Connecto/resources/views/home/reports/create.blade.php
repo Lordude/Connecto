@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends(session()->has('emailUser') ? 'layouts.admin.app' : 'layouts.app' )
 
 @section('title', 'Signaler une panne')
 

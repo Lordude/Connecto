@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends(session()->has('emailUser') ? 'layouts.admin.app' : 'layouts.app' )
 
 @section('title', 'Bienvenu')
 
@@ -16,7 +16,6 @@
                 <th>Services</th>
                 <th></th>
                 <th>Statut</th>
-                <th></th>
                 <th>Description</th>
             </thead>
             <tbody>
@@ -24,8 +23,7 @@
                     <tr>
                         <td>{{ $service->name}} </td>
                         <td>{{ $service->incident}}</td>
-                        <td> <img width="42px" height="42px" src="./image/{{$service->get_service_image($service->id)->first()->image;}}" alt="Icone de l\'etat du service {{$service->get_service_image($service->id)->first()->image;}}"></td>
-                        <td> {{ $service->get_service_state($service->id)->first()->name;}} </td>
+                        <td> <img width="42px" height="42px" src="./image/{{$service->get_service_image($service->id)->first()->image;}}" alt="Icone de l\'etat du service {{$service->get_service_image($service->id)->first()->image;}}">{{ $service->get_service_state($service->id)->first()->name;}}</td>
                         <td> {{ $service->get_service_description($service->id)->first()->description;}} </td>
 
 
