@@ -147,7 +147,7 @@
             </tbody>
             @endforeach
             @if ($service->hasOpenIncident() == 0)
-                <p class="bg-success p-2 text-dark bg-opacity-10 rounded-2"> Aucun incidents à afficher présentement </p>
+                <p class="mx-auto text-center bg-success p-2 text-dark bg-opacity-10 rounded-2 w-50"> Aucun incidents à afficher présentement </p>
             @endif
 
             <tbody>
@@ -188,8 +188,6 @@
                                         </td>
                                     </tr>
                         </tbody>
-                        {{-- @else
-                            <p> Aucun services à afficher présentement </p> --}}
                         @endif
                         @endforeach
                     </table>
