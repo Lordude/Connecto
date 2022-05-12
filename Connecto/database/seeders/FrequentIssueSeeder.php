@@ -21,7 +21,8 @@ class FrequentIssueSeeder extends Seeder
             ['problem' => 'L\'application mobile ne charge pas (symbole de chargement en continu)'],
             ['problem' => 'Les alertes ne fonctionnent plus'],
             ['problem' => 'Impossible d\'accéder au flux vidéo et/ou l\'historique des enregistrements (Connecto Cam)'],
-            ['problem' => 'Impossible d\'accéder aux services Connecto Pro (message d\'erreur ou symbole de chargement en continu)']
+            ['problem' => 'Impossible d\'accéder aux services Connecto Pro (message d\'erreur ou symbole de chargement en continu)'],
+            ['problem' => 'Autre']
         ]);
     }
 }
