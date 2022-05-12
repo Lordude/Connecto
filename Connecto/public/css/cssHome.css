@@ -221,6 +221,36 @@ box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.2);
 .iconeIncidentForm{
     width: 5%;
 }
+/*formulaire de signalement*/
+
+.reportForm{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px;
+    background-color: lightgray;
+    border-radius: 20px;
+    width: 575px;
+}
+
+.form-label-report{
+    margin-bottom: 0;
+}
+.reportForm2{
+    padding-top: 10px;
+    padding-bottom: 25px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: lightgray;
+    border-radius: 20px;
+    max-width: 475px;
+}
+input::placeholder {
+    color: #1c87c9;
+    opacity: 0.3;
+  }
+
+
 /* tr {
   border-color: #E3E9F1 !important;
   border-width: 10px !important;

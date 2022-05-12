@@ -4,7 +4,8 @@
 
 @section('content')
 <div class="col-9">
-    <h3>Signalement</h3>
+    <div class="tableIncident">
+    <h3 class="incidentTitle">Signalement</h3>
 
     <div class="row">
 

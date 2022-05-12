@@ -1,16 +1,19 @@
-<div class="col6 col-lg-6">
+
+
+{{-- <div class="col6 col-lg-10"> --}}
     <form method="POST" action="{{ route('home.reports.store') }}">
         @csrf
 
-        <div class="mb-3">
-            <label for="name" class="form-label">Nom </label>
-            <input id="name" name="name" type="text" value="" class="form-control">
-
-      <label for="email" class="form-label"> email </label>
-            <input id="email" name="email" type="text" value="" class="form-control ">
-
-            <label for="services">Service affecté :</label>
-            <select name="services" id="services">
+        <div class="reportForm">
+            <label for="name" class="form-label-report" >Nom* : </label>
+            <input placeholder="ex: Mr Patate" class="option" id="name" name="name" type="text" value="" class="form-control">
+        {{-- </br></br> --}}
+            <label for="email" class="form-label-report"> Courriel :* </label>
+            <input placeholder="ex:nobody@google.com" class="option" id="email" name="email" type="text" value="" class="form-control ">
+        </div>
+    <hr/>
+            <label for="services">Service affecté* :</label>
+            <select class="option" name="services" id="services">
                 <option value="" selected="selected" disabled>choisir</option>
 
 
@@ -21,8 +24,10 @@
                 <option value="<?= $service['id'] ?>"><?= $service['name'] ?></option>
                 <?php } ?>
             </select>
-            <label for="frequent_issues">Type de problème :</label>
-            <select name="frequent_issue_id" id="frequent_issues">
+        <br />
+        <br />
+            <label for="frequent_issues">Type de problème* :</label>
+            <select class="option" name="frequent_issue_id" id="frequent_issues">
                 <option value="frequent_issues" selected="selected" disabled>choisir</option>
                 <?php
         use App\Models\FrequentIssue;
@@ -41,26 +46,29 @@
             <div class="mb-3">
 
                 <hr />
-                <label for="report" class="form-label"><strong>Détails supplémentaires</strong></label>
-
+                <label for="report" class="form-label">Détails supplémentaires *</label>
+            </br>
+            <div class="option">
                 <textarea id="report" name="detail"
-                class="form-control @error('detail') is-invalid @enderror">{{ old('detail', $report->detail) }}</textarea>
+                    class="form-control @error('detail') is-invalid @enderror">{{ old('detail', $report->detail) }}</textarea>
 
                 @error('report')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
                 @enderror
             </div>
-            <hr/>
-            <h5>Pour mieux vous aider, nous spécifier la date que le problème à commencé.</h5>
+            <hr />
+            <div class="reportForm">
+            <p>Pour mieux vous aider, veuillez nous spécifier la date de début de l'incident.*</p>
             <?php
-use Carbon\Carbon;
-?>
-<input type="date" id="date" name="date" max="{{Carbon::now()->format('Y-m-d')}}">
-<hr/>
-            <input type="submit" value="Envoyer" class="btn btn-primary">
-            <a href="{{ route('home.reports.index') }}" class="btn btn-secondary">Annuler</a>
+            use Carbon\Carbon;
+            ?>
+            <input class="option" type="date" id="date" name="date" max="{{ Carbon::now()->format('Y-m-d') }}">
+            </div>
+            <hr />
+            <input type="submit" value="Envoyer" class="btn btn-warning text-white">
+            <a href="{{ route('home.reports.create') }}" class="btn text-danger">Annuler</a>
     </form>
-
+</div>
     </select>
