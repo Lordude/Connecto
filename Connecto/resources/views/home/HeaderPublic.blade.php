@@ -17,7 +17,7 @@
     </div>
     <div class=" p-4 mb-2 filll"></div>
 
-    <img class="LogoHeader" src="{{ asset('image/RectangleText.png') }}">
+    <a href="https://status.nest.com/"><img class="LogoHeader" src="{{ asset('image/RectangleText.png') }}"></a>
 
     @if (session('logsuccess'))
         <p class="MessageSession">{{session('logsuccess')}}</p>
@@ -38,6 +38,16 @@
     <!-- @if(session('TypeRole') == '2')
     <a href="" class="btn btn-warning">Bouton pour le superadmin</a>
    @endif -->
+
+   <div class="row">    
+        <div class="sidenavDiv col-3">
+        <nav>
+            <a class="sidenav" href="{{route('home.historic.index')}}">Historique des incidents</a>
+            <a class="sidenav" href="">Connecto.com</a>
+            <a class="sidenav" href="">Nous joindre</a>
+        </nav>
+        <footer>@2022 Algorithmus</footer>
+        </div>
 
     <div class="form-popup" id="myForm">
     <form action="{{ route('login.store') }}" method="POST" class="form-container">

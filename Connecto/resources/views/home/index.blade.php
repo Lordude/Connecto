@@ -3,11 +3,10 @@
 @section('title', 'Bienvenu')
 
 @section('content')
+<div class="col-9">
 
     <h1>Services Connecto</h1>
-    <button type="button" class="btn"><a href="{{ route('admin.services.index') }}" >Accès admin Service</a></button>
     <button type="button" class="btn btn-warning" ><a href="{{route('home.reports.create')}}"> Signaler une panne</a> </button>
-    <button type="button" class="btn btn-warning" ><a href="{{route('superadmin.users.index')}}"> USERS SUPER ADMIN</a> </button>
     @if($services->count() > 0)
     {{-- @if($services->hasOpenIncident() == 0)
     <p class="bg-success p-2 text-dark bg-opacity-10 rounded-2"> Tous nos services sont opérationnels </p>
@@ -37,6 +36,8 @@
     @else
         <p> Aucun services à afficher présentement </p>
     @endif
+    </div>
+</div>
 
 
 @endsection

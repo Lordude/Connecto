@@ -3,7 +3,7 @@
 @section('title', 'Signaler une panne')
 
 @section('content')
-
+<div class="col-9">
     <h3>Signalement</h3>
 
     <div class="row">
@@ -18,4 +18,6 @@
             </form>
         </div>
     </div>
+    </div>
+</div>
 @endsection
