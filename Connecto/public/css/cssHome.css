@@ -97,8 +97,8 @@
 #NbSignalement {
   padding: 12px;
   width: 100%;
-  background-color: #DDFDFC;  
-  margin: 0.8em; 
+  background-color: #DDFDFC;
+  margin: 0.8em;
   border-radius: 20px 20px 20px 20px;
 }
 
@@ -126,8 +126,8 @@
 
 /* pour MyAccount */
 .main {
-  background-color: white; 
-  min-height:300px; width:60%; 
+  background-color: white;
+  min-height:300px; width:60%;
   border-radius: 15px;
   margin-left: 160px;
   padding: 30px;
@@ -162,8 +162,8 @@
   padding-left: 1em;
   padding: 1em;
   margin: 0.8em;
-  background-color: #E3E9F1; 
-  min-height:600px; 
+  background-color: #E3E9F1;
+  min-height:600px;
   border-radius: 30px 0px 0px 0px;
   width: 98%;
 }
@@ -181,6 +181,45 @@
   background-color: white !important;
 }
 
+/*formulaire incident*/
+
+.tableIncident {
+  padding: 20px;
+  border-radius: 20px ;
+  margin: 5px;
+  width: 100%;
+  background-color: white;
+}
+
+.incidentForm{
+    padding: 30px;
+    background-color: lightgray;
+    border-radius: 20px;
+}
+
+.incidentTitle{
+    margin-bottom:10px;
+    border-bottom: 5px solid #e3e9f1;
+}
+
+.incidentTitle2{
+    margin-bottom:10px;
+}
+
+.option{
+    border: 3px solid #e3e9f1;
+    border-radius: 20px;
+    padding: 3px;
+}
+/*ul*/
+.incidentServicesForm{
+border-radius: 20px;
+margin: 5px;
+box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+.iconeIncidentForm{
+    width: 5%;
+}
 /* tr {
   border-color: #E3E9F1 !important;
   border-width: 10px !important;
