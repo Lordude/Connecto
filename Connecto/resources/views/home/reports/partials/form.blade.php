@@ -36,7 +36,7 @@
                 <?php } ?>
             </select>
 
-            <input type="hidden" value="1" name="frequent_issues_id" id="frequent_issues_id">
+            {{-- <input type="hidden" value="1" name="frequent_issues_id" id="frequent_issues_id"> --}}
 
             <div class="mb-3">
 

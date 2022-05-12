@@ -7,14 +7,13 @@
 
     <h1>Gestion des administrateurs</h1>
     <hr>
-    <a href="#" class="nav navbar-nav navbar-left">Accès home</a>
 
     @if (session('logsuccess'))
             <div class="alert alert-sucess">
                 {{session('logsuccess')}}
             </div>
     @endif
-       <a href="{{ route('superadmin.users.create') }}">Ajouter un compte </a>
+       <a href="{{ route('superadmin.users.create') }}" class="btn btn-warning text-white">Ajouter un compte </a>
         @if($users->count() > 0)
             <table class="table">
                 <thead>
@@ -30,14 +29,13 @@
                             <td> {{$user->first_name}} {{$user->last_name}} </td>
                             <td> {{$user->email}}</td>
                             <td> {{$user->date_hired}}</td>
-                            <!-- <td> {{$user->password}}</td> -->
-                            <td> {{$user->role_id}}</td>
-                            <td><a href="{{route('superadmin.users.edit', ['user' => $user])}}">Modifier </a> </td>
-                            <td><form method="POST" action="{{route('superadmin.users.destroy', ['user' => $user])}}" class="mb-0">
+                            <td> {{$user->getUserRole($user->role_id)->first()->name;}}</td>
+                            <td ><a href="{{route('superadmin.users.edit', ['user' => $user])}}" class="btn btn-link link-danger">Modifier </a> </td>
+                            <td><form method="POST" action="{{route('superadmin.users.destroy', ['user' => $user])}}" class="btn btn-link link-danger">
                                 @csrf
                                 @method('DELETE')
 
-                                <input type="submit" value="Supprimer" class="btn btn-link link-danger" onclick="return confirm('Are you sure?')" />
+                                <input type="submit" value="Supprimer"  onclick="return confirm('Are you sure?')" />
                               </form></td>
                             
                         </tr>
