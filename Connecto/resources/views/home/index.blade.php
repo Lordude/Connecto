@@ -6,6 +6,7 @@
 <div class="col-9">
 
     <h1>Services Connecto</h1>
+    <hr>
     <button type="button" class="btn btn-warning" ><a href="{{route('home.reports.create')}}"> Signaler une panne</a> </button>
     @if($services->count() > 0)
     {{-- @if($services->hasOpenIncident() == 0)
