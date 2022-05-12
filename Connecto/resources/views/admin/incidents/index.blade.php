@@ -63,8 +63,8 @@
                         </div>
                         <hr />
                         <div class="mb-3">
-                            <label for="states">Choisir l'état du ou des services affectés *</label>
-                            <select class="option" name="state" id="states">
+                            <label for="state">Choisir l'état du ou des services affectés *</label>
+                            <select class="option" name="state" id="state">
                                 <option value="" selected="selected" disabled>choisir</option>
                                 @foreach ($states as $state)
                                     @if ($state->id > 1)
@@ -89,7 +89,7 @@
                         ?>
                         <label for="date">Date et heure de l'incident *</label>
                         <input class="option" type="datetime-local" id="start_date" name="start_date"
-                            max="{{ Carbon::now()->format('Y-m-d\Th:i:s A') }}"><hr/>
+                            max="{{ Carbon::now()->format('Y-m-d\TH:i:s') }}"><hr/>
                         <input type="submit" value="créer le nouvel incident" class="btn btn-warning text-white">
                         <a href="{{ route('admin.incidents.index') }}" class="btn text-danger">Annuler</a>
 
