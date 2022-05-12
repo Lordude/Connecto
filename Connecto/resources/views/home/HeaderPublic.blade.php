@@ -35,24 +35,6 @@
 
     <p class="MessageSession">{{ session('success') }} </p>
 
-    <!-- @if(session('TypeRole') == '2')
-    <a href="" class="btn btn-warning">Bouton pour le superadmin</a>
-   @endif -->
-
-   <div class="row">    
-        <div class="sidenavDiv col-3">
-        <nav>
-            <a class="sidenav" href="{{ route('home') }}">Accueil</a>
-            <a class="sidenav" href="{{ route('home.historic.index') }}">Historique des incidents</a>
-            <a class="sidenav" href="">Connecto.com</a>
-            <a class="sidenav" href="">Nous joindre</a>
-            @if(session()->has('emailUser'))
-            <a class="sidenav" href="{{ route('admin.services.index') }}">Page Administrateur</a>
-            @endif
-        </nav>
-        <footer>@2022 Algorithmus</footer>
-        </div>
-
     <div class="form-popup" id="myForm">
     <form action="{{ route('login.store') }}" method="POST" class="form-container">
         @csrf
@@ -69,3 +51,16 @@
     </form>
     </div>
     
+    <div class="row">    
+        <div class="sidenavDiv col-3">
+        <nav>
+            <a class="sidenav" href="{{ route('home') }}">Accueil</a>
+            <a class="sidenav" href="{{ route('home.historic.index') }}">Historique des incidents</a>
+            <a class="sidenav" href="">Connecto.com</a>
+            <a class="sidenav" href="">Nous joindre</a>
+            @if(session()->has('emailUser'))
+            <a class="sidenav" href="{{ route('admin.services.index') }}">Page Administrateur</a>
+            @endif
+        </nav>
+        <footer>@2022 Algorithmus</footer>
+        </div>
