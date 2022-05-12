@@ -3,7 +3,10 @@
 @section('title', 'Historique')
 
 @section('content')
+<div class="col-9">
+    
     <h1>Historique de disponibilité</h1>
+    <hr>
 
     @if($incidents->count() > 0)
         <table class="table">
@@ -46,6 +49,8 @@
     @else
         <p> Aucun services à afficher présentement </p>
     @endif
+    </div>
+</div>
 
 
 @endsection
