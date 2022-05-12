@@ -42,12 +42,13 @@
    <div class="row">    
         <div class="sidenavDiv col-3">
         <nav>
-            @if(session()->has('emailUser'))
-            <a class="sidenav" href="{{ route('admin.services.index') }}">Page Administrateur</a>
-            @endif
+            <a class="sidenav" href="{{ route('home') }}">Accueil</a>
             <a class="sidenav" href="{{ route('home.historic.index') }}">Historique des incidents</a>
             <a class="sidenav" href="">Connecto.com</a>
             <a class="sidenav" href="">Nous joindre</a>
+            @if(session()->has('emailUser'))
+            <a class="sidenav" href="{{ route('admin.services.index') }}">Page Administrateur</a>
+            @endif
         </nav>
         <footer>@2022 Algorithmus</footer>
         </div>
