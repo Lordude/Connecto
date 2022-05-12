@@ -65,6 +65,7 @@
                         <div class="mb-3">
                             <label for="states">Choisir l'état du ou des services affectés *</label>
                             <select class="option" name="state" id="states">
+                                <option value="" selected="selected" disabled>choisir</option>
                                 @foreach ($states as $state)
                                     @if ($state->id > 1)
                                         <option value="{{ $state->id }}">{{ $state->name }}</option>

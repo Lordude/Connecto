@@ -59,7 +59,7 @@ class IncidentController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'state' => 'required',
+            'states' => 'required',
             'services' => 'required',
             'start_date' => 'required',
             'emailUser' => 'required',
@@ -71,7 +71,7 @@ class IncidentController extends Controller
         // $incident->start_date = $request->start_date;
         $incident->commentary = $request->commentary;
         $incident->user_id = $validated['emailUser'];
-        $incident->state_id = $validated['state'];
+        $incident->state_id = $validated['states'];
 
         $incident->save();
 
