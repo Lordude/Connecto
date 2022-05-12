@@ -3,6 +3,7 @@
 @section('title', 'Ajouter un compte')
 
 @section('content')
+<div class="col-9">
 
     <h1>Ajouter un compte utilisateur</h1>
     <hr>
@@ -38,5 +39,7 @@
     <a href="{{ route('superadmin.users.index') }}" class="btn btn-secondary"> Retour </a>
 
     </form>
+    </div>
+</div>
     
 @endsection
