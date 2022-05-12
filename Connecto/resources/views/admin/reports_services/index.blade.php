@@ -36,9 +36,9 @@
 
                                 <td>
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    <button type="button" class="btn btn-warning text-white" data-bs-toggle="modal"
                                         data-bs-target="#signalement_{{ $report->id }}">
-                                        Détail du signalement
+                                        Détails
                                     </button>
 
                                     <!-- Modal -->
@@ -58,8 +58,8 @@
 
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary">Understood</button>
+                                                        data-bs-dismiss="modal">Fermer</button>
+                                             
                                                 </div>
                                             </div>
                                         </div>
