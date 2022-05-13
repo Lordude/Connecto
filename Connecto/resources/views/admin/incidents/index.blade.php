@@ -89,13 +89,20 @@
                             @endif
                         @endforeach
                         <hr />
-                        {{-- <input type="hidden" id="start_date" name="start_date" value=""> --}}
                         <?php
                         use Carbon\Carbon;
                         ?>
                         <label for="date">Date et heure de l'incident *</label>
-                        <input class="option" type="datetime-local" id="start_date" name="start_date"
-                            max="{{ Carbon::now()->format('Y-m-d\TH:i:s') }}">
+
+                        <div class=" date" data-provide="datepicker">
+                            <input id="start_date" name="start_date" type="datetime-local" class="form-control"
+                                max="{{ Carbon::now()->format('Y-m-d\TH:i:s') }}">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-th"></span>
+                            </div>
+                        </div>
+                        {{-- <input class="option" type="datetime-local" id="start_date" name="start_date"
+                            max="{{ Carbon::now()->format('Y-m-d\TH:i:s') }}"> --}}
                         <hr />
                         <input type="submit" value="créer le nouvel incident" class="btn btn-warning text-white">
                         <a href="{{ route('admin.incidents.index') }}" class="btn text-danger">Annuler</a>
