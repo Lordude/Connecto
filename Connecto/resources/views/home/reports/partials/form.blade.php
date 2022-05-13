@@ -5,14 +5,14 @@
         @csrf
 
         <div class="reportForm">
-            <label for="name" class="form-label-report" >Nom* : </label>
+            <label for="name" class="form-label-report" >Nom * : </label>
             <input placeholder="ex: Mr Patate" class="option" id="name" name="name" type="text" value="" class="form-control">
         {{-- </br></br> --}}
-            <label for="email" class="form-label-report"> Courriel :* </label>
-            <input placeholder="ex:nobody@google.com" class="option" id="email" name="email" type="text" value="" class="form-control ">
+            <label for="email" class="form-label-report"> Courriel * : </label>
+            <input placeholder="ex: nobody@google.com" class="option" id="email" name="email" type="text" value="" class="form-control ">
         </div>
     <hr/>
-            <label for="services">Service affecté* :</label>
+            <label for="services">Service affecté * :</label>
             <select class="option" name="services" id="services">
                 <option value="" selected="selected" disabled>choisir</option>
 
@@ -26,7 +26,7 @@
             </select>
         <br />
         <br />
-            <label for="frequent_issues">Type de problème* :</label>
+            <label for="frequent_issues">Type de problème * :</label>
             <select class="option" name="frequent_issue_id" id="frequent_issues">
                 <option value="frequent_issues" selected="selected" disabled>choisir</option>
                 <?php
@@ -42,14 +42,12 @@
             </select>
 
             {{-- <input type="hidden" value="1" name="frequent_issues_id" id="frequent_issues_id"> --}}
-
             <div class="mb-3">
-
                 <hr />
                 <label for="report" class="form-label">Détails supplémentaires *</label>
             </br>
-            <div class="option">
-                <textarea id="report" name="detail"
+            <div>
+                <textarea class="option" id="report" name="detail"
                     class="form-control @error('detail') is-invalid @enderror">{{ old('detail', $report->detail) }}</textarea>
 
                 @error('report')
