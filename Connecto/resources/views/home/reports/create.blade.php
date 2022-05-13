@@ -4,34 +4,44 @@
 
 @section('content')
 
- 
 
- 
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-<div class="col-9">
-    <div class="tableSignalement">
-    <h3 class="signalementTitle">Signalement</h3>
 
-    <div class="row">
 
-        <div class="col-6 col-lg-6">
-            <form method="POST" action="{{ route('home.reports.store') }}">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    <div class="col-9">
+        <div class="tableSignalement">
+            <div class="reportHourAlignment">
+                <h3 class="signalementTitle">Signalement</h3>
+                <div class="reportPublicClock">
+                    <?php
+                    use Carbon\Carbon;
+                    $cur_time_date = Carbon::now()->format('d/m/Y');
+                    $cur_time_hour = Carbon::now()->format(' H:i');
 
-                @csrf
+                    echo "Nous sommes le $cur_time_date <br/> il est $cur_time_hour";
+                    ?>
+                </div>
+        </div>
+            <div class="row">
 
-                @include('home.reports.partials.form')
+                <div class="col-6 col-lg-6">
+                    <form method="POST" action="{{ route('home.reports.store') }}">
 
-            </form>
+                        @csrf
+
+                        @include('home.reports.partials.form')
+
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-    </div>
-</div>
 @endsection

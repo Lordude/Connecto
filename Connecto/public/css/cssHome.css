@@ -320,6 +320,18 @@ input::placeholder {
     opacity: 0.3;
 }
 
+.reportPublicClock{
+    text-align: end;
+    padding: 7px;
+    border-radius: 20px;
+    background-color: white;
+}
+
+.reportHourAlignment{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
 /* tr {
   border-color: #E3E9F1 !important;
