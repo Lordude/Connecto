@@ -10,6 +10,8 @@ use App\Models\Service;
 use App\Models\State;
 use App\Models\User;
 
+use function PHPUnit\Framework\at;
+
 class Incident extends Model
 {
     use HasFactory;
@@ -48,9 +50,9 @@ class Incident extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function states()
+    public function state()
     {
-        return $this->belongsToMany(State::class);
+        return $this->belongsTo(State::class);
     }
     public function get_state_id($state_id)
     {
@@ -120,6 +122,20 @@ class Incident extends Model
         }
     }
 
+    public static function hasNoOpenIncident()
+    {
+        $result = DB::table('incidents')
+            ->select('incidents.end_date')
+            ->whereNull('incidents.end_date')
+            ->get();
+
+        return  $result->count() == 0;
+
+
+    }
+
+
+
     public function incidentOpenSince()
     {
         $start_date = $this->start_date;
@@ -134,21 +150,21 @@ class Incident extends Model
         return $result;
     }
 
-    public static function time()
-    {
-        $cur_time = Carbon::now()->format('Y/m/d H:i:s');
-        echo "Date et heure actuelle: $cur_time";
-    }
+    // public static function time()
+    // {
+    //     $cur_time = Carbon::now()->format('Y/m/d H:i:s');
+    //     echo "Date et heure actuelle: $cur_time";
+    // }
 
     public static function show_historic()
         {
             $incidents = Incident::all();
-    
+
             return view('home.incidents', ['incidents' => $incidents]);
         }
-    
 
-    public static function get_Uptime() { 
+
+    public static function get_Uptime() {
 
         $currentTime = Carbon::now();
         $threeMonthsAgo = Carbon::now()->subDays(90);
@@ -157,8 +173,8 @@ class Incident extends Model
         $downTime = 0;
 
 
-        $incidents = Incident::orderBy('start_date', 'ASC')->get() ; 
-        
+        $incidents = Incident::orderBy('start_date', 'ASC')->get() ;
+
                                                                                         //aller chercher tout les incidents et les classer par start_date ascendant,
         if(count($incidents) > 0) {
         $refIncident = $incidents->first();                                             //aller chercher le tout premier incident cree et en faire la reference ( refIncident )
@@ -182,14 +198,14 @@ class Incident extends Model
             }else{
                 $curIncidentEnd = Carbon::parse($incident->end_date);
             }
-    
+
             if(($refIncidentEnd->diffInMinutes($curIncidentStart)) > 0){                // Si le debut de curIncident est avant la fin de refIncident == overlap
                 if($curIncidentEnd->diffInMinutes($refIncidentEnd) < 0){                // Si la fin de curIncident est avant la fin de refIncident == complete overlap, completement a l'interieur de refIncident
                     continue;                                                           // On ajoute rien au downtime vue que refIncident est deja dans le downtime
                 }
             else{
                 $totalDownTime += $curIncidentEnd->diffInMinutes($refIncidentEnd);
-                $refIncidentStart = $curIncidentStart;                                      //fait du curIncident le nouvel refIncident 
+                $refIncidentStart = $curIncidentStart;                                      //fait du curIncident le nouvel refIncident
                 $refIncidentEnd = $curIncidentEnd;                                          //le debut de curIncident est a l'interieur de refIncident, on fait juste calculer la difference entre fin refIncident et fin curIncident
                 }
             }
