@@ -2,27 +2,26 @@
 
 function openForm() {
     document.getElementById("myForm").style.display = "block";
-  }
+}
 
-  function closeForm() {
+function closeForm() {
     document.getElementById("myForm").style.display = "none";
-  }
+}
 
-  function incidentForm() {
+function incidentForm() {
     document.getElementById("incidentForm").style.display = "block";
-  }
+}
 
-  window.onload = function (event){
+window.onload = function(event) {
     let form = document.getElementById("incidentForm")
-    if(form != null ){
-        if(form.dataset.status.trim() == 'open'){
-         form.style.display = "block";
+    if (form != null) {
+        if (form.dataset.status.trim() == 'open') {
+            form.style.display = "block";
         }
     }
-  }
+}
 
-  //calendrier création incident
+//calendrier création incident
 
-  $('.datepicker').datepicker();
-  $(document).off('.datepicker.data-api');
-
+$('.datepicker').datepicker();
+$(document).off('.datepicker.data-api');

@@ -14,10 +14,6 @@
                     <thead>
 
                         <th>Service affecté</th>
-                        <th>courriel</th>
-                        <th>Commentaire</th>
-                        <th>Type de problème</th>
-                        <th>Date</th>
 
                     </thead>
                     <tbody>
@@ -30,92 +26,25 @@
                                             <li class="list-group-item">{{ $service->name }}</li>
                                         </ul>
                                     @endforeach
-                                </td>
 
-                                <td> <a href="mailto:{{ $report->email }}">{{ $report->email }}</a></td>
 
-                                <td>
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-warning text-white" data-bs-toggle="modal"
-                                        data-bs-target="#signalement_{{ $report->id }}">
-                                        Détails
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="signalement_{{ $report->id }}"
-                                        data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                                        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="Commentaire" id="staticBackdropLabel">Commentaire</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="">{{ $report->detail }}</div>
-                                                </div>
-
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Fermer</button>
-                                             
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </td>
-                                <td>
-
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-warning text-white" data-bs-toggle="modal"
-    data-bs-target="#signalement__{{ $report->id }}">
-    Type
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="signalement__{{ $report->id }}"
-    data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdrop" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="Type de problème" id="staticBackdrop">Type de problème</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class=""> {{ $report->frequent_issue->problem}}</div>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary"
-                    data-bs-dismiss="modal">Fermer</button>
-         
-            </div>
-        </div>
-    </div>
+<td>
+<div class="accordion accordion-flush" id="accordionFlushExample">
+    <div class="accordion-item">
+<h2 class="accordion-header" id="flush-headingOne">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+Voir plus
+        </button>
+</h2>
+<div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+    <br/>
+        <div class=""><strong>Commentaire: </strong> <br/>{{ $report->detail }}</div>
+        <div class=""><strong>Date: </strong> <br/>{{ $report->date }}</div>
+        <div class=""><strong>Problème courant: </strong> <br/>{{ $report->frequent_issue->problem}}</div>
 </div>
+    </div>
+</td>
 
-
-
-
-
-
-
-
-
-
-
-
-
-                             
-
-                                </td>
-                                <td>{{ $report->created_at }}</td>
-
-                            </tr>
                     </tbody>
             </div>
 
