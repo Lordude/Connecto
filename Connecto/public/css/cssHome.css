@@ -333,6 +333,14 @@ input::placeholder {
     justify-content: space-between;
 }
 
+.homeButton{
+    text-decoration: none;
+    color: white;
+}
+.homeButton:hover{
+    color: white;
+}
+
 /* tr {
   border-color: #E3E9F1 !important;
   border-width: 10px !important;
