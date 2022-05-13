@@ -4,9 +4,8 @@
 
 @section('content')
     <div class="col-9">
-        <h1>Modifier le statut</h1>
+        <h1 class="flexEditForm">Modifier le statut</h1>
         <hr>
-        {{-- <div> --}}
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -17,48 +16,56 @@
             </div>
         @endif
         @foreach ($incident->services as $service)
-        <div class="row input-group mb-3">
-                    @if ($incident->services->count() > 1)
-                    <button type="button" class="col btn">
+            <div class=" flexDeleteGroup">
+                @if ($incident->services->count() > 1)
+                    <button type="button" class="col btn flexDeleteRow">
                         <form method="POST"
                             action="{{ route('admin.services.deleteServiceFromIncidentService', $service->id) }}">
                             @csrf
                             @method('DELETE')
-                            <input type="button"  class="btn-close" aria-label="Close" onclick="return confirm
-                                    ('êtes-vous sûr de vouloir remettre ce service opérationnel? Il sera alors retiré de l\'incident en cours')" />
+                            <input type="button" class="btn-close" aria-label="Close" onclick="return confirm
+                                ('êtes-vous sûr de vouloir remettre ce service opérationnel? Il sera alors retiré de l\'incident en cours')" />
                         </form>
                     </button>
-                    @endif
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">{{ $service->name }}</li>
-                    </ul>
-                </div>
-            @endforeach
-            <p class="text-danger">Actuellement : {{ $service->get_service_state($service->id)->first()->name }}</p>
-        <form method="POST" action="{{ route('admin.incidents.update', ['incident' => $incident]) }}">
-            @csrf
-            @method('PUT')
-            <div class="w-25">
-                <label for="name" class="form-label">État du service</label>
-                <select class="form-select" name="state" id="states">
+                @endif
+                <ul class="list-group list-group-flush flexDeleteRow">
+                    <li class="list-group-item">{{ $service->name }}</li>
+                </ul>
+            </div>
+        @endforeach
+        <div class="flexEditForm"> <p class="text-info">Statut actuel :
+            {{ $incident->state->name }}
+            </p>
+            {{-- <img width="42px" height="42px"
+            src="../image/{{ $incident->state->image }}"
+            alt="Icone de l\'etat du service {{ $incident->state->image }}"> --}}
+            <form method="POST" action="{{ route('admin.incidents.update', ['incident' => $incident]) }}">
+                @csrf
+                @method('PUT')
+                {{-- <div class="w-25"> --}}
+                <label for="name" class="form-label">Modifier l'état à :</label>
+                <select class="form-select editState" name="state" id="states">
 
                     <option value="state" selected="selected" disabled>
-                        {{ $service->get_service_state($service->id)->first()->name }}
+                        {{ $incident->state->name }}
                     </option>
                     @foreach ($states as $state)
-                    @if($state->id != $incident->state_id)
-                        <option value="<?= $state['id'] ?>"><?= $state['name'] ?></option>
+                        @if ($state->id != $incident->state_id)
+                            <option value="<?= $state['id'] ?>"><?= $state['name'] ?></option>
                         @endif
                     @endforeach
                 </select>
+                <br />
                 <label for="commentary">Commentaire</label>
-                <input type="text" id="commentary" name="commentary">
+                <input class="option" type="text" id="commentary" name="commentary">
                 <div>
                     </select>
                 </div>
-            </div>
-            <input type="submit" value="Enregistrer" class="btn btn-primary">
-            <a href="{{ route('admin.incidents.index') }}" class="btn btn-secondary"> Retour </a>
+        </div>
+        <div class="editFormButton">
+            <input type="submit" value="Enregistrer" class="btn btn-warning text-white">
+            <a href="{{ route('admin.incidents.index') }}" class="btn text-danger"> Retour </a>
+        </div>
         </form>
     </div>
     </div>

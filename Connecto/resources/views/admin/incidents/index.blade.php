@@ -14,7 +14,6 @@
             ?>
         </h3>
         <hr />
-        {{-- {{Incident::time()}} --}}
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -33,6 +32,7 @@
                 @csrf
                 <div class="tableIncident">
                     <h3 class="incidentTitle">Nouvel incident</h3>
+                    <hr />
                     <div class="mb-3 container p-2">
                         <label class="incidentTitle2" for="services">Choisir les services affectés *</label>
                         <div class="incidentForm">
@@ -76,7 +76,8 @@
                         </div>
                         <hr />
                         <label for="commentary">Commentaire</label>
-                        <input class="option" type="text" id="commentary" name="commentary" @error('commentary') is-invalid @enderror" value="{{ old('commentary') }}"/>
+                        <input class="option" type="text" id="commentary" name="commentary"
+                            @error('commentary') is-invalid @enderror" value="{{ old('commentary') }}" />
                         @error('commentary')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -94,7 +95,8 @@
                         ?>
                         <label for="date">Date et heure de l'incident *</label>
                         <input class="option" type="datetime-local" id="start_date" name="start_date"
-                            max="{{ Carbon::now()->format('Y-m-d\TH:i:s') }}"><hr/>
+                            max="{{ Carbon::now()->format('Y-m-d\TH:i:s') }}">
+                        <hr />
                         <input type="submit" value="créer le nouvel incident" class="btn btn-warning text-white">
                         <a href="{{ route('admin.incidents.index') }}" class="btn text-danger">Annuler</a>
 
@@ -129,16 +131,15 @@
                             </td>
 
                             <td>{{ $incident->state->name }}</td>
-                            <td> <img width="42px" height="42px"
-                                    src="../image/{{ $incident->state->image }}"
+                            <td> <img width="42px" height="42px" src="../image/{{ $incident->state->image }}"
                                     alt="Icone de l\'etat du service {{ $incident->state->image }}">
                             </td>
 
                             <td>{{ $incident->commentary }}</td>
                             <td>{{ $incident->start_date }}</td>
                             <td>{{ $incident->incidentOpenSince() }} heures</td>
-                            <td>{{ $incident->adminCreateIncident($incident->user_id)->first()->first_name }}
-                                {{ $incident->adminCreateIncident($incident->user_id)->first()->last_name }}
+                            <td>{{ $incident->user->first_name }}
+                                {{ $incident->user->last_name }}
                             </td>
                             <td>
                                 <button type="button" class="btn btn-warning">
@@ -152,7 +153,8 @@
             </tbody>
             @endforeach
             @if ($service->hasOpenIncident() == 0)
-                <p class="mx-auto text-center bg-success p-2 text-dark bg-opacity-10 rounded-2 w-50"> Aucun incidents à afficher présentement </p>
+                <p class="mx-auto text-center bg-success p-2 text-dark bg-opacity-10 rounded-2 w-50"> Aucun incidents à
+                    afficher présentement </p>
             @endif
 
             <tbody>
@@ -188,8 +190,8 @@
                                         @else
                                             <td> / </td>
                                         @endif
-                                        <td>{{ $incident->adminCreateIncident($incident->user_id)->first()->first_name }}
-                                            {{ $incident->adminCreateIncident($incident->user_id)->first()->last_name }}
+                                        <td>{{ $incident->user->first_name }}
+                                            {{ $incident->user->last_name }}
                                         </td>
                                     </tr>
                         </tbody>
@@ -197,5 +199,6 @@
                         @endforeach
                     </table>
                 </div>
+            </tbody>
     </div>
 @endsection
