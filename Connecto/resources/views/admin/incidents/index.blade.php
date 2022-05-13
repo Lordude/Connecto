@@ -76,7 +76,7 @@
                         </div>
                         <hr />
                         <label for="commentary">Commentaire</label>
-                        <input class="option" type="text" id="commentary" name="commentary"
+                        <input class="option" type="text" id="commentary" name="commentary" size="50px" maxlength="500"
                             @error('commentary') is-invalid @enderror" value="{{ old('commentary') }}" />
                         @error('commentary')
                             <span class="invalid-feedback" role="alert">
@@ -195,7 +195,7 @@
                                         @if ($incident->incidentOpenSinceDays() > 0)
                                             <td>{{ $incident->incidentOpenSinceDays() }} jours</td>
                                         @else
-                                            <td> / </td>
+                                            <td><p class="text-center"> ø</p> </td>
                                         @endif
                                         <td>{{ $incident->user->first_name }}
                                             {{ $incident->user->last_name }}
