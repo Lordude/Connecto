@@ -23,12 +23,12 @@
                             action="{{ route('admin.services.deleteServiceFromIncidentService', $service->id) }}">
                             @csrf
                             @method('DELETE')
-                            <input type="button" class="btn-close" aria-label="Close" onclick="return confirm
+                            <input type="submit" class="btn-close" aria-label="Close" onclick="return confirm
                                 ('êtes-vous sûr de vouloir remettre ce service opérationnel? Il sera alors retiré de l\'incident en cours')" />
                         </form>
                     </button>
                 @endif
-                <ul class="list-group list-group-flush flexDeleteRow">
+                <ul class="list-group list-group-flush flexDeleteRowService">
                     <li class="list-group-item">{{ $service->name }}</li>
                 </ul>
             </div>
