@@ -14,6 +14,7 @@
             ?>
         </h3>
         <hr />
+        {{-- {{Incident::time()}} --}}
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -123,10 +124,10 @@
                                 @endforeach
                             </td>
 
-                            <td>{{ $service->get_service_state($service->id)->first()->name }}</td>
+                            <td>{{ $incident->state->name }}</td>
                             <td> <img width="42px" height="42px"
-                                    src="../image/{{ $incident->get_incident_image($incident->id)->first()->image }}"
-                                    alt="Icone de l\'etat du service {{ $service->get_service_image($service->id)->first()->image }}">
+                                    src="../image/{{ $incident->state->image }}"
+                                    alt="Icone de l\'etat du service {{ $incident->state->image }}">
                             </td>
 
                             <td>{{ $incident->commentary }}</td>
