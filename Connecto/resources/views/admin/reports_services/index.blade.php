@@ -29,20 +29,23 @@
 
 
 <td>
-<div class="accordion accordion-flush" id="accordionFlushExample">
+<div class="accordion" id="accordion">
     <div class="accordion-item">
-<h2 class="accordion-header" id="flush-headingOne">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+<h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
 Voir plus
         </button>
 </h2>
-<div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+<div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
     <br/>
         <div class=""><strong>Commentaire: </strong> <br/>{{ $report->detail }}</div>
         <div class=""><strong>Date: </strong> <br/>{{ $report->date }}</div>
         <div class=""><strong>Problème courant: </strong> <br/>{{ $report->frequent_issue->problem}}</div>
 </div>
     </div>
+</div>
+</div>
+
 </td>
 
                     </tbody>
@@ -50,8 +53,7 @@ Voir plus
 
     </div>
 
-                {{-- @else --}}
-                {{-- <p> Aucun services à afficher présentement </p> --}}
+              
 
                 @endforeach
 @endsection
