@@ -66,7 +66,7 @@
                         <div class="mb-3">
                             <label for="state">Choisir l'état du ou des services affectés *</label>
                             <select class="option" name="state" id="state">
-                                <option value="" selected="selected" disabled>choisir</option>
+                                <option selected="selected" disabled>choisir</option>
                                 @foreach ($states as $state)
                                     @if ($state->id > 1)
                                         <option value="{{ $state->id }}">{{ $state->name }}</option>
@@ -76,8 +76,12 @@
                         </div>
                         <hr />
                         <label for="commentary">Commentaire</label>
-                        <input class="option" type="text" id="commentary" name="commentary">
-
+                        <input class="option" type="text" id="commentary" name="commentary" @error('commentary') is-invalid @enderror" value="{{ old('commentary') }}"/>
+                        @error('commentary')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                         @foreach ($users as $user)
                             @if (session('emailUser') == $user->email)
                                 <input type="hidden" id="emailUser" name="emailUser" value="{{ $user->id }}">
