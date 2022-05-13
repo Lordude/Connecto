@@ -1,5 +1,4 @@
 
-
 {{-- <div class="col6 col-lg-10"> --}}
     <form method="POST" action="{{ route('home.reports.store') }}">
         @csrf
@@ -16,7 +15,6 @@
             <select class="option" name="services" id="services">
                 <option value="" selected="selected" disabled>choisir</option>
 
-
                 <?php
         use App\Models\Service;
         $services = Service::all();
@@ -32,7 +30,6 @@
                 <?php
         use App\Models\FrequentIssue;
         $frequent_issues = FrequentIssue::all();{ ?>
-
 
                 @foreach ($frequent_issues as $frequent_issue)
                     <option value="{{ $frequent_issue->id }}"><label
@@ -72,3 +69,5 @@
     </form>
 </div>
     </select>
+
+

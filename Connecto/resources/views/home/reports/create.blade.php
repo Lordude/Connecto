@@ -3,9 +3,22 @@
 @section('title', 'Signaler une panne')
 
 @section('content')
+
+ 
+
+ 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <div class="col-9">
-    <div class="tableIncident">
-    <h3 class="incidentTitle">Signalement</h3>
+    <div class="tableSignalement">
+    <h3 class="signalementTitle">Signalement</h3>
 
     <div class="row">
 
