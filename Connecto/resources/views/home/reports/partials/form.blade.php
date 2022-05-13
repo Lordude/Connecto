@@ -65,7 +65,7 @@
             </div>
             <hr />
             <input type="submit" value="Envoyer" class="btn btn-warning text-white">
-            <a href="{{ route('home.reports.create') }}" class="btn text-danger">Annuler</a>
+            <a href="{{ route('home.reports.create') }}" class="btn text-danger">Recommencer</a>
     </form>
 </div>
     </select>
