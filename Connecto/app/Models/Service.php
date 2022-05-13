@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 use App\Models\Incident;
 use App\Models\State;
 
@@ -22,12 +23,10 @@ class Service extends Model
         return $this->belongsToMany(Incident::class, "incident_service");
     }
 
-    public function states()
+    public function state()
     {
-        return $this->hasOne(State::class);
+        return $this->belongsTo(State::class);
     }
-
-
 
     public function get_service_state()
     {
