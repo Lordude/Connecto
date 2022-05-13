@@ -21,11 +21,10 @@
                     @if ($incident->services->count() > 1)
                     <button type="button" class="col btn">
                         <form method="POST"
-                            action="{{ route('admin.services.deleteServiceFromIncidentService', $service->id) }}"
-                            class="mb-0">
+                            action="{{ route('admin.services.deleteServiceFromIncidentService', $service->id) }}">
                             @csrf
                             @method('DELETE')
-                            <input type="submit" value="x" class="btn btn-danger" onclick="return confirm
+                            <input type="button"  class="btn-close" aria-label="Close" onclick="return confirm
                                     ('êtes-vous sûr de vouloir remettre ce service opérationnel? Il sera alors retiré de l\'incident en cours')" />
                         </form>
                     </button>
