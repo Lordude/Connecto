@@ -226,21 +226,26 @@ box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.2);
 
 .flexDeleteGroup{
     display: flex;
-    flex-direction: row-reverse;
     margin-left: 5%;
 }
 
 .flexDeleteRow{
     display: flex;
-    flex: 2 1;
+    flex: 0 ;
     border-radius: 20px;
+    width: 50%;
+}
+.flexDeleteRowService{
+    display: flex;
+    border-radius: 20px;
+    width: 50%;
 }
 
 .flexEditForm{
     display: flex;
     margin-left: 5%;
     flex-direction: column;
-
+    margin-top: 5px;
 }
 
 .editFormButton{
