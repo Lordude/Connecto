@@ -6,7 +6,7 @@
     <div class="col-9">
 
         <h1>Services Connecto</h1>
-        <button type="button" class="btn btn-warning text-white"><a class="homeButton" href="{{ route('home.reports.create') }}"> Signaler une panne</a>
+        <button type="button" class="btn btn-warning text-white margeLeftHautPage"><a class="yellowButton" href="{{ route('home.reports.create') }}"> Signaler une panne</a>
         </button>
         @if (app\Models\Incident::hasNoOpenIncident())
             <p class="mx-auto text-center bg-success p-2 text-dark bg-opacity-10 rounded-2 w-50"> Tous nos services sont

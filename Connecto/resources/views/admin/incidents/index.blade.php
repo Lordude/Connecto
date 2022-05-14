@@ -8,7 +8,7 @@
 
         <h1>Gestion des incidents</h1>
 
-        <h3> Taux de disponibilité :
+        <h3 class="margeLeftHautPage"> Taux de disponibilité :
             <?php
             echo App\Models\Incident::get_Uptime() . '%';
             ?>
@@ -23,7 +23,7 @@
                 </ul>
             </div>
         @endif
-        <button onClick="incidentForm()" type="button" class="btn btn-warning text-white">Créer un incident</button>
+        <button onClick="incidentForm()" type="button" class="btn btn-warning text-white margeLeftHautPage">Créer un incident</button>
         {{-- quand on clic sur 'créer un incident' le formulaire ci-dessous apparait --}}
         <div>
             <form data-status='@if ($errors->any()) open @endif' id="incidentForm" method="POST"
@@ -151,7 +151,7 @@
                             <td>
                                 <button type="button" class="btn btn-warning">
                                     <a href="{{ route('admin.incidents.edit', ['incident' => $incident]) }}"
-                                        class="btn btn-link">Modifier</a>
+                                        class="btn btn-link yellowButton">Modifier</a>
                                 </button>
                             </td>
 

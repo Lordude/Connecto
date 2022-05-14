@@ -333,14 +333,18 @@ input::placeholder {
     justify-content: space-between;
 }
 
-.homeButton{
+.yellowButton{
     text-decoration: none;
     color: white;
+    padding: 0px;
 }
-.homeButton:hover{
+.yellowButton:hover{
     color: white;
 }
 
+.margeLeftHautPage,  h1{
+    margin-left: 5%;
+}
 /* tr {
   border-color: #E3E9F1 !important;
   border-width: 10px !important;
