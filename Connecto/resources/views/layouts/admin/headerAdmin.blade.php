@@ -18,9 +18,29 @@
             
                 signalements depuis les dernière 24 heures</p>
                 </div>
-    
-      
     </div>
+
+    @if (session('logsuccess'))
+    <div class="alert alert-success alert-dismissible fade show MessageSession ">
+        {{ session('logsuccess') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    @endif
+
+    @if (session('NotSuper'))
+    <div class="alert alert-danger alert-dismissible fade show MessageSession ">
+        {{ session('NotSuper') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    @endif
+
+    @if (session('MessageChange'))
+    <div class="alert alert-success alert-dismissible fade show MessageSession ">
+        {{session('MessageChange')}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    @endif
+
     <div class="row">    
         <div class="sidenavDiv col-3">
         <nav>

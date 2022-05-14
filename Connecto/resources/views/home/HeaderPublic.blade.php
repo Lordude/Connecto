@@ -24,21 +24,33 @@
         ?>
     </p>
 </div>
-    @if (session('logsuccess'))
-        <p class="MessageSession">{{session('logsuccess')}}</p>
+    @if (session ('AccessDenided'))
+    <div class="alert alert-danger alert-dismissible fade show MessageSession ">
+        {{ session('AccessDenided') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
     @endif
-
-    <p class="MessageSession"> {{ session('AccessDenided') }} </p>
-
+    
     @if (session('messagelogout'))
-               <p class="MessageSession">{{session('messagelogout')}}</p>
+    <div class="alert alert-success alert-dismissible fade show MessageSession ">
+        {{session('messagelogout')}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
     @endif
 
     @if (session('logfail'))
-               <p class="MessageSession">{{session('logfail')}}</p>
+    <div class="alert alert-danger alert-dismissible fade show MessageSession ">
+        {{session('logfail')}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
     @endif
 
-    <p class="MessageSession">{{ session('success') }} </p>
+    @if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show MessageSession ">
+        {{session('success')}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    @endif
 
     <div class="form-popup" id="myForm">
     <form action="{{ route('login.store') }}" method="POST" class="form-container">

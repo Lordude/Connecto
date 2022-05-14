@@ -13,14 +13,9 @@
 
 <div class="main">
 
-    <p class="MessageSession">{{ session('MessageChange') }} </p>
-
     <p> <strong>{{ $resultUser->first_name}} {{ $resultUser->last_name}}</strong></p>
     <p>Votre courriel est : {{ $resultUser->email }} </p>
     <p>Vous avez été embauché le : {{ $resultUser->date_hired }}</p>
-    <!-- <p>Votre mot de passe est : {{ $resultUser->password }}</p> -->
-    <!-- <p>Votre rôle est : {{ $resultUser->role_id }} </p> -->
-
 
     <form action="{{ route('UpdatePassWord') }}" method="post">
     @csrf

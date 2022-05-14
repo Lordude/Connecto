@@ -19,7 +19,7 @@ class LoginController extends Controller
             $resultRoleId = Authentification::getRole($request->email);
             Session::put("emailUser",$request->email);
             Session::put("TypeRole", $resultRoleId);
-            return redirect('/admin/services')->with('logsuccess', 'connexion réussi mouahaha!');
+            return redirect('/admin/services')->with('logsuccess', 'connexion réussie!');
         }else{
             return redirect('/')->with('logfail', 'connexion échouée!');
         }
@@ -27,7 +27,7 @@ class LoginController extends Controller
     public function index(){
         Session::remove("emailUser");
         Session::remove("TypeRole");
-        return redirect('/')->with('messagelogout', 'vous avez été déconnecté avec succes!');
+        return redirect('/')->with('messagelogout', 'vous avez été déconnecté avec succès!');
     }
 
 }
