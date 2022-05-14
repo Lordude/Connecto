@@ -15,14 +15,14 @@ class ReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-   
-      
-    
+
+
+
 
     public function index()
     {
         $reports = Report::all();
-        
+
     }
 
     public function show($id)
@@ -60,17 +60,17 @@ class ReportController extends Controller
     public function store(Request $request)
     {
 
-        $report = $request->validate([
+        $report = Report::create($request->validate([
 
-            'name' => 'required|unique:posts|max:50',
+            'name' => 'required|max:50',
             'email' => 'required',
             'detail' => 'required',
             'date' => 'required',
             'frequent_issue_id' => 'required',
 
-        ]);
+        ]));
          // The blog post is valid...
-    
+
         $report->services()->sync($request->services);
 
         return redirect()->route('home')->withSuccess('Le signalement a été créée');

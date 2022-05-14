@@ -21,15 +21,16 @@ class ReportServiceController extends Controller
      */
     public function  index()
     {
-     
+
 $reports = Report::all();
-           
-        
+
+
             $reports = Report::whereBetween('created_at', [Carbon::now()->subDays(90), Carbon::now()])
+            ->orderBy('date', 'desc')
             ->get();
 
-        
-    
+
+
         $services = Service::all();
         $frequent_issues = FrequentIssue::all();
         $reports_services = ReportService::all();
