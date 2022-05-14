@@ -8,7 +8,7 @@
 
         <h1>Gestion des incidents</h1>
 
-        
+
         <hr />
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -133,10 +133,10 @@
                                 @endforeach
                             </td>
 
-                            <td>{{ $incident->state->name }}</td>
                             <td> <img width="42px" height="42px" src="../image/{{ $incident->state->image }}"
                                     alt="Icone de l\'etat du service {{ $incident->state->image }}">
                             </td>
+                            <td>{{ $incident->state->name }}</td>
 
                             <td>{{ $incident->commentary }}</td>
                             <td>{{ $incident->start_date }}</td>
