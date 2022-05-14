@@ -308,6 +308,12 @@ justify-content: space-between;
     width: auto;
     border: none;
 }
+
+.commentary{
+    padding: 8px;
+    margin-top: 8px;
+}
+
 .editFormStatus{
     background-color: lightgray;
     width: 50%;
@@ -317,6 +323,7 @@ justify-content: space-between;
 
 .date {
     width: 250px;
+    margin-top: 8px;
 }
 
 .text-info{
