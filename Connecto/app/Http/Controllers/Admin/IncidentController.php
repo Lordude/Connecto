@@ -25,13 +25,14 @@ class IncidentController extends Controller
 
         return view(
             'admin.incidents.index',
-            ['incidents' => $incidents,
-            'services' => $services,
-            'states' => $states,
-            'users' => $users]
+            [
+                'incidents' => $incidents,
+                'services' => $services,
+                'states' => $states,
+                'users' => $users
+            ]
         );
     }
-
 
     public function show($id)
     {
@@ -66,9 +67,8 @@ class IncidentController extends Controller
         ]);
 
         $incident = new Incident;
-        // $incident->start_date = Carbon::now()->toDateTimeString();
+
         $incident->start_date = $validated['start_date'];
-        // $incident->start_date = $request->start_date;
         $incident->commentary = $request->commentary;
         $incident->user_id = $validated['emailUser'];
         $incident->state_id = $validated['state'];
@@ -107,21 +107,10 @@ class IncidentController extends Controller
         $incident = Incident::findOrFail($id);
         $incident->commentary = $request->commentary;
         $incident->state_id = $validated['state'];
-        // dd($request->state_id);
         if ($incident->state_id == 1) {
             $incident->end_date = now();
         }
         $incident->save();
         return redirect()->route('admin.incidents.index')->with('success', 'L\'incident a été modifié!');
     }
-
-    public function destroy(Request $request, $id)
-    {
-        Incident::destroy($id);
-
-        return redirect()->route('admin.incidents.index')->with('success', 'L\incident a été supprimé.');;
-    }
-
-
-
 }
