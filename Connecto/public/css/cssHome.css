@@ -1,3 +1,4 @@
+
 .tauxDisponibilite{
     /* display: flex; */
     justify-content: flex-end;
@@ -258,7 +259,7 @@ justify-content: space-between;
 }
 
 
-/*ul*/
+/*ul incident*/
 
 .incidentServicesForm {
     border-radius: 20px;
@@ -372,6 +373,8 @@ input::placeholder {
     justify-content: space-between;
 }
 
+/*boutons*/
+
 .yellowButton{
     text-decoration: none;
     color: white;
@@ -380,6 +383,8 @@ input::placeholder {
 .yellowButton:hover{
     color: white;
 }
+
+/*alignement des textes en haut de pages*/
 
 .margeLeftHautPage,  h1{
     margin-left: 5%;
