@@ -391,6 +391,16 @@ input::placeholder {
     color: white;
 }
 
+.editStatusDeleteTextButton{
+padding: 0;
+
+}
+
+.editStatusDeleteButton{
+margin-left: 5%;
+
+}
+
 /*alignement des textes en haut de pages*/
 
 .margeLeftHautPage,  h1{

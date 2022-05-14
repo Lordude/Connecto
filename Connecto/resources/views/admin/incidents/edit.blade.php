@@ -86,6 +86,15 @@
 ">
             <a href="{{ route('admin.incidents.index') }}" class="btn text-danger"> Retour </a>
         </div>
+        <br/>
+        <button type="button" class="btn btn-danger text-white editStatusDeleteButton">
+            <form method="POST"
+                action="{{ route('admin.services.deleteServiceFromIncidentService', $service->id) }}">
+                @csrf
+                @method('DELETE')
+                <input type="submit" value="Supprimer" class="btn btn-danger text-white editStatusDeletetextButton" onclick="return confirm('êtes-vous sûr de vouloir supprimer cet incident? Il sera complétement effacé de l\'historique. Si vous n\'êtes pas certain, demandez à un superviseur.')"/>
+            </form>
+        </button>
         </form>
     </div>
     </div>

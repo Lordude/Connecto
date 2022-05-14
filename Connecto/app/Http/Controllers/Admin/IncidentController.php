@@ -114,4 +114,13 @@ class IncidentController extends Controller
         $incident->save();
         return redirect()->route('admin.incidents.index')->with('success', 'L\'incident a été modifié!');
     }
+
+    public function destroy(Request $request, $id)
+    {
+
+        $incidents = Incident::destroy($id);
+
+        return redirect()->route('admin.incidents.index')->with('success', 'L\'incident a été supprimé.');;
+    }
 }
+
