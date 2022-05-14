@@ -20,8 +20,11 @@ class IncidentServiceSeeder extends Seeder
             ['incident_id' => '1', 'service_id' => '2'],
             ['incident_id' => '1', 'service_id' => '5'],
             ['incident_id' => '1', 'service_id' => '6'],
-            ['incident_id' => '2', 'service_id' => '2'],
-            ['incident_id' => '2', 'service_id' => '4']
+            ['incident_id' => '2', 'service_id' => '3'],
+            ['incident_id' => '3', 'service_id' => '4'],
+            ['incident_id' => '4', 'service_id' => '2'],
+            ['incident_id' => '4', 'service_id' => '5'],
+            ['incident_id' => '5', 'service_id' => '9']
         ]);
     }
 }
