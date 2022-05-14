@@ -8,10 +8,6 @@
     <hr>
 <a id="BtnCreateServ" class="btn btn-warning text-white margeLeftHautPage" href="{{ route('admin.services.create') }}">Ajouter un service </a>
 
-@if (session('logsuccess'))
-        <p class="MessageSession">{{session('logsuccess')}}</p>
-@endif
-<p class="MessageSession"> {{ session('NotSuper') }} </p>
 
         @if($services->count() > 0)
             <table class="table">
