@@ -1,3 +1,20 @@
+.tauxDisponibilite{
+    /* display: flex; */
+    justify-content: flex-end;
+    margin-right: 30px;
+    background-color: #ddfdfc;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.divTauxDisponibilite{
+display: flex;
+flex-direction: row;
+align-items: baseline;
+
+justify-content: space-between;
+}
+
 /* Ce code est pour le bouton popup d'admin  */
 
 

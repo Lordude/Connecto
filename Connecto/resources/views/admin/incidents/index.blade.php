@@ -8,11 +8,7 @@
 
         <h1>Gestion des incidents</h1>
 
-        <h3 class="margeLeftHautPage"> Taux de disponibilité :
-            <?php
-            echo App\Models\Incident::get_Uptime() . '%';
-            ?>
-        </h3>
+        
         <hr />
         @if ($errors->any())
             <div class="alert alert-danger">

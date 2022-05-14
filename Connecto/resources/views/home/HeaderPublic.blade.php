@@ -16,9 +16,14 @@
     @endif
     </div>
     <div class=" p-4 mb-2 filll"></div>
-
+<div class="divTauxDisponibilite">
     <a href="https://status.nest.com/"><img class="LogoHeader" src="{{ asset('image/RectangleText.png') }}"></a>
-
+    <p class="tauxDisponibilite"> Les services sont opérationnels
+        <?php
+        echo App\Models\Incident::get_Uptime() . '% du temps';
+        ?>
+    </p>
+</div>
     @if (session('logsuccess'))
         <p class="MessageSession">{{session('logsuccess')}}</p>
     @endif
@@ -50,8 +55,7 @@
         <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
     </form>
     </div>
-    
-    <div class="row">    
+    <div class="row">
         <div class="sidenavDiv col-3">
         <nav>
             <a class="sidenav" href="{{ route('home') }}">Accueil</a>
