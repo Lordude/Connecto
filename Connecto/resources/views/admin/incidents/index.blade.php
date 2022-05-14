@@ -187,9 +187,9 @@
                                         <td>{{ $incident->commentary }}</td>
                                         <td>{{ $incident->start_date }}</td>
                                         <td>{{ $incident->end_date }} </td>
-                                        <td>{{ $incident->incidentOpenSince() }} heures</td>
-                                        @if ($incident->incidentOpenSinceDays() > 0)
-                                            <td>{{ $incident->incidentOpenSinceDays() }} jours</td>
+                                        <td>{{ $incident->incidentLengthInHour() }} heures</td>
+                                        @if ($incident->incidentLengthIneDays() > 0)
+                                            <td>{{ $incident->incidentLengthIneDays() }} jours</td>
                                         @else
                                             <td><p class="text-center"> ø</p> </td>
                                         @endif

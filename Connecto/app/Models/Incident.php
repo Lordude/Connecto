@@ -134,8 +134,6 @@ class Incident extends Model
 
     }
 
-
-
     public function incidentOpenSince()
     {
         $start_date = $this->start_date;
@@ -143,10 +141,21 @@ class Incident extends Model
         return $result;
     }
 
-    public function incidentOpenSinceDays()
+    public function incidentLengthInHour()
     {
         $start_date = $this->start_date;
-        $result = Carbon::now()->diffInDays($start_date);
+        $end_date = $this->end_date;
+        $incidents = Carbon::parse($end_date);
+        $result = $incidents->diffInHours($start_date);
+        return $result;
+    }
+
+    public function incidentLengthIneDays()
+    {
+        $start_date = $this->start_date;
+        $end_date = $this->end_date;
+        $incidents = Carbon::parse($end_date);
+        $result = $incidents->diffInDays($start_date);
         return $result;
     }
 
