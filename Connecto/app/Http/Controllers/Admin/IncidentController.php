@@ -42,7 +42,7 @@ class IncidentController extends Controller
             'incident' => $incident,
             'services' => $incident->services()->get(),
             'states' => $incident->states()->get(),
-            'start_date' => Carbon::now()
+            // 'start_date' => Carbon::now()
         ]);
     }
 
@@ -100,13 +100,14 @@ class IncidentController extends Controller
 
     public function update(Request $request, $id)
     {
-        $validated = $request->validate([
-            'state' => 'required',
-        ]);
+        // $validated = $request->validate([
+        //     'state' => 'required',
+        // ]);
 
         $incident = Incident::findOrFail($id);
         $incident->commentary = $request->commentary;
-        $incident->state_id = $validated['state'];
+        // $incident->start_date = $request->start_date;
+        $incident->state_id = $request->state;
         if ($incident->state_id == 1) {
             $incident->end_date = now();
         }

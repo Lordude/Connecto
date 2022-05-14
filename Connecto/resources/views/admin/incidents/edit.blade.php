@@ -23,8 +23,9 @@
                             action="{{ route('admin.services.deleteServiceFromIncidentService', $service->id) }}">
                             @csrf
                             @method('DELETE')
-                            <input  type="submit" class="btn-close" value="" aria-label="Close" onclick="return confirm
-                                ('êtes-vous sûr de vouloir remettre ce service opérationnel? Il sera alors retiré de l\'incident en cours')" />
+                            <input type="submit" class="btn-close" value="" aria-label="Close" onclick="return confirm
+                                    ('êtes-vous sûr de vouloir remettre ce service opérationnel? Il sera alors retiré de l\'incident en cours')
+    " />
                         </form>
                     </button>
                 @endif
@@ -34,20 +35,22 @@
             </div>
         @endforeach
 
-        <div class="flexEditForm"> <p class="text-info">Statut actuel :
-            {{ $incident->state->name }}
+        <div class="flexEditForm">
+            <p class="text-info">Statut actuel :
+                {{ $incident->state->name }}
             </p>
             {{-- <img width="42px" height="42px"
             src="../image/{{ $incident->state->image }}"
             alt="Icone de l\'etat du service {{ $incident->state->image }}"> --}}
-            <hr/>
-            <form class="editFormStatus" method="POST" action="{{ route('admin.incidents.update', ['incident' => $incident]) }}">
+            <hr />
+            <form class="editFormStatus" method="POST"
+                action="{{ route('admin.incidents.update', ['incident' => $incident]) }}">
                 @csrf
                 @method('PUT')
                 <label for="name" class="form-label">Modifier l'état à :</label>
                 <select class="form-select editState " name="state" id="states">
 
-                    <option value="state" selected="selected" disabled>
+                    <option value="{{$incident->state_id}}" selected="selected">
                         {{ $incident->state->name }}
                     </option>
                     @foreach ($states as $state)
@@ -58,13 +61,29 @@
                 </select>
                 <br />
                 <label for="commentary">Commentaire</label>
-                <input class="editState" type="text" id="commentary" name="commentary" size="50px" maxlength="500" value="{{ old('commentary') }}">
+                <input class="editState commentary" type="text" id="commentary" name="commentary" size="50px" maxlength="500"
+                    value="{{ $incident->commentary }}">
                 <div>
-                    </select>
+                    <br />
+                    <hr/>
+                    {{-- <label for="date" class="text-danger">Attention: Ce champs est pour modifier la date et l'heure du <strong>début</strong> de l'incident</label>
+                    <?php
+                    use Carbon\Carbon;
+                    ?>
+
+                    <div class=" date" data-provide="datepicker">
+                        <input id="start_date" name="start_date" type="datetime-local" class="form-control"
+                            max="{{ Carbon::now()->format('Y-m-d\TH:i:s') }}" value="{{ $incident->start_date }}">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-th"></span>
+                        </div>
+                    </div> --}}
                 </div>
         </div>
         <div class="editFormButton">
-            <input type="submit" value="Enregistrer" class="btn btn-warning text-white">
+            <input type="submit" value="Enregistrer" class="btn btn-warning text-white" onclick="return confirm
+            ('Êtes-vous sûr de vouloir faire ces modifications?')
+">
             <a href="{{ route('admin.incidents.index') }}" class="btn text-danger"> Retour </a>
         </div>
         </form>
