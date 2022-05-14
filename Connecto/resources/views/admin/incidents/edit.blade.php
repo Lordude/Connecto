@@ -28,23 +28,24 @@
                         </form>
                     </button>
                 @endif
-                <ul class="list-group list-group-flush flexDeleteRowService">
+                <ul class="list-group list-group-flush editServiceStatus">
                     <li class="list-group-item">{{ $service->name }}</li>
                 </ul>
             </div>
         @endforeach
+
         <div class="flexEditForm"> <p class="text-info">Statut actuel :
             {{ $incident->state->name }}
             </p>
             {{-- <img width="42px" height="42px"
             src="../image/{{ $incident->state->image }}"
             alt="Icone de l\'etat du service {{ $incident->state->image }}"> --}}
-            <form method="POST" action="{{ route('admin.incidents.update', ['incident' => $incident]) }}">
+            <hr/>
+            <form class="editFormStatus" method="POST" action="{{ route('admin.incidents.update', ['incident' => $incident]) }}">
                 @csrf
                 @method('PUT')
-                {{-- <div class="w-25"> --}}
                 <label for="name" class="form-label">Modifier l'état à :</label>
-                <select class="form-select editState" name="state" id="states">
+                <select class="form-select editState " name="state" id="states">
 
                     <option value="state" selected="selected" disabled>
                         {{ $incident->state->name }}
@@ -57,7 +58,7 @@
                 </select>
                 <br />
                 <label for="commentary">Commentaire</label>
-                <input class="option" type="text" id="commentary" name="commentary" value="{{ old('commentary') }}">
+                <input class="editState" type="text" id="commentary" name="commentary" size="50px" maxlength="500" value="{{ old('commentary') }}">
                 <div>
                     </select>
                 </div>

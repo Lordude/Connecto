@@ -258,20 +258,27 @@
 
 .flexDeleteGroup {
     display: flex;
+    justify-content: flex-end;
     flex-direction: row-reverse;
     margin-left: 5%;
 }
 
 .flexDeleteRow {
     display: flex;
-    flex: 2 1;
+}
+
+.editServiceStatus {
+    display: flex;
     border-radius: 20px;
+    width: 40%;
+    text-align: left;
 }
 
 .flexEditForm {
     display: flex;
     margin-left: 5%;
     flex-direction: column;
+    margin-top: 5px;
 }
 
 .editFormButton {
@@ -279,15 +286,24 @@
 }
 
 .editState {
-    border: 3px solid #e3e9f1;
     border-radius: 20px;
     width: auto;
+    border: none;
+}
+.editFormStatus{
+    background-color: lightgray;
+    width: 50%;
+    padding: 15px;
+    border-radius: 20px;
 }
 
 .date {
     width: 250px;
 }
 
+.text-info{
+    margin-top: 15px;
+}
 
 /*formulaire de signalement*/
 
