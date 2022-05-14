@@ -305,6 +305,12 @@
     margin-top: 15px;
 }
 
+/*modification service*/
+
+.inputServiceEdit{
+    border-radius: 20px;
+}
+
 /*formulaire de signalement*/
 
 .reportForm {

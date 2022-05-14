@@ -9,19 +9,20 @@
 
     <form method="POST" action="{{ route('admin.services.update', ['service' => $service]) }}">
         @csrf
-        @method('PUT') 
+        @method('PUT')
 
-        <div>
+        <div class="editFormStatus flexEditForm">
             <label for="name" class="form-label">Nom du service</label>
-            <input id="name" name="name" type="text" value="{{ $service->name }}" class="form-control">
+            <input id="name" name="name" type="text" value="{{ $service->name }}" class="form-control inputServiceEdit">
         </div>
-
-
-    <input type="submit" value="Enregistrer" class="btn btn-primary">
-    <a href="{{ route('admin.services.index') }}" class="btn btn-secondary"> Retour </a>
-
+<br/>
+<div
+<div class="editFormButton">
+    <input type="submit" value="Enregistrer" class="btn btn-warning text-white">
+    <a href="{{ route('admin.services.index') }}" class="btn text-danger"> Retour </a>
+</div>
     </form>
     </div>
 </div>
-    
+
 @endsection
