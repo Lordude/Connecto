@@ -25,7 +25,7 @@
         <div>
             <form data-status='@if ($errors->any()) open @endif' id="incidentForm" method="POST"
                 action="{{ route('admin.incidents.store') }}">
-                <a href="{{ route('admin.incidents.index') }}" class="btn text-danger">Annuler</a>
+                <a href="{{ route('admin.incidents.index') }}" class="btn text-danger margeLeftHautPage">Annuler</a>
                 @csrf
                 <div class="tableIncident">
                     <h3 class="incidentTitle">Nouvel incident</h3>
@@ -93,7 +93,7 @@
 
                         <div class=" date" data-provide="datepicker">
                             <input id="start_date" name="start_date" type="datetime-local" class="form-control"
-                                max="{{ Carbon::now()->format('Y-m-d\TH:i:s') }}">
+                                max="{{ Carbon::now()->format('Y-m-d\TH:i') }}">
                             <div class="input-group-addon">
                                 <span class="glyphicon glyphicon-th"></span>
                             </div>
