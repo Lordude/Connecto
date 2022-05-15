@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="col-md-9">
-        <div class="row" style="margin: 2em;">
+        <div class="row" style="margin:1em;">
             <div class="col-md-8">
                 <h1>Services Connecto</h1>
             </div>

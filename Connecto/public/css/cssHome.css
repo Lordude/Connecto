@@ -215,7 +215,8 @@
 .table {
     border-radius: 20px 20px 20px 20px;
     background-color: white;
-    width: 98%;
+    width: 95%;
+    margin: 1em;
 }
 
 

@@ -3,7 +3,7 @@
 @section('title', 'Historique')
 
 @section('content')
-<div class="col-9">
+<div class="col-md-9">
     
     <h1>Historique de disponibilité</h1>
     <hr>
