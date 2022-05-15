@@ -97,5 +97,4 @@
             <a class="sidenav" href="{{ route('admin.services.index') }}">Page Administrateur</a>
             @endif
         </nav>
-        <footer>@2022 Algorithmus</footer>
         </div>

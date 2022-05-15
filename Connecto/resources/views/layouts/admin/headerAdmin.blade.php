@@ -42,6 +42,13 @@
     </div>
     @endif
 
+    @if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show MessageSession ">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    @endif
+
     @if (session('MessageChange'))
     <div class="alert alert-success alert-dismissible fade show MessageSession ">
         {{session('MessageChange')}}
@@ -63,7 +70,6 @@
                 <a class="sidenav" href="{{ route('superadmin.users.index') }}">Gestion des comptes</a>
                 @endif
             </nav>
-        <footer>@2022 Algorithmus</footer>
         </div>
         
 
