@@ -226,7 +226,6 @@
 
 .incidentTitle {
     margin-bottom: 10px;
-    /* border-bottom: 5px solid #e3e9f1; */
 }
 
 .incidentTitle2 {
@@ -319,6 +318,10 @@
 
 /*formulaire de signalement*/
 
+.tableSignalement{
+    padding: 10px;
+}
+
 .reportForm {
     align-items: center;
     padding: 15px;
@@ -358,6 +361,12 @@ input::placeholder {
     justify-content: space-between;
 }
 
+/*report service*/
+
+.serviceAffecteTitle{
+    margin-left: 3rem;
+}
+
 /*boutons*/
 
 .yellowButton{
@@ -385,7 +394,7 @@ margin-left: 5%;
     margin-left: 5%;
 }
 
-footer {  
+footer {
     margin-top: 2em !important;
     padding: 0.8em;
     background-color: #2A4A9B;

@@ -5,10 +5,11 @@
 @section('content')
 
     <div class="col-md-9">
-
+        <div class="row" style="margin:1em;">
+        <div class="col-md-8">
         <h1>Gestion des incidents</h1>
-
-
+        </div>
+        </div>
         <hr />
         @if ($errors->any())
             <div class="alert alert-danger">

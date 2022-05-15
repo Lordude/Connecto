@@ -1,3 +1,4 @@
+    <hr/>
     <form method="POST" action="{{ route('home.reports.store') }}">
         @csrf
 
