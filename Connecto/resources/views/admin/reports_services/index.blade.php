@@ -3,32 +3,30 @@
 @section('title', 'Signalement')
 
 @section('content')
-    <div class="col-9">
+<div class="col-9">
 
+
+    
         <h1>Signalement</h1>
-        <hr>
-
-        <tbody>
-            <div>
-                <table class="table container-md">
-                    <thead>
-
-                        <th>Service affecté</th>
-
-                    </thead>
-                    <tbody>
-
-                        @foreach ($reports as $report)
-                            <tr>
-                                <td>
-                                    @foreach ($report->services as $service)
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item">{{ $service->name }}</li>
-                                        </ul>
-                                    @endforeach
+        <hr />
+        <div>
+            <form>
+        <div class="tableReport">
+            <thead>
+<h5>Service affecté</h5>
 
 
-<td>
+<div class="mb-3 container p-2">
+
+<div class="reportFForm">
+
+    @foreach ($reports as $report)
+                        
+ @foreach ($report->services as $service)
+
+<ul class="list-group-item">{{ $service->name }}
+
+        
 <div class="accordion" id="accordion">
     <div class="accordion-item">
 <h2 class="accordion-header" id="headingOne">
@@ -39,22 +37,20 @@ Voir plus
 <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
     <br/>
         <div class=""><strong>Commentaire: </strong> <br/>{{ $report->detail }}</div>
+        <div> <a href="mailto:<strong>Courriel de l'expéditeur(trice)</strong> <br/> {{ $report->email }}">{{ $report->email }}</a></div>
         <div class=""><strong>Date: </strong> <br/>{{ $report->date }}</div>
         <div class=""><strong>Problème courant: </strong> <br/>{{ $report->frequent_issue->problem}}</div>
-</div>
-    </div>
-</div>
-</div>
 
-</td>
-
-                    </tbody>
-            </div>
+</form>
+                        </div>
+                     </div>
+                </div>
+            </div>         
+        </div>
 
     </div>
-
-              
-
-                @endforeach
+</ul>
+    @endforeach
+    @endforeach
 @endsection
 
