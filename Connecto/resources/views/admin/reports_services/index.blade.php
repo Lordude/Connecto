@@ -9,8 +9,14 @@
 
     <h1>Signalement</h1>
 
+    <table class="table container-md">
+        <table class="table">
+            <thead>
+                
 
-    <hr />
+        </thead>
+        <tbody>
+  
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -23,7 +29,7 @@
     
             <div class="tableIncident">
                 <h3 class="incidentTitle">Service affecté</h3>
-                <hr />
+                
                 <div class="mb-3 container p-2">
                   
                     <div class="incidentForm">
@@ -37,7 +43,7 @@
                            <div class="reportForm3">
                        <h2 class="accordion-header" id="headingOne">
                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                       Voir plus
+                                <label for="service_{{ $service->id }}">{{ $service->name }}</label>
                                </button>
                                
                                <ul class="list-group reportServicesForm">
