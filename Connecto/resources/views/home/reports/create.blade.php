@@ -16,7 +16,7 @@
             </ul>
         </div>
     @endif
-    <div class="col-9">
+    <div class="col-md-9">
         <div class="tableSignalement">
             <div class="reportHourAlignment">
                 <h3 class="signalementTitle">Signalement</h3>
@@ -28,14 +28,13 @@
 
                     echo "Nous sommes le $cur_time_date <br/> il est $cur_time_hour";
                     ?>
+                    
                 </div>
         </div>
             <div class="row">
 
-                <div class="col-6 col-lg-6">
-                    <form method="POST" action="{{ route('home.reports.store') }}">
-
-                        @csrf
+                <div class="col-md-12 col-lg-12">
+                    
 
                         @include('home.reports.partials.form')
 
@@ -43,5 +42,6 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection

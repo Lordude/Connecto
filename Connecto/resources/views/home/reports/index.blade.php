@@ -3,7 +3,7 @@
 @section('title', 'Signaler une panne')
 
 @section('content')
-<div class="col-9">
+<div class="col-md-9">
 
     <h1>Signaler une panne</h1>
 
@@ -11,5 +11,4 @@
 
     <a href="{{ route('home.reports.create') }}">Formulaire </a>
     </div>
-</div>
 @endsection

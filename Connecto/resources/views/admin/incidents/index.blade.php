@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class="col-9">
+    <div class="col-md-9">
 
         <h1>Gestion des incidents</h1>
 
@@ -220,5 +220,6 @@
                     </table>
                 </div>
             </tbody>
+    </div>
     </div>
 @endsection

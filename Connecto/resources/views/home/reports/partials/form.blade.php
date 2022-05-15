@@ -1,18 +1,19 @@
-
-{{-- <div class="col6 col-lg-10"> --}}
     <form method="POST" action="{{ route('home.reports.store') }}">
         @csrf
 
-        <div class="reportForm">
-            <label for="name" class="form-label-report" >Nom * : </label>
-            <input placeholder="ex: Mr Patate" class="option" id="name" name="name" type="text" value="" class="form-control">
-        {{-- </br></br> --}}
-            <label for="email" class="form-label-report"> Courriel * : </label>
-            <input placeholder="ex: nobody@google.com" class="option" id="email" name="email" type="text" value="" class="form-control ">
+    <div class="row reportForm">
+            <div class="col-md-5">
+                <label for="name" class="form-label-report" >Nom * : </label>
+                <input placeholder="ex: Mr Patate" class="option" id="name" name="name" type="text" value="" class="form-control">
+            </div>
+            <div class="col-md-5">
+                <label for="email" class="form-label-report"> Courriel * : </label>
+                <input placeholder="ex: nobody@google.com" class="option" id="email" name="email" type="text" value="" class="form-control ">
+            </div>
         </div>
     <hr/>
             <label for="services">Service affecté * :</label>
-            <select class="option" name="services" id="services">
+            <select class="form-select form-select-sm" name="services" id="services">
                 <option value="" selected="selected" disabled>choisir</option>
 
                 <?php
@@ -24,15 +25,17 @@
             </select>
         <br />
         <br />
+        <div>
+
             <label for="frequent_issues">Type de problème * :</label>
-            <select class="option" name="frequent_issue_id" id="frequent_issues">
+            <select class="form-select form-select-sm" name="frequent_issue_id" id="frequent_issues">
                 <option value="frequent_issues" selected="selected" disabled>choisir</option>
                 <?php
         use App\Models\FrequentIssue;
         $frequent_issues = FrequentIssue::all();{ ?>
 
                 @foreach ($frequent_issues as $frequent_issue)
-                    <option value="{{ $frequent_issue->id }}"><label
+                    <option class="choix" value="{{ $frequent_issue->id }}"><label
                             for="frequent_issues">{{ $frequent_issue->problem }}</label></option>
                 @endforeach
                 <?php } ?>
@@ -64,8 +67,8 @@
             <hr />
             <input type="submit" value="Envoyer" class="btn btn-warning text-white">
             <a href="{{ route('home.reports.create') }}" class="btn text-danger">Recommencer</a>
+        </div>
     </form>
-</div>
-    </select>
+
 
 

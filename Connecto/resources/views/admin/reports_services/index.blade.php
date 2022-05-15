@@ -3,58 +3,74 @@
 @section('title', 'Signalement')
 
 @section('content')
-    <div class="col-9">
 
-        <h1>Signalement</h1>
-        <hr>
 
+
+
+
+<div class="col-md-9">
+
+    <h1>Signalement</h1>
+</br>
+<button type="button" class="btn btn-secondary">
+    <span class="badge badge-light"><div class="reportPublicClock">
+         <?php
+         use Carbon\Carbon;
+         $cur_time_date = Carbon::now()->format('d/m/Y');
+         $cur_time_hour = Carbon::now()->format(' H:i');
+     
+         echo "Nous sommes le $cur_time_date <br/> il est $cur_time_hour";
+         ?>
+     </div></span>
+   </button>
+
+    <table class="table container-md">
+        <table class="table">
+            <thead>
+                
+
+        </thead>
         <tbody>
-            <div>
-                <table class="table container-md">
-                    <thead>
 
-                        <th>Service affecté</th>
-
-                    </thead>
-                    <tbody>
+    
+            <div class="tableIncident">
+                <h3 class="incidentTitle">Service affecté</h3>
+                
+                <div class="mb-3 container p-2">
+                  
+                    <div class="incidentForm">
 
                         @foreach ($reports as $report)
-                            <tr>
-                                <td>
-                                    @foreach ($report->services as $service)
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item">{{ $service->name }}</li>
-                                        </ul>
-                                    @endforeach
+                        
+                        @foreach ($report->services as $service)
+                       
+                        <ul class="list-group incidentServicesForm">
+                       <div class="accordion" id="accordion">
+                           <div class="reportForm3">
+                       <h2 class="accordion-header" id="headingOne">
+                               <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                <label for="service_{{ $service->id }}">{{ $service->name }}</label>
+                               </button>
+                               
+                               <ul class="list-group reportServicesForm">
+                       </h2>
+                       <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                           <br/>
+                           <div class="mb-3">
+                            
+                               <div class=""><strong>Commentaire: </strong> <br/>{{ $report->detail }}</div>
+                               <div  class=""><a href="mailto:<strong>Courriel de l'expéditeur(trice)</strong> <br/> {{ $report->email }}">{{ $report->email }}</a></div>
+                               <div class=""><strong>Date: </strong> <br/>{{ $report->date }}</div>
+                               <div class=""><strong>Problème courant: </strong> <br/>{{ $report->frequent_issue->problem}}</div>
+                          
 
-
-<td>
-<div class="accordion" id="accordion">
-    <div class="accordion-item">
-<h2 class="accordion-header" id="headingOne">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-Voir plus
-        </button>
-</h2>
-<div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-    <br/>
-        <div class=""><strong>Commentaire: </strong> <br/>{{ $report->detail }}</div>
-        <div class=""><strong>Date: </strong> <br/>{{ $report->date }}</div>
-        <div class=""><strong>Problème courant: </strong> <br/>{{ $report->frequent_issue->problem}}</div>
-</div>
-    </div>
-</div>
-</div>
-
-</td>
-
-                    </tbody>
-            </div>
-
-    </div>
-
-              
-
-                @endforeach
-@endsection
-
+                        
+                       </div>
+                    </div>
+                </div>
+                                </ul>
+                             
+                          
+                            @endforeach
+                            @endforeach
+                        @endsection

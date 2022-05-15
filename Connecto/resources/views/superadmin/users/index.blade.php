@@ -3,7 +3,7 @@
 @section('title', 'Gestion des administrateurs')
 
 @section('content')
-<div class="col-9">
+<div class="col-md-9">
 
     <h1>Gestion des administrateurs</h1>
     <hr>
@@ -43,7 +43,6 @@
                 </tbody>
             </table>
         </div>
-    </div>
         @else
             <p> Il n'y a presentement pas de compte utilisateur ! *bruit de X-files parce qu'il faut etre utilisateur pour voir cet ecran * </p>
         @endif
