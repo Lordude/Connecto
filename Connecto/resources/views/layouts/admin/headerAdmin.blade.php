@@ -1,24 +1,31 @@
-    <div class="p-2 mb-2 bg-dark text-white text-end fill">
-        <a href="{{ route('login.index') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-person-circle" onclick="" viewBox="0 0 16 16">
-                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-            </svg>
-        </a>
-        Déconnexion
-    </div>
-    <div class=" p-4 mb-2 filll"></div>
+  <header>
+    <div class="container-fluid"> <!--CONTAINER IN -->
+        <div class="row bg-dark text-white text-end fill"> <!--ROW-1 IN -->
+            <div class="col-md-4 offset-md-8">
+                <a href="{{ route('login.index') }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-person-circle" onclick="" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                    </svg>
+                    <span class="TextCompte">Déconnexion</span>
+                </a>
+            </div>
+        </div> <!--ROW-1 OUT -->
+        
+        <div class="row filll"></div> <!--ROW-2 IN OUT -->
 
-    <div class="d-flex justify-content-between">
-      <a href="{{ route('home') }}"><img class="LogoHeader" src="{{ asset('image/RectangleText.png') }}"></a> 
-            
-        <div class="d-flex justify-content-between">  
-            <p id="NbSignalement">
-                <?php echo App\Models\Report::reportOpenSince24Hour() ?>
-            
-                signalements depuis les dernière 24 heures</p>
+        <div class="row"> <!--ROW-3 IN -->
+            <div class="col-md-4">
+                <div style="width: 50%;">
+                <a href="https://status.nest.com/"><img class="img-fluid" src="{{ asset('image/RectangleText.png') }}"></a>
                 </div>
-    </div>
+            </div>
+            <div class="col-md-4 offset-md-4">
+                <p id="NbSignalement"><?php echo App\Models\Report::reportOpenSince24Hour() ?> signalements depuis les dernière 24 heures</p>
+            </div>
+        </div><!--ROW-3 OUT -->
+    </div> <!--CONTAINER OUT -->    
+</header>
 
     @if (session('logsuccess'))
     <div class="alert alert-success alert-dismissible fade show MessageSession ">

@@ -333,13 +333,10 @@
 /*formulaire de signalement*/
 
 .reportForm {
-    display: flex;
-    justify-content: space-around;
     align-items: center;
     padding: 15px;
     background-color: lightgray;
     border-radius: 20px;
-    width: 575px;
 }
 
 .form-label-report {

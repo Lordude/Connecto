@@ -33,10 +33,8 @@
         </div>
             <div class="row">
 
-                <div class="col-6 col-lg-6">
-                    <form method="POST" action="{{ route('home.reports.store') }}">
-
-                        @csrf
+                <div class="col-md-12 col-lg-12">
+                    
 
                         @include('home.reports.partials.form')
 

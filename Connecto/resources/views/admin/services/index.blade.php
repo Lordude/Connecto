@@ -3,7 +3,7 @@
 @section('title', 'Accueil')
 
 @section('content')
-    <div class="col-9">
+    <div class="col-md-9">
         <h1>Service</h1>
         <hr>
         <a id="BtnCreateServ" class="btn btn-warning text-white margeLeftHautPage"

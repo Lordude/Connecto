@@ -9,6 +9,7 @@
     <hr>
 
     @if($incidents->count() > 0)
+    <div class="table-responsive">
         <table class="table">
             <thead>
                 <th>ID de l'incident</th>
@@ -46,6 +47,7 @@
                 @endforeach
             </tbody>
         </table>
+    </div>
     @else
         <p> Aucun services à afficher présentement </p>
     @endif

@@ -1,14 +1,15 @@
-
-{{-- <div class="col6 col-lg-10"> --}}
     <form method="POST" action="{{ route('home.reports.store') }}">
         @csrf
 
-        <div class="reportForm">
-            <label for="name" class="form-label-report" >Nom * : </label>
-            <input placeholder="ex: Mr Patate" class="option" id="name" name="name" type="text" value="" class="form-control">
-        {{-- </br></br> --}}
-            <label for="email" class="form-label-report"> Courriel * : </label>
-            <input placeholder="ex: nobody@google.com" class="option" id="email" name="email" type="text" value="" class="form-control ">
+    <div class="row reportForm">
+            <div class="col-md-5">
+                <label for="name" class="form-label-report" >Nom * : </label>
+                <input placeholder="ex: Mr Patate" class="option" id="name" name="name" type="text" value="" class="form-control">
+            </div>
+            <div class="col-md-5">
+                <label for="email" class="form-label-report"> Courriel * : </label>
+                <input placeholder="ex: nobody@google.com" class="option" id="email" name="email" type="text" value="" class="form-control ">
+            </div>
         </div>
     <hr/>
             <label for="services">Service affecté * :</label>
@@ -64,8 +65,8 @@
             <hr />
             <input type="submit" value="Envoyer" class="btn btn-warning text-white">
             <a href="{{ route('home.reports.create') }}" class="btn text-danger">Recommencer</a>
+        </div>
     </form>
-</div>
-    </select>
+
 
 
