@@ -96,7 +96,7 @@
 /* pour le header */
 
 .fill {
-    margin-bottom: 0 !important;
+    margin-bottom: 0 ;
     height: 3em;
     padding: 0.6em;
 }
@@ -109,7 +109,6 @@
 
 .MessageSession {
     text-align: center;
-    /* background-color: #FFC107; */
 }
 
 .NbSignal {
@@ -141,10 +140,9 @@
 }
 
 .sidenav {
-    width: 88%;
     border-radius: 50px;
     text-align: center;
-    padding: 6px;
+    padding: 10px;
     margin: 30px;
     text-decoration: none;
     display: block;
@@ -197,8 +195,14 @@
 
 
 /* Global */
+.col-md-9 {
+    background-color: #E3E9F1;
+    border-radius: 30px 0px 0px 0px;
+    min-height: 600px;
 
-.col-9 {
+
+}
+/* .col-9 {
     padding-left: 1em;
     padding: 1em;
     margin: 0.8em;
@@ -206,15 +210,14 @@
     min-height: 600px;
     border-radius: 30px 0px 0px 0px;
     width: 98%;
-}
+} */
 
 .table {
-    padding-left: 1em !important;
-    border-radius: 20px 20px 20px 20px !important;
-    width: 90% !important;
-    margin: 50px !important;
-    background-color: white !important;
+    border-radius: 20px 20px 20px 20px;
+    background-color: white;
+    width: 98%;
 }
+
 
 
 /*formulaire incident*/
@@ -396,15 +399,6 @@ margin-left: 5%;
 .margeLeftHautPage,  h1{
     margin-left: 5%;
 }
-/* tr {
-  border-color: #E3E9F1 !important;
-  border-width: 10px !important;
-} */
-
-
-/* td:first-child {
-  padding: 25px;
-} */
 
 footer {
     text-align: center;

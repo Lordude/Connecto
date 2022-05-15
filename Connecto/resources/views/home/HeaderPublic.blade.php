@@ -84,11 +84,13 @@
         <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
     </form>
     </div>
+
+<div class="container-fluid">
     <div class="row">
-        <div class="sidenavDiv col-3">
+        <div class="sidenavDiv col-md-3">
         <nav>
             <a class="sidenav" href="{{ route('home') }}">Accueil</a>
-            <a class="sidenav" href="{{ route('home.historic.index') }}">Historique des incidents</a>
+            <a class="sidenav" href="{{ route('home.historic.index') }}">Historique</a>
             <a class="sidenav" href="">Connecto.com</a>
             <a class="sidenav" href="">Nous joindre</a>
             @if(session()->has('emailUser'))
