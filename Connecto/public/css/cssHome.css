@@ -136,14 +136,14 @@
 /* Pour le menu de nav on the side */
 
 .sidenavDiv {
-    padding-top: 80px;
+    padding-top: 40px;
 }
 
 .sidenav {
     border-radius: 50px;
     text-align: center;
     padding: 10px;
-    margin: 30px;
+    margin: 2em;
     text-decoration: none;
     display: block;
     color: black;
@@ -246,7 +246,7 @@
     margin-bottom: 10px;
 }
 
-.option {
+.form-select {
     border: 3px solid #e3e9f1;
     border-radius: 20px;
     padding: 3px;
@@ -399,6 +399,7 @@ margin-left: 5%;
 }
 
 footer {  
+    margin-top: 2em !important;
     padding: 0.8em;
     background-color: #2A4A9B;
     text-align: center;
