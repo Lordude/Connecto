@@ -19,18 +19,19 @@
                 </ul>
             </div>
         @endif
-        <button onClick="incidentForm()" type="button" class="btn btn-warning text-white margeLeftHautPage">Créer un incident</button>
+        <button onClick="incidentForm()" type="button" class="btn btn-warning text-white margeLeftHautPage">Créer un
+            incident</button>
         {{-- quand on clic sur 'créer un incident' le formulaire ci-dessous apparait --}}
         <div>
             <form data-status='@if ($errors->any()) open @endif' id="incidentForm" method="POST"
                 action="{{ route('admin.incidents.store') }}">
-                <a href="{{ route('admin.incidents.index') }}" class="btn text-danger">Annuler</a>
+                <a href="{{ route('admin.incidents.index') }}" class="btn text-danger margeLeftHautPage">Annuler</a>
                 @csrf
                 <div class="tableIncident">
                     <h3 class="incidentTitle">Nouvel incident</h3>
                     <hr />
                     <div class="mb-3 container p-2">
-                        <label class="incidentTitle2" for="services">Choisir les services affectés *</label>
+                        <label class="incidentTitle2" for="services">Choisir le ou les services affectés *</label>
                         <div class="incidentForm">
                             @foreach ($services as $service)
                                 {{-- si l'incident est ouvert (requete dans model service)
@@ -72,8 +73,8 @@
                         </div>
                         <hr />
                         <label for="commentary">Commentaire</label>
-                        <input class="option" type="text" id="commentary" name="commentary" size="50px" maxlength="500"
-                            @error('commentary') is-invalid @enderror" value="{{ old('commentary') }}" />
+                        <input class="option" type="text" id="commentary" name="commentary" size="50px"
+                            maxlength="500" @error('commentary') is-invalid @enderror" value="{{ old('commentary') }}" />
                         @error('commentary')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -92,7 +93,7 @@
 
                         <div class=" date" data-provide="datepicker">
                             <input id="start_date" name="start_date" type="datetime-local" class="form-control"
-                                max="{{ Carbon::now()->format('Y-m-d\TH:i:s') }}">
+                                max="{{ Carbon::now()->format('Y-m-d\TH:i') }}">
                             <div class="input-group-addon">
                                 <span class="glyphicon glyphicon-th"></span>
                             </div>
@@ -111,6 +112,7 @@
     <div>
         <table class="table container-md">
             <thead>
+                <th>id</th>
                 <th>Service affecté</th>
                 <th>État</th>
                 <th></th>
@@ -125,6 +127,7 @@
                 @foreach ($incidents as $incident)
                     @if ($incident->end_date == null)
                         <tr>
+                            <td>{{ $incident->id }}</td>
                             <td>
                                 @foreach ($incident->services as $service)
                                     <ul class="list-group list-group-flush">
@@ -149,6 +152,16 @@
                                     <a href="{{ route('admin.incidents.edit', ['incident' => $incident]) }}"
                                         class="btn btn-link yellowButton">Modifier</a>
                                 </button>
+
+                                    <form method="POST"
+                                        action="{{ route('admin.incidents.destroy', ['incident' => $incident]) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="submit" value="Supprimer"
+                                            class="btn text-danger"
+                                            onclick="return confirm('êtes-vous sûr de vouloir supprimer cet incident? Il sera complétement effacé de l\'historique. Si vous n\'êtes pas certain, demandez à un superviseur.')" />
+                                    </form>
+
                             </td>
 
                         </tr>
@@ -164,6 +177,7 @@
                 <div>
                     <table class="table container-md">
                         <thead>
+                            <th>id</th>
                             <th>Service affecté</th>
                             <th>Commentaire</th>
                             <th>Début de l'incident</th>
@@ -177,6 +191,7 @@
                             @foreach ($incidents as $incident)
                                 @if ($incident->end_date !== null)
                                     <tr>
+                                        <td>{{ $incident->id }}</td>
                                         <td>
                                             @foreach ($incident->services as $service)
                                                 <ul class="list-group list-group-flush">
@@ -191,7 +206,9 @@
                                         @if ($incident->incidentLengthIneDays() > 0)
                                             <td>{{ $incident->incidentLengthIneDays() }} jours</td>
                                         @else
-                                            <td><p class="text-center"> ø</p> </td>
+                                            <td>
+                                                <p class="text-center"> ø</p>
+                                            </td>
                                         @endif
                                         <td>{{ $incident->user->first_name }}
                                             {{ $incident->user->last_name }}
