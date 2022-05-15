@@ -28,6 +28,7 @@
 
                     echo "Nous sommes le $cur_time_date <br/> il est $cur_time_hour";
                     ?>
+                    
                 </div>
         </div>
             <div class="row">

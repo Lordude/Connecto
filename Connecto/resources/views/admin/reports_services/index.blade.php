@@ -5,9 +5,24 @@
 @section('content')
 
 
+
+
+
 <div class="col-9">
 
     <h1>Signalement</h1>
+</br>
+<button type="button" class="btn btn-secondary">
+    <span class="badge badge-light"><div class="reportPublicClock">
+         <?php
+         use Carbon\Carbon;
+         $cur_time_date = Carbon::now()->format('d/m/Y');
+         $cur_time_hour = Carbon::now()->format(' H:i');
+     
+         echo "Nous sommes le $cur_time_date <br/> il est $cur_time_hour";
+         ?>
+     </div></span>
+   </button>
 
     <table class="table container-md">
         <table class="table">
