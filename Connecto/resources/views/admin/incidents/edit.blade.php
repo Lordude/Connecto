@@ -66,13 +66,13 @@
                 <div>
                     <br />
                     <hr/>
-                    {{-- <label for="date" class="text-danger">Attention: Ce champs est uniquemenet pour modifier la date et l'heure du <strong>début</strong> de l'incident</label>
+                    {{-- <label for="date" class="text-danger">Attention: Ce champs est fait uniquement pour modifier la date et l'heure du <strong>début</strong> de l'incident</label>
                     <?php
                     use Carbon\Carbon;
                     ?>
                     <div class=" date" data-provide="datepicker">
                         <input id="start_date" name="start_date" type="datetime-local" class="form-control"
-                            max="{{ Carbon::now()->format('Y-m-d\TH:i:s') }}" >
+                            max="{{ Carbon::now()->format('Y-m-d\TH:i') }}" >
                         <div class="input-group-addon">
                             <span class="glyphicon glyphicon-th"></span>
                         </div>
@@ -84,7 +84,7 @@
             <a href="{{ route('admin.incidents.index') }}" class="btn text-danger"> Retour </a>
         </div>
         <br/>
-        
+
         </form>
     </div>
     </div>
