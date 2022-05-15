@@ -16,7 +16,7 @@
             </ul>
         </div>
     @endif
-    <div class="col-9">
+    <div class="col-md-9">
         <div class="tableSignalement">
             <div class="reportHourAlignment">
                 <h3 class="signalementTitle">Signalement</h3>
