@@ -82,7 +82,11 @@
 
 .bi-person-circle {
     cursor: pointer;
+}
 
+.textDeconexion {
+    text-decoration: none !important;
+    color: white;
 }
 
 
@@ -188,29 +192,12 @@
     background-color: #2A4A9B;
 }
 
-
-/* #BtnCreateServ {
-
-} */
-
-
 /* Global */
 .col-md-9 {
     background-color: #E3E9F1;
     border-radius: 30px 0px 0px 0px;
     min-height: 600px;
-
-
 }
-/* .col-9 {
-    padding-left: 1em;
-    padding: 1em;
-    margin: 0.8em;
-    background-color: #E3E9F1;
-    min-height: 600px;
-    border-radius: 30px 0px 0px 0px;
-    width: 98%;
-} */
 
 .table {
     border-radius: 20px 20px 20px 20px;
