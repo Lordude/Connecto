@@ -66,14 +66,13 @@
                 <div>
                     <br />
                     <hr/>
-                    {{-- <label for="date" class="text-danger">Attention: Ce champs est pour modifier la date et l'heure du <strong>début</strong> de l'incident</label>
+                    {{-- <label for="date" class="text-danger">Attention: Ce champs est uniquemenet pour modifier la date et l'heure du <strong>début</strong> de l'incident</label>
                     <?php
                     use Carbon\Carbon;
                     ?>
-
                     <div class=" date" data-provide="datepicker">
                         <input id="start_date" name="start_date" type="datetime-local" class="form-control"
-                            max="{{ Carbon::now()->format('Y-m-d\TH:i:s') }}" value="{{ $incident->start_date }}">
+                            max="{{ Carbon::now()->format('Y-m-d\TH:i:s') }}" >
                         <div class="input-group-addon">
                             <span class="glyphicon glyphicon-th"></span>
                         </div>
@@ -81,20 +80,11 @@
                 </div>
         </div>
         <div class="editFormButton">
-            <input type="submit" value="Enregistrer" class="btn btn-warning text-white" onclick="return confirm
-            ('Êtes-vous sûr de vouloir faire ces modifications?')
-">
+            <input type="submit" value="Enregistrer" class="btn btn-warning text-white">
             <a href="{{ route('admin.incidents.index') }}" class="btn text-danger"> Retour </a>
         </div>
         <br/>
-        <button type="button" class="btn btn-danger text-white editStatusDeleteButton">
-            <form method="POST"
-                action="{{ route('admin.services.deleteServiceFromIncidentService', $service->id) }}">
-                @csrf
-                @method('DELETE')
-                <input type="submit" value="Supprimer" class="btn btn-danger text-white editStatusDeletetextButton" onclick="return confirm('êtes-vous sûr de vouloir supprimer cet incident? Il sera complétement effacé de l\'historique. Si vous n\'êtes pas certain, demandez à un superviseur.')"/>
-            </form>
-        </button>
+        
         </form>
     </div>
     </div>

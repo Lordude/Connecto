@@ -103,10 +103,9 @@ class IncidentController extends Controller
         // $validated = $request->validate([
         //     'state' => 'required',
         // ]);
-
         $incident = Incident::findOrFail($id);
+        $incident->save();
         $incident->commentary = $request->commentary;
-        // $incident->start_date = $request->start_date;
         $incident->state_id = $request->state;
         if ($incident->state_id == 1) {
             $incident->end_date = now();
