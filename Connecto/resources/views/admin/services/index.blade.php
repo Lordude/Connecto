@@ -4,17 +4,18 @@
 
 @section('content')
     <div class="col-md-9">
-        <h1>Service</h1>
-        <hr>
-        <a id="BtnCreateServ" class="btn btn-warning text-white margeLeftHautPage"
-            href="{{ route('admin.services.create') }}">Ajouter un service </a>
-
-        @if (session('logsuccess'))
-            <p class="MessageSession">{{ session('logsuccess') }}</p>
-        @endif
-        <p class="MessageSession"> {{ session('NotSuper') }} </p>
-
+        <div class="row" style="margin:1em;">
+            <div class="col-md-8">
+                <h1>Service</h1>
+            </div>
+            <hr>
+            <div class="col-md-4">
+                <a id="BtnCreateServ" class="btn btn-warning text-white margeLeftHautPage"
+                    href="{{ route('admin.services.create') }}">Ajouter un service </a>
+            </div>
+        </div>
         @if ($services->count() > 0)
+        <div class="table-responsive">
             <table class="table">
                 <thead>
                     <th>Nom du service</th>
@@ -46,9 +47,11 @@
                     @endforeach
                 </tbody>
             </table>
+        </div><!--tabla responsive OUT -->    
         @else
             <p> Aucun produit à afficher pour le moment ! </p>
         @endif
-    </div>
-    </div>
+        </div> <!--col-9 OUT -->    
+    </div><!--row globale -->    
+</div> <!--CONTAINER OUT -->    
 @endsection

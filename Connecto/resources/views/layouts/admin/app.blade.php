@@ -4,7 +4,6 @@
 
     <body>
     @include('layouts.admin.headerAdmin')
-        <div>
             @if (session('success'))
                 <div>
                     {{session('success')}}
@@ -12,7 +11,6 @@
             @endif
             
             @yield('content')
-        </div>
     </body>
 
 </html>

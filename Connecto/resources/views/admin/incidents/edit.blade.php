@@ -3,7 +3,7 @@
 @section('title', 'Modifier un statut')
 
 @section('content')
-    <div class="col-9">
+    <div class="col-md-9">
         <h1 class="flexEditForm">Modifier le statut</h1>
         <hr>
         @if ($errors->any())
@@ -86,6 +86,7 @@
         <br/>
         
         </form>
+    </div>
     </div>
     </div>
 @endsection

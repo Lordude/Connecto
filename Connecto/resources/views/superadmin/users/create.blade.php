@@ -3,7 +3,7 @@
 @section('title', 'Ajouter un compte')
 
 @section('content')
-<div class="col-9">
+<div class="col-md-9">
 
     <h1>Ajouter un compte utilisateur</h1>
     <hr>

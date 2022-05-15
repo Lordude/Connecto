@@ -17,7 +17,7 @@
         <div class="row"> <!--ROW-3 IN -->
             <div class="col-md-4">
                 <div style="width: 50%;">
-                <a href="https://status.nest.com/"><img class="img-fluid" src="{{ asset('image/RectangleText.png') }}"></a>
+                    <a href="https://status.nest.com/"><img class="img-fluid" src="{{ asset('image/RectangleText.png') }}"></a>
                 </div>
             </div>
             <div class="col-md-4 offset-md-4">
@@ -27,6 +27,7 @@
     </div> <!--CONTAINER OUT -->    
 </header>
 
+<!-- message à l'utilisateur -->
     @if (session('logsuccess'))
     <div class="alert alert-success alert-dismissible fade show MessageSession ">
         {{ session('logsuccess') }}
@@ -48,19 +49,20 @@
     </div>
     @endif
 
+<div class="container-fluid">
     <div class="row">    
-        <div class="sidenavDiv col-3">
-        <nav>
-            <a class="sidenav" href="{{route('home')}}">Accueil publique</a>
-            <a class="sidenav" href="{{route('admin.services.index') }}">État des services</a>
-            <a class="sidenav" href="{{route('admin.reports_services.index') }}">Signalement des clients</a>
-            <a class="sidenav" href="{{route('home.historic.index')}}">Historique des incidents</a>
-            <a class="sidenav" href="{{route('admin.incidents.index') }} ">Gestion des incidents</a>
-            <a class="sidenav" href="{{route('MyAccount') }}">Mon compte</a>
-            @if(session('TypeRole') == '2')
-            <a class="sidenav" href="{{ route('superadmin.users.index') }}">Gestion des comptes</a>
-            @endif
-        </nav>
+        <div class="sidenavDiv col-md-3">
+            <nav>
+                <a class="sidenav" href="{{route('home')}}">Accueil publique</a>
+                <a class="sidenav" href="{{route('admin.services.index') }}">État des services</a>
+                <a class="sidenav" href="{{route('admin.reports_services.index') }}">Signalement des clients</a>
+                <a class="sidenav" href="{{route('home.historic.index')}}">Historique des incidents</a>
+                <a class="sidenav" href="{{route('admin.incidents.index') }} ">Gestion des incidents</a>
+                <a class="sidenav" href="{{route('MyAccount') }}">Mon compte</a>
+                @if(session('TypeRole') == '2')
+                <a class="sidenav" href="{{ route('superadmin.users.index') }}">Gestion des comptes</a>
+                @endif
+            </nav>
         <footer>@2022 Algorithmus</footer>
         </div>
         

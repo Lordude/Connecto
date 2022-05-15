@@ -3,7 +3,7 @@
 @section('title', 'Gestion des administrateurs')
 
 @section('content')
-<div class="col-9">
+<div class="col-md-9">
 
     <h1>Gestion des administrateurs</h1>
     <hr>
