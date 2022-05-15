@@ -31,16 +31,7 @@
 
         </thead>
         <tbody>
-  
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+
     
             <div class="tableIncident">
                 <h3 class="incidentTitle">Service affecté</h3>
@@ -67,10 +58,10 @@
                            <br/>
                            <div class="mb-3">
                             
-                               <div class="pourtour"><strong>Commentaire: </strong> <br/>{{ $report->detail }}</div>
-                               <div  class="pourtour"><a href="mailto:<strong>Courriel de l'expéditeur(trice)</strong> <br/> {{ $report->email }}">{{ $report->email }}</a></div>
-                               <div class="pourtour"><strong>Date: </strong> <br/>{{ $report->date }}</div>
-                               <div class="pourtour"><strong>Problème courant: </strong> <br/>{{ $report->frequent_issue->problem}}</div>
+                               <div class=""><strong>Commentaire: </strong> <br/>{{ $report->detail }}</div>
+                               <div  class=""><a href="mailto:<strong>Courriel de l'expéditeur(trice)</strong> <br/> {{ $report->email }}">{{ $report->email }}</a></div>
+                               <div class=""><strong>Date: </strong> <br/>{{ $report->date }}</div>
+                               <div class=""><strong>Problème courant: </strong> <br/>{{ $report->frequent_issue->problem}}</div>
                           
 
                         
