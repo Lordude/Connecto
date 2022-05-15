@@ -9,4 +9,7 @@
     @yield('content')
     </body>
 
+    @include('layouts.footer')
+    </div>
+
 </html>

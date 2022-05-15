@@ -398,9 +398,11 @@ margin-left: 5%;
     margin-left: 5%;
 }
 
-footer {
+footer {  
+    padding: 0.8em;
+    background-color: #2A4A9B;
     text-align: center;
-    margin-top: 150px;
+    color: white;
 }
 
 @media screen and (max-width: 720px) {

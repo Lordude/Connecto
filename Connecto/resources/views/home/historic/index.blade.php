@@ -51,7 +51,6 @@
     @else
         <p> Aucun services à afficher présentement </p>
     @endif
-    </div>
 </div>
 
 

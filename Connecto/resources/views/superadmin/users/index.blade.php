@@ -43,7 +43,6 @@
                 </tbody>
             </table>
         </div>
-    </div>
         @else
             <p> Il n'y a presentement pas de compte utilisateur ! *bruit de X-files parce qu'il faut etre utilisateur pour voir cet ecran * </p>
         @endif

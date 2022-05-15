@@ -11,5 +11,4 @@
 
     <a href="{{ route('home.reports.create') }}">Formulaire </a>
     </div>
-</div>
 @endsection
