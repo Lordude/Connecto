@@ -1,18 +1,10 @@
-
+/* Taux de disponibilité */
 .tauxDisponibilite{
 
     background-color: #ddfdfc;
     padding: 0.8em;
     border-radius: 20px;
     margin-top: 1em;
-}
-
-.divTauxDisponibilite{
-display: flex;
-flex-direction: row;
-align-items: baseline;
-
-justify-content: space-between;
 }
 
 /* Ce code est pour le bouton popup d'admin  */
@@ -128,6 +120,7 @@ justify-content: space-between;
     margin: 15px;
 }
 
+/* pour le logo */
 .img-fluid {
     margin: 15px;
 }
@@ -417,3 +410,9 @@ footer {
     text-align: center;
     margin-top: 150px;
 }
+
+@media screen and (max-width: 720px) {
+   .TextCompte {
+       display: none;
+   }
+  }
