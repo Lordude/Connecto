@@ -39,8 +39,8 @@
                             on affiche les services reliés grisés pour éviter de créer 2 fois le même service en panne --}}
                                 @if ($service->hasOpenIncident())
                                     <ul class="list-group incidentServicesForm">
-                                        <li class="list-group-item disabled text-danger"><input
-                                                class="form-check-input me-1" type="checkbox"
+                                        <li class="list-group-item disabled text-danger">
+                                                <input class="form-check-input me-1" type="checkbox"
                                                 id="service_{{ $service->id }}" name="services[]"
                                                 value="{{ $service->id }}">
                                             <label for="service_{{ $service->id }}">{{ $service->name }}
@@ -51,7 +51,7 @@
                                     {{-- si il n'y a pas d'incident relié, on affiche les services normalement --}}
                                 @else
                                     <ul class="list-group incidentServicesForm">
-                                        <a href="#" class="list-group-item"><input class="form-check-input me-1"
+                                        <a href="" class="list-group-item"><input class="form-check-input me-1"
                                                 type="checkbox" id="service_{{ $service->id }}" name="services[]"
                                                 value="{{ $service->id }}">
                                             <label for="service_{{ $service->id }}">{{ $service->name }}</label>

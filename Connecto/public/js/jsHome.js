@@ -28,12 +28,4 @@ window.onload = function(event) {
 $('.datepicker').datepicker();
 $(document).off('.datepicker.data-api');
 
-//tentative de popup signalement 
-
-function showCollapseAccordion() {
-
-    let uncollapseBoxTitle = event.target;
-    let uncollapseBox = uncollapseBoxTitle.nextElementSibling;
-
-    uncollapseBox.classList.toggle("collapse");
-}
+//tentative de popup signalement

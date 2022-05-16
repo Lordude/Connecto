@@ -28,6 +28,7 @@
                             <td> <img width="42px" height="42px"
                                     src="../image/{{ $service->get_service_image($service->id)->first()->image }}"
                                     alt="Icone de l\'etat du service {{ $service->get_service_image($service->id)->first()->image }}">
+                                {{$service->get_service_state()->first()->name}}
                             </td>
                             <td><button type="button" class="btn btn-warning"><a class="btn btn-link yellowButton"
                                         href="{{ route('admin.services.edit', ['service' => $service]) }}">Modifier

@@ -12,18 +12,15 @@
     <div class="table-responsive">
         <table class="table">
             <thead>
-                <th>ID de l'incident</th>
                 <th>Date de début</th>
                 <th>Date de fin </th>
                 <th>Durée</th>
                 <th>Commentaire</th>
-                <th>Déclaré par </th>
                 <th>Incident(s) affecté(s)<th>
             </thead>
             <tbody>
                 @foreach ($incidents as $incident)
                     <tr>
-                        <td>{{ $incident->id}} </td>
                         <td>{{ $incident->start_date}}</td>
                         <td> @if(!$incident->end_date)En cours @else {{$incident->end_date}}  @endif </td>
                         <td> 
@@ -33,7 +30,7 @@
                              @endif
                         </td>
                         <td> {{$incident->commentary}} </td>
-                        <td> {{$incident->user->first_name}} {{$incident->user->last_name}} </td>
+
                         <td>
                         @foreach ($incident->services as $service)
                         <ul class="list-group list-group-flush">
