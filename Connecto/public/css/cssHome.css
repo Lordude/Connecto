@@ -330,10 +330,18 @@
     padding: 10px;
 }
 
-.reportForm {
+.reportFormPublic1 {
     align-items: center;
     padding: 15px;
-    background-color: white;
+    background-color: lightgray;
+    border-radius: 20px;
+    width: 95%;
+}
+
+.reportFormPublic2 {
+    align-items: center;
+    padding: 15px;
+    background-color: lightgray;
     border-radius: 20px;
 }
 
@@ -374,6 +382,13 @@ input::placeholder {
 
 /*report service*/
 
+.reportForm {
+    align-items: center;
+    padding: 15px;
+    background-color: white;
+    border-radius: 20px;
+}
+
 .serviceAffecteTitle{
     margin-left: 3rem;
 }
@@ -410,6 +425,21 @@ footer {
     text-align: center;
     color: white;
 }
+@media (min-width: 320px) {
+    .reportFormPublic1{
+    width: 100%;
+    }
+    .col-xs-3{
+        padding: 10px;
+    }
+}
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+    .reportFormPublic1{
+        flex-direction: row;
+    }
+ }
 
 @media screen and (max-width: 720px) {
    .TextCompte {
@@ -417,7 +447,7 @@ footer {
    }
   }
 
-@media screen and (max-width: 426px) {
+  @media screen and (max-width: 600px) {
 
     /*nav*/
 
@@ -436,6 +466,28 @@ footer {
         flex-direction: column;
         align-items: center;
     }
+
+    /*report public*/
+
+     .reportFormPublic{
+      flex-direction: column;
+  }
+
+    .generalForm{
+      width: 100%;
+  }
+
+    .reportPublicClock{
+        font-size: 0.8em;
+        text-align: end;
+        padding: 5px;
+        border-radius: 20px;
+        background-color: #e3e9f1;
+}
+
+.form-select > option{
+    font-size: 0.8em;
+}
 
     /*accueil public*/
 
