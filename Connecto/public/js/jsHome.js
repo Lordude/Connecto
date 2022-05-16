@@ -21,11 +21,4 @@ window.onload = function(event) {
     }
 }
 
-
-
-//calendrier création incident
-
-$('.datepicker').datepicker();
-$(document).off('.datepicker.data-api');
-
 //tentative de popup signalement
