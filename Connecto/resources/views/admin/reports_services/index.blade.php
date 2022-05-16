@@ -43,7 +43,7 @@
                             @foreach ($reports as $report)
                                 @foreach ($report->services as $service)
 
-                            <ul class="list-group incidentServicesForm">
+                            <ul class="list-group">
                                 <div class="accordion" id="accordion" >
                                     <div class="reportForm3" >
                                         <h2 class="accordion-header" id="heading{{$service->id}}">
@@ -54,7 +54,7 @@
                                         </h2>
                                         <div id="collapse{{$service->id}}" class="accordion-collapse collapse" aria-labelledby="heading{{$service->id}}" data-bs-parent="#accordionExample">
                                             <br/>
-                                            <div class="mb-3">
+                                            <div class="mb-3 reportForm">
 
                                                 <div class=""><strong>Commentaire: </strong> <br/>{{ $report->detail }}</div>
                                                 <div class=""><a href="mailto:<strong>Courriel de l'expéditeur(trice)</strong> <br/> {{ $report->email }}">{{ $report->email }}</a></div>
@@ -65,8 +65,8 @@
                                     </div>
                                 </div>
                         </ul>
-                        </ul>            
-                                    
+                        </ul>
+
                                 @endforeach
                                 @endforeach
                         </div>

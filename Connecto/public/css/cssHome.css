@@ -238,6 +238,11 @@
     padding: 3px;
 }
 
+.option{
+    border: 3px solid #e3e9f1;
+    border-radius: 20px;
+    padding: 3px;
+}
 
 /*ul incident*/
 
@@ -310,6 +315,9 @@
     margin-top: 15px;
 }
 
+.list-group{
+    margin-bottom: 5px;
+}
 /*modification service*/
 
 .inputServiceEdit{
@@ -325,22 +333,25 @@
 .reportForm {
     align-items: center;
     padding: 15px;
-    background-color: lightgray;
+    background-color: white;
     border-radius: 20px;
 }
 
-.form-label-report {
-    margin-bottom: 0;
+.reportForm3{
+    background-color: white;
+    border-radius: 20px;
+    padding-left: 0px;
 }
 
-.reportForm2 {
-    padding-top: 10px;
-    padding-bottom: 25px;
+.accordion-button{
+    background-color: #e7f1ff;
+    color: #0c63e4;
+    border-radius: 20px;
+}
+
+.textInsideAccordion{
     padding-left: 15px;
-    padding-right: 15px;
-    background-color: lightgray;
-    border-radius: 20px;
-    max-width: 475px;
+    padding-bottom: 15px;
 }
 
 input::placeholder {
@@ -380,12 +391,10 @@ input::placeholder {
 
 .editStatusDeleteTextButton{
     padding: 0;
-
 }
 
 .editStatusDeleteButton{
     margin-left: 5%;
-
 }
 
 /*alignement des textes en haut de pages*/
