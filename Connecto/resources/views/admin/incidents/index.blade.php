@@ -51,7 +51,8 @@
                                     {{-- si il n'y a pas d'incident relié, on affiche les services normalement --}}
                                 @else
                                     <ul class="list-group incidentServicesForm">
-                                        <a href="" class="list-group-item"><input class="form-check-input me-1"
+                                        <a class="list-group-item">
+                                        <input class="form-check-input me-1"
                                                 type="checkbox" id="service_{{ $service->id }}" name="services[]"
                                                 value="{{ $service->id }}">
                                             <label for="service_{{ $service->id }}">{{ $service->name }}</label>
