@@ -112,6 +112,7 @@
     {{-- vue des incidents en cours --}}
     <div>
         <table class="table container-md">
+            <h3 class="text-center"> Incident ouvert </h3>
             <thead>
                 <th>id</th>
                 <th>Service affecté</th>
@@ -124,7 +125,7 @@
                 <th>Option</th>
             </thead>
             <tbody>
-                <h3 class="text-center"> Incident ouvert </h3>
+                
                 @foreach ($incidents as $incident)
                     @if ($incident->end_date == null)
                         <tr>
@@ -173,10 +174,11 @@
                 <p class="mx-auto text-center bg-success p-2 text-dark bg-opacity-10 rounded-2 w-50"> Aucun incidents à
                     afficher présentement </p>
             @endif
-
-            <tbody>
+                
                 <div>
+                
                     <table class="table container-md">
+                    <h3 class="text-center"> Incident fermé </h3>
                         <thead>
                             <th>id</th>
                             <th>Service affecté</th>
@@ -188,7 +190,7 @@
                             <th>Administrateur</th>
                         </thead>
                         <tbody>
-                            <h3 class="text-center"> Incident fermé </h3>
+                            
                             @foreach ($incidents as $incident)
                                 @if ($incident->end_date !== null)
                                     <tr>
@@ -220,7 +222,6 @@
                         @endforeach
                     </table>
                 </div>
-            </tbody>
     </div>
     </div>
 @endsection

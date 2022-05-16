@@ -21,7 +21,19 @@ window.onload = function(event) {
     }
 }
 
+
+
 //calendrier création incident
 
 $('.datepicker').datepicker();
 $(document).off('.datepicker.data-api');
+
+//tentative de popup signalement 
+
+function showCollapseAccordion() {
+
+    let uncollapseBoxTitle = event.target;
+    let uncollapseBox = uncollapseBoxTitle.nextElementSibling;
+
+    uncollapseBox.classList.toggle("collapse");
+}
