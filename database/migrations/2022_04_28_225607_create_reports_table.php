@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
-            $table->tinyText('detail');
-            $table->date('date')->nullable();;
+            $table->tinyText('detail')->nullable();
+            $table->date('date')->nullable();
             $table->timestamps();
 
             $table->foreignId('frequent_issue_id')

@@ -64,7 +64,6 @@ class ReportController extends Controller
 
             'name' => 'required|max:50',
             'email' => 'required',
-            'detail' => 'required',
             'date' => 'required',
             'frequent_issue_id' => 'required',
 

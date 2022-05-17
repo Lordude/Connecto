@@ -14,4 +14,5 @@ class FrequentIssue extends Model
     {
         return $this->belongsToMany(Report::class);
     }
+    
 }
