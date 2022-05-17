@@ -8,6 +8,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SuperAdmin\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HistoricController;
+use App\Http\Controllers\FrequentIssueController;
 /*
 
 /*

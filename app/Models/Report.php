@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Service;
+use App\Models\FrequentIssue;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Models\ReportService;
@@ -49,7 +50,7 @@ class Report extends Model
     }
     public function frequent_issue()
     {
-        return $this->belongsTo(frequentIssue::class);
+        return $this->belongsTo(FrequentIssue::class);
     }
 
     public function reports_services()
