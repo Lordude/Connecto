@@ -1080,7 +1080,7 @@ footer {
         text-align: center;
     }
 
-    td{
+    .tdHistoric{
         border: none;
         display: flex;
         flex-direction: column;
@@ -1089,7 +1089,7 @@ footer {
     .ref::before {
         font-weight: bold;
         color: #2a4a9b;
-        content: "Incident(s) affecté(s):  ";
+        content: "Service affecté:  ";
       }
 
     .ref2::before {
@@ -1128,5 +1128,6 @@ footer {
         display: flex;
         flex-direction: column-reverse;
       }
+
 }
 

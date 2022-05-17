@@ -22,15 +22,15 @@
                     <tbody>
                         @foreach ($incidents as $incident)
                             <tr class="ligneHistoricResponsive">
-                                <td class="bordure"><span class="ref4">{{ $incident->start_date }}</span></td>
-                                <td>
+                                <td class="bordure tdHistoric"><span class="ref4">{{ $incident->start_date }}</span></td>
+                                <td class="tdHistoric">
                                     @if (!$incident->end_date)
                                         En cours
                                     @else
                                         <span class="ref5">{{ $incident->end_date }}</span>
                                     @endif
                                 </td>
-                                <td>
+                                <td class="tdHistoric">
                                     @if ($incident->incidentOpenSince() < 1)
                                         <span class="ref2"> Moins de 1 heure </span>
                                     @else
@@ -38,11 +38,11 @@
                                     @endif
                                 </td>
                                 @if ($incident->commentary == null)
-                                    <td>{{ $incident->commentary }} </td>
+                                    <td class="tdHistoric">{{ $incident->commentary }} </td>
                                 @else
-                                    <td><span class="ref3">{{ $incident->commentary }}</span></td>
+                                    <td class="tdHistoric"><span class="ref3">{{ $incident->commentary }}</span></td>
                                 @endif
-                                <td>
+                                <td class="tdHistoric">
                                     @foreach ($incident->services as $service)
                                         <ul class="list-group list-group-flush">
                                             <li class="list-group-item tableauAccueil serviceNameAccueilResponsive "><span
