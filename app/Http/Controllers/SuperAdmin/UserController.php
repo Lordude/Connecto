@@ -69,7 +69,7 @@ class UserController extends Controller
         $user->role_id = $request->role_id;
 
         $user->save();
-        return redirect()->route('superadmin.users')->withSuccess('Le signalement a été créée');
+        return redirect()->route('superadmin.users.index')->withSuccess('Le signalement a été créée');
 
     }
 
