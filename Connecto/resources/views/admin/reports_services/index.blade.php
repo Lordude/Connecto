@@ -49,14 +49,14 @@
                                         <h2 class="accordion-header" id="heading{{$service->id}}">
                                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$service->id}}" aria-expanded="false" aria-controls="collapse{{$service->id}}">
                                             <ul><label for="service_{{ $service->id }}">{{ $service->name }}</label><ul>
-                                            <ul> <strong> {{ $report->date }} </strong> </ul>
+                                          
                                             </button>
                                             <ul class="list-group reportServicesForm">
                                         </h2>
                                         <div id="collapse{{$service->id}}" class="accordion-collapse collapse" aria-labelledby="heading{{$service->id}}" data-bs-parent="#accordionExample">
                                             <br/>
                                             <div class="mb-3 reportForm">
-
+                                                <div class=""> <strong>Date: </strong> </br> {{ $report->date }} </div>
                                                 <div class=""><strong>Commentaire: </strong> <br/>{{ $report->detail }}</div>
                                                 <div class=""><a href="mailto:<strong>Courriel de l'expéditeur(trice)</strong> <br/> {{ $report->email }}">{{ $report->email }}</a></div>
                                                 {{-- <div class=""><strong>Date: </strong> <br/>{{ $report->date }}</div> --}}
