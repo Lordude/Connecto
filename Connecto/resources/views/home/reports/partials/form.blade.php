@@ -1,13 +1,13 @@
     <hr/>
-    <form method="POST" action="{{ route('home.reports.store') }}">
+    <form class="GeneralForm" method="POST" action="{{ route('home.reports.store') }}">
         @csrf
 
-    <div class="row reportForm">
-            <div class="col-md-5">
+    <div class="row reportFormPublic1">
+            <div class="col-xl-5 col-lg-6 col-md-5 col-sm-5 col-xs-3">
                 <label for="name" class="form-label-report" >Nom * : </label>
                 <input placeholder="ex: Mr Patate" class="option" id="name" name="name" type="text" value="" class="form-control">
             </div>
-            <div class="col-md-5">
+            <div class="col-xl-5 col-lg-6 col-md-5 col-sm-5 col-xs-3">
                 <label for="email" class="form-label-report"> Courriel * : </label>
                 <input placeholder="ex: nobody@google.com" class="option" id="email" name="email" type="text" value="" class="form-control ">
             </div>
@@ -58,7 +58,7 @@
                 @enderror
             </div>
             <hr />
-            <div class="reportForm">
+            <div class="reportFormPublic2">
             <p>Pour mieux vous aider, veuillez nous spécifier la date de début de l'incident.*</p>
             <?php
             use Carbon\Carbon;
