@@ -74,9 +74,9 @@
                             </select>
                         </div>
                         <hr />
-                        <label for="commentary">Commentaire</label>
+                        <label for="commentary">Commentaire (pour les administrateurs)</label>
                         <input class="option" type="text" id="commentary" name="commentary" size="50px"
-                            maxlength="500" @error('commentary') is-invalid @enderror" value="{{ old('commentary') }}" />
+                            maxlength="50" @error('commentary') is-invalid @enderror" value="{{ old('commentary') }}" />
                         @error('commentary')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -105,9 +105,7 @@
                         <hr />
                         <input type="submit" value="créer le nouvel incident" class="btn btn-warning text-white">
                         <a href="{{ route('admin.incidents.index') }}" class="btn text-danger">Annuler</a>
-
             </form>
-
         </div>
     </div>
     {{-- vue des incidents en cours --}}
@@ -126,7 +124,7 @@
                 <th>Option</th>
             </thead>
             <tbody>
-                
+
                 @foreach ($incidents as $incident)
                     @if ($incident->end_date == null)
                         <tr>
@@ -142,9 +140,9 @@
                             <td> <img width="42px" height="42px" src="../image/{{ $incident->state->image }}"
                                     alt="Icone de l\'etat du service {{ $incident->state->image }}">
                             </td>
-                            <td>{{ $incident->state->name }}</td>
+                            <td >{{ $incident->state->name }}</td>
 
-                            <td>{{ $incident->commentary }}</td>
+                            <td class="retourLigne">{{ $incident->commentary }}</td>
                             <td>{{ $incident->start_date }}</td>
                             <td>{{ $incident->incidentOpenSince() }} heures</td>
                             <td>{{ $incident->user->first_name }}
@@ -164,20 +162,16 @@
                                             class="btn text-danger"
                                             onclick="return confirm('êtes-vous sûr de vouloir supprimer cet incident? Il sera complétement effacé de l\'historique. Si vous n\'êtes pas certain, demandez à un superviseur.')" />
                                     </form>
-
                             </td>
-
                         </tr>
                     @endif
             </tbody>
             @endforeach
-            @if ($service->hasOpenIncident() == 0)
+                @if ($service->hasOpenIncident() == 0)
                 <p class="mx-auto text-center bg-success p-2 text-dark bg-opacity-10 rounded-2 w-50"> Aucun incidents à
                     afficher présentement </p>
-            @endif
-                
+                @endif
                 <div>
-                
                     <table class="table container-md">
                     <h3 class="text-center"> Incident fermé </h3>
                         <thead>
@@ -191,7 +185,6 @@
                             <th>Administrateur</th>
                         </thead>
                         <tbody>
-                            
                             @foreach ($incidents as $incident)
                                 @if ($incident->end_date !== null)
                                     <tr>
@@ -219,10 +212,11 @@
                                         </td>
                                     </tr>
                         </tbody>
-                        @endif
-                        @endforeach
+                            @endif
+                         @endforeach
                     </table>
                 </div>
+        </table>
     </div>
     </div>
 @endsection

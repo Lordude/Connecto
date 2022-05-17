@@ -295,7 +295,7 @@
 
 .editState1 {
     border-radius: 20px;
-    /* width: auto; */
+    width: 300px;
     border: none;
 }
 .editState2 {
@@ -311,7 +311,7 @@
 
 .editFormStatus {
     background-color: lightgray;
-    width: 40%;
+    /* width: 40%; */
     padding: 15px;
     border-radius: 20px;
 }

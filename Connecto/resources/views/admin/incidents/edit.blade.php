@@ -24,8 +24,7 @@
                             @csrf
                             @method('DELETE')
                             <input type="submit" class="btn-close" value="" aria-label="Close" onclick="return confirm
-                                    ('êtes-vous sûr de vouloir remettre ce service opérationnel? Il sera alors retiré de l\'incident en cours')
-    " />
+                                            ('êtes-vous sûr de vouloir remettre ce service opérationnel? Il sera alors retiré de l\'incident en cours')" />
                         </form>
                     </button>
                 @endif
@@ -34,14 +33,10 @@
                 </ul>
             </div>
         @endforeach
-
         <div class="flexEditForm">
             <p class="text-info">Statut actuel :
                 {{ $incident->state->name }}
             </p>
-            {{-- <img width="42px" height="42px"
-            src="../image/{{ $incident->state->image }}"
-            alt="Icone de l\'etat du service {{ $incident->state->image }}"> --}}
             <hr />
             <form class="editFormStatus" method="POST"
                 action="{{ route('admin.incidents.update', ['incident' => $incident]) }}">
@@ -49,8 +44,7 @@
                 @method('PUT')
                 <label for="name" class="form-label">Modifier l'état à :</label>
                 <select class="form-select editState1 " name="state" id="states">
-
-                    <option value="{{$incident->state_id}}" selected="selected">
+                    <option value="{{ $incident->state_id }}" selected="selected">
                         {{ $incident->state->name }}
                     </option>
                     @foreach ($states as $state)
@@ -61,11 +55,11 @@
                 </select>
                 <br />
                 <label for="commentary">Commentaire</label>
-                <input class="editState2 commentary" type="text" id="commentary" name="commentary" maxlength="500"
+                <input class="editState2 commentary" type="textarea" id="commentary" name="commentary" size="50px" maxlength="50"
                     value="{{ $incident->commentary }}">
                 <div>
                     <br />
-                    <hr/>
+                    <hr />
                     {{-- <label for="date" class="text-danger">Attention: Ce champs est fait uniquement pour modifier la date et l'heure du <strong>début</strong> de l'incident</label>
                     <?php
                     use Carbon\Carbon;
@@ -85,7 +79,7 @@
             <input type="submit" value="Enregistrer" class="btn btn-warning text-white">
             <a href="{{ route('admin.incidents.index') }}" class="btn text-danger"> Retour </a>
         </div>
-        <br/>
+        <br />
 
         </form>
     </div>
