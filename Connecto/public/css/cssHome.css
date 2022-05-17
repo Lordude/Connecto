@@ -293,7 +293,12 @@
     margin-left: 5%;
 }
 
-.editState {
+.editState1 {
+    border-radius: 20px;
+    /* width: auto; */
+    border: none;
+}
+.editState2 {
     border-radius: 20px;
     width: auto;
     border: none;
@@ -306,7 +311,7 @@
 
 .editFormStatus {
     background-color: lightgray;
-    width: 50%;
+    width: 40%;
     padding: 15px;
     border-radius: 20px;
 }
@@ -671,3 +676,4 @@ footerLigne {
         cursor: pointer;
     }
 }
+

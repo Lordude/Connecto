@@ -48,7 +48,7 @@
                 @csrf
                 @method('PUT')
                 <label for="name" class="form-label">Modifier l'état à :</label>
-                <select class="form-select editState " name="state" id="states">
+                <select class="form-select editState1 " name="state" id="states">
 
                     <option value="{{$incident->state_id}}" selected="selected">
                         {{ $incident->state->name }}
@@ -61,7 +61,7 @@
                 </select>
                 <br />
                 <label for="commentary">Commentaire</label>
-                <input class="editState commentary" type="text" id="commentary" name="commentary" size="50px" maxlength="500"
+                <input class="editState2 commentary" type="text" id="commentary" name="commentary" maxlength="500"
                     value="{{ $incident->commentary }}">
                 <div>
                     <br />
@@ -70,6 +70,8 @@
                     <?php
                     use Carbon\Carbon;
                     ?>
+                    /*ne fonctionne pas correctement. ça ne prend pas la dernière heure de la DB*/
+                    /* et si je fais un value ça ne modifie pas l'heure dans la DB
                     <div class=" date" data-provide="datepicker">
                         <input id="start_date" name="start_date" type="datetime-local" class="form-control"
                             max="{{ Carbon::now()->format('Y-m-d\TH:i') }}" >
