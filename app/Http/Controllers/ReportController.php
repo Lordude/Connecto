@@ -21,7 +21,38 @@ class ReportController extends Controller
 
     public function index()
     {
+       
         $reports = Report::all();
+
+
+            $reports = Report::whereBetween('created_at', [Carbon::now()->subDays(90), Carbon::now()])
+            ->orderBy('date', 'desc')
+            ->get();
+
+
+
+        $services = Service::all();
+        $frequent_issues = FrequentIssue::all();
+        $reports_services = ReportService::all();
+        $data = ReportService::join('services', 'services.id', '=', 'report_service.service_id')
+                    ->join('reports', 'reports.id', '=', 'report_service.report_id')
+                    ->get([ 'services.name', 'reports.detail']);
+
+
+        return view (
+        'admin.reports_services.index',
+         [ 'data' => $data,
+        'reports'=> $reports,
+        'reports_services'=> $reports_services,
+        'frequent_issues'=> $frequent_issues,
+        'services'=> $services]
+    );
+
+
+        }
+
+
+
 
     }
 
