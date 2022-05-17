@@ -31,10 +31,10 @@
                                     @endif
                                 </td>
                                 <td class="tdHistoric">
-                                    @if ($incident->incidentOpenSince() < 1)
+                                    @if ($incident->incidentLengthInHour() < 1)
                                         <span class="ref2"> Moins de 1 heure </span>
                                     @else
-                                        <span class="ref2"> {{ $incident->incidentOpenSince() }} heure(s)</span>
+                                        <span class="ref2"> {{ $incident->incidentLengthInHour() }} heure(s)</span>
                                     @endif
                                 </td>
                                 @if ($incident->commentary == null)

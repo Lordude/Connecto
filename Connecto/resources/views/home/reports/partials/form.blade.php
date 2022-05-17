@@ -49,7 +49,7 @@
             </br>
             <div>
                 <textarea class="option" id="report" name="detail"
-                    class="form-control @error('detail') is-invalid @enderror">{{ old('detail', $report->detail) }}</textarea>
+                    class="form-control @error('detail') is-invalid @enderror">{{old('detail', $report->detail)}}</textarea>
 
                 @error('report')
                     <span class="invalid-feedback" role="alert">
