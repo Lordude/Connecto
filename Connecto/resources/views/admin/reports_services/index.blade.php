@@ -48,7 +48,8 @@
                                     <div class="reportForm3" >
                                         <h2 class="accordion-header" id="heading{{$service->id}}">
                                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$service->id}}" aria-expanded="false" aria-controls="collapse{{$service->id}}">
-                                            <label for="service_{{ $service->id }}">{{ $service->name }}</label>
+                                            <ul><label for="service_{{ $service->id }}">{{ $service->name }}</label><ul>
+                                            <ul> <strong> {{ $report->date }} </strong> </ul>
                                             </button>
                                             <ul class="list-group reportServicesForm">
                                         </h2>
@@ -58,7 +59,7 @@
 
                                                 <div class=""><strong>Commentaire: </strong> <br/>{{ $report->detail }}</div>
                                                 <div class=""><a href="mailto:<strong>Courriel de l'expéditeur(trice)</strong> <br/> {{ $report->email }}">{{ $report->email }}</a></div>
-                                                <div class=""><strong>Date: </strong> <br/>{{ $report->date }}</div>
+                                                {{-- <div class=""><strong>Date: </strong> <br/>{{ $report->date }}</div> --}}
                                                 <div class=""><strong>Problème courant: </strong> <br/>{{ $report->frequent_issue->problem}}</div>
                                             </div>
                                         </div>

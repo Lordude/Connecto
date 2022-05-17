@@ -992,16 +992,13 @@ footer {
         flex-direction: column;
         align-items: center;
     }
-
     /*report public*/
     .reportFormPublic {
         flex-direction: column;
     }
-
     .generalForm {
         width: 100%;
     }
-
     .reportPublicClock {
         font-size: 0.8em;
         text-align: end;
@@ -1009,11 +1006,9 @@ footer {
         border-radius: 20px;
         background-color: #e3e9f1;
     }
-
     .form-select>option {
         font-size: 0.8em;
     }
-
     /*accueil public*/
     .tableauAccueil {
         display: flex;
@@ -1066,68 +1061,57 @@ footer {
         text-align: center;
         font-size: 0.8em;
     }
-
     /*historic public*/
-
-    .titreHistoric{
+    .titreHistoric {
         text-align: center;
         padding-top: 10px;
     }
-
-    .ligneHistoricResponsive{
+    .ligneHistoricResponsive {
         display: flex;
         flex-direction: column-reverse;
         text-align: center;
     }
-
-    .tdHistoric{
+    .tdHistoric {
         border: none;
         display: flex;
         flex-direction: column;
     }
-
     .ref::before {
         font-weight: bold;
         color: #2a4a9b;
         content: "Service affecté:  ";
-      }
-
+    }
     .ref2::before {
         font-weight: bold;
         color: #2a4a9b;
         content: "Durée :  ";
-      }
-
+    }
     .ref3::before {
         font-weight: bold;
         color: #2a4a9b;
         content: "Commentaire :  ";
-      }
-
+    }
     .ref4::before {
         font-weight: bold;
         color: #2a4a9b;
         content: "Début :  ";
-      }
-
-    .bordure{
+    }
+    .bordure {
         border-bottom: 1px solid gray;
-      }
-
+    }
     .ref5::before {
         font-weight: bold;
         color: #2a4a9b;
         content: "Fin :  ";
-      }
-
-    #NbSignalement{
+    }
+    #NbSignalement {
         text-align: center;
-      }
-
-    .dateHistoricRes{
+    }
+    .dateHistoricRes {
         display: flex;
         flex-direction: column-reverse;
-      }
-
+    }
+    #clickable:hover {
+        cursor: pointer;
+    }
 }
-
