@@ -49,7 +49,7 @@ class Report extends Model
     }
     public function frequent_issue()
     {
-        return $this->belongsTo(frequentIssue::class);
+        return $this->belongsTo(FrequentIssue::class);
     }
 
     public function reports_services()
