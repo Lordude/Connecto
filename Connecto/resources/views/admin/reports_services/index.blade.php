@@ -58,8 +58,8 @@
                                             <div class="mb-3 reportForm">
                                                 <div class=""> <strong>Date: </strong> </br> {{ $report->date }} </div>
                                                 <div class=""><strong>Commentaire: </strong> <br/>{{ $report->detail }}</div>
-                                                <div class=""><a href="mailto:<strong>Courriel de l'expéditeur(trice)</strong> <br/> {{ $report->email }}">{{ $report->email }}</a></div>
-                                                {{-- <div class=""><strong>Date: </strong> <br/>{{ $report->date }}</div> --}}
+                                                <div class=""><a href="mailto:<strong>Courriel de l'expéditeur(trice): </strong> <br/> {{ $report->email }}">{{ $report->email }}</a></div>
+                                               
                                                 <div class=""><strong>Problème courant: </strong> <br/>{{ $report->frequent_issue->problem}}</div>
                                             </div>
                                         </div>
