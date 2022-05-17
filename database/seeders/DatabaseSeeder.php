@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             IncidentServiceSeeder::class,
             FrequentIssueSeeder::class,
             ReportSeeder::class,
+            ReportServiceSeeder::class
         ]);
     }
 }
