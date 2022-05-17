@@ -28,11 +28,13 @@
             <label for="date_hired" class="form-label">Date d'embauche</label>
             <input id="date_hired" name="date_hired" type="date" value="" class="form-control">
 
-            <label for="role_id" class="form-label">Accès rôle</label>
-            <input id="role_id" name="role_id" type="number" class="form-control">
-
-
+            <label for="role_id" class="form-label">Accès rôle</label> </br>
+                <select id="role_id" name="role_id">
+                    <option value="1">Administrateur</option>
+                    <option value="2">Superadministrateur</option>
+                </select>
         </div>
+        </br>
 
 
     <input type="submit" value="Enregistrer" class="btn btn-primary">
