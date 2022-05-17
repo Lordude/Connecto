@@ -15,7 +15,7 @@
                         <th>Date de début</th>
                         <th>Date de fin </th>
                         <th>Durée</th>
-                        <th>Commentaire</th>
+                        {{-- <th>Commentaire</th> --}}
                         <th>Incident(s) affecté(s)
                         <th>
                     </thead>
@@ -37,11 +37,11 @@
                                         <span class="ref2"> {{ $incident->incidentLengthInHour() }} heure(s)</span>
                                     @endif
                                 </td>
-                                @if ($incident->commentary == null)
+                                {{-- @if ($incident->commentary == null)
                                     <td class="tdHistoric">{{ $incident->commentary }} </td>
                                 @else
                                     <td class="tdHistoric"><span class="ref3">{{ $incident->commentary }}</span></td>
-                                @endif
+                                @endif --}}
                                 <td class="tdHistoric">
                                     @foreach ($incident->services as $service)
                                         <ul class="list-group list-group-flush">
