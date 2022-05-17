@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* Taux de disponibilité */
 
 .tauxDisponibilite {
@@ -1062,6 +1061,57 @@ footer {
         text-align: center;
         font-size: 0.8em;
     }
+    /*historic public*/
+    .titreHistoric {
+        text-align: center;
+        padding-top: 10px;
+    }
+    .ligneHistoricResponsive {
+        display: flex;
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+    .tdHistoric {
+        border: none;
+        display: flex;
+        flex-direction: column;
+    }
+    .ref::before {
+        font-weight: bold;
+        color: #2a4a9b;
+        content: "Service affecté:  ";
+    }
+    .ref2::before {
+        font-weight: bold;
+        color: #2a4a9b;
+        content: "Durée :  ";
+    }
+    .ref3::before {
+        font-weight: bold;
+        color: #2a4a9b;
+        content: "Commentaire :  ";
+    }
+    .ref4::before {
+        font-weight: bold;
+        color: #2a4a9b;
+        content: "Début :  ";
+    }
+    .bordure {
+        border-bottom: 1px solid gray;
+    }
+    .ref5::before {
+        font-weight: bold;
+        color: #2a4a9b;
+        content: "Fin :  ";
+    }
+    #NbSignalement {
+        text-align: center;
+    }
+    .dateHistoricRes {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    #clickable:hover {
+        cursor: pointer;
+    }
 }
-
->>>>>>>8bbbf891d2634ec0a90aa58aca35bcc2628d2c1a
