@@ -60,19 +60,18 @@
                 <div>
                     <br />
                     <hr />
-                    {{-- <label for="date" class="text-danger">Attention: Ce champs est fait uniquement pour modifier la date et l'heure du <strong>début</strong> de l'incident</label>
+                     <label for="date" class="text-danger">Attention: Ce champs est fait uniquement pour modifier la date et l'heure du <strong>début</strong> de l'incident</label>
                     <?php
                     use Carbon\Carbon;
                     ?>
-                    /*ne fonctionne pas correctement. ça ne prend pas la dernière heure de la DB*/
-                    /* et si je fais un value ça ne modifie pas l'heure dans la DB
+
                     <div class=" date" data-provide="datepicker">
                         <input id="start_date" name="start_date" type="datetime-local" class="form-control"
-                            max="{{ Carbon::now()->format('Y-m-d\TH:i') }}" >
+                            max="{{ Carbon::now()->format('Y-m-d\TH:i') }}" value="{{ $incident->start_date->format('Y-m-d\TH:i') }}">
                         <div class="input-group-addon">
                             <span class="glyphicon glyphicon-th"></span>
                         </div>
-                    </div> --}}
+                    </div>
                 </div>
         </div>
         <div class="editFormButton">
