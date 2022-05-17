@@ -18,7 +18,7 @@ class IncidentController extends Controller
         $from = (new Carbon)->subDays(30)->startOfDay()->toDateString();
         $to = Carbon::now();
 
-        $incidents = Incident::whereBetween('start_date', [$from, $to])->orderBy('start_date', 'desc')->get();
+        $incidents = Incident::where('start_date', '>', $from)->orderBy('start_date', 'desc')->get();
         $services = Service::all();
         $states = State::all();
         $users = User::all();
