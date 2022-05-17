@@ -31,15 +31,17 @@
             <label for="frequent_issues">Type de problème * :</label>
             <select class="form-select form-select-sm" name="frequent_issue_id" id="frequent_issues">
                 <option value="frequent_issues" selected="selected" disabled>choisir</option>
+
                 <?php
         use App\Models\FrequentIssue;
-        $frequent_issues = FrequentIssue::all();{ ?>
+        $frequent_issues = FrequentIssue::all(); 
+                ?>
 
                 @foreach ($frequent_issues as $frequent_issue)
                     <option class="choix" value="{{ $frequent_issue->id }}"><label
                             for="frequent_issues">{{ $frequent_issue->problem }}</label></option>
                 @endforeach
-                <?php } ?>
+                
             </select>
 
             {{-- <input type="hidden" value="1" name="frequent_issues_id" id="frequent_issues_id"> --}}
