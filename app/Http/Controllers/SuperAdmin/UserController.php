@@ -69,7 +69,7 @@ class UserController extends Controller
         $user->role_id = $request->role_id;
 
         $user->save();
-        return redirect()->route('superadmin.users.index')->withSuccess('Le signalement a été créée');
+        return redirect()->route('superadmin.users.index')->withSuccess('Le nouveau compte a été créée');
 
     }
 
@@ -77,7 +77,7 @@ class UserController extends Controller
     {
         User::destroy($id);
 
-        return redirect()->route('superadmin.users.index')->with('success', 'Le produit a été supprimé.');;
+        return redirect()->route('superadmin.users.index')->with('success', 'Le compte a été supprimé.');;
     }
 }
 
