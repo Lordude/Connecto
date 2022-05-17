@@ -1,0 +1,25 @@
+Composantes
+--
+
+* Connecto Web
+* Applications mobiles (iOS et Android)
+* Caméra Connecto Cam
+* Thermostat Connecto Temp
+* Ampoule Connecto Light
+* Prise électrique Connecto Power
+* Sonnette Connecto Ring
+* Serrure Connecto Lock
+* Flux vidéo Connecto Cam en temps réel
+* Historique vidéo Connecto Cam
+* Alertes
+* Tableau de bord Connecto Pro
+
+
+Statuts possibles d'une composante
+--
+
+Opérationnel (vert)
+En maintenance (bleu)
+Détérioration de la performance (jaune)
+Panne partielle (orange)
+Panne majeure (rouge)

@@ -6,12 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Report;
 use App\Http\Controllers\Controller;
 use App\Models\ReportService;
-
-
-
-
-
-
+use App\Models\FrequentIssue;
 
 class ReportController extends Controller
 {
@@ -20,15 +15,16 @@ class ReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+
+
     public function index()
     {
         $reports = Report::all();
 
-        return view('home.reports.index',
-         ['reports' => $reports],
-
-        );
     }
+
     public function show($id)
     {
         $reports = Report::findOrFail($id);
@@ -39,7 +35,7 @@ class ReportController extends Controller
         ]);
     }
 
- /**
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -48,7 +44,11 @@ class ReportController extends Controller
     {
         $reports = new Report;
 
-        return view('home.reports.create', ['report' => $reports]);
+        return view(
+            'home.reports.create',
+            ['report' => $reports],
+            ['report_service' => array()]
+        );
     }
 
     /**
@@ -57,22 +57,24 @@ class ReportController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    
     public function store(Request $request)
     {
 
-         Report::create($request->validate([
+        $report = Report::create($request->validate([
 
-            'name' => ['required'],
-            'email' => ['required'],
-            'detail' => ['required'],
-            'date' => ['required'],
-            'frequent_issue_id' => ['required'],
+            'name' => 'required|max:50',
+            'email' => 'required',
+            'detail' => 'required',
+            'date' => 'required',
+            'frequent_issue_id' => 'required',
 
         ]));
+         // The blog post is valid...
 
+        $report->services()->sync($request->services);
 
-        return redirect()->route('home.reports.index')->withSuccess('Le signalement a été créée');
+        return redirect()->route('home')->withSuccess('Le signalement a été créée');
+
     }
 
     /**
@@ -87,7 +89,6 @@ class ReportController extends Controller
 
         return view('home.reports.edit', ['Reports' => $reports]);
     }
-
 
 
     /**
@@ -105,10 +106,8 @@ class ReportController extends Controller
 
     public function update(Request $request, $id)
     {
-       $report = Report::findOrFail($id);
-       $report->save();
-
+        $report = Report::findOrFail($id);
+        $report->save();
     }
-
-
 }
+

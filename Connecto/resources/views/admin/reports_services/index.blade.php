@@ -1,8 +1,6 @@
-@include('layouts.admin.headerAdmin')
-
 @extends('layouts.admin.app')
 
-@section('title', 'Accueil')
+@section('title', 'Signalement')
 
 @section('content')
 
@@ -10,90 +8,75 @@
 
 
 
-<div class="col-9">
-    <h1>Signalement</h1>
+<div class="col-md-9">
+    <div class="tableSignalement">
 
+        <div class="reportHourAlignment">
+            <h1>Signalement</h1>
+<br />
+            <div class="reportPublicClock">
+                <?php
+                use Carbon\Carbon;
+                $cur_time_date = Carbon::now()->format('d/m/Y');
+                $cur_time_hour = Carbon::now()->format(' H:i');
 
-
-      <div class="d-flex justify-content-between">  
-        <p style="background-color: #DDFDFC;"><?php echo App\Models\Report::reportOpenSinceOneHour(); ?>  signalement en 24 heure</p>
-       
-   
+                echo "Nous sommes le $cur_time_date <br/> il est $cur_time_hour";
+                ?>
+            </div>
+        </div>
     </div>
-              
+    <table class="table container-md">
+        <table class="table">
+            <thead>
+
+            </thead>
+            <tbody>
 
 
+                <div class="tableIncident">
+                    <h3 class="serviceAffecteTitle">Service affecté</h3>
 
+                    <div class="mb-3 container p-2">
 
-  
-        @if($services->count() > 0)
-            <table class="table">
-                
-             
+                        <div class="incidentForm">
 
+                            @foreach ($reports as $report)
+                                @foreach ($report->services as $service)
 
+                            <ul class="list-group">
+                                <div class="accordion" id="accordion" >
+                                    <div class="reportForm3" >
+                                        <h2 class="accordion-header" id="heading{{$service->id}}">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$service->id}}" aria-expanded="false" aria-controls="collapse{{$service->id}}">
+                                            <ul><label for="service_{{ $service->id }}">{{ $service->name }}</label><ul> 
+                                            <ul>{{ $report->date }}</ul>
+                                          
+                                            </button>
+                                            <ul class="list-group reportServicesForm">
+                                        </h2>
+                                        <div id="collapse{{$service->id}}" class="accordion-collapse collapse" aria-labelledby="heading{{$service->id}}" data-bs-parent="#accordionExample">
+                                            <br/>
+                                            <div class="mb-3 reportForm">
+                                                <div class=""><strong>Commentaire: </strong> <br/>{{ $report->detail }}</div>
+                                                <div class=""><a href="mailto:<strong>Courriel de l'expéditeur(trice): </strong> <br/> {{ $report->email }}">{{ $report->email }}</a></div>
+                                               
+                                                <div class=""><strong>Problème courant: </strong> <br/>{{ $report->frequent_issue->problem}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </ul>
+                        </ul>
 
-
-
-                <thead>
-                    <th>Nom du service</th>
-                  
-                   
-
-                  
-
-                 
-
-                    
-            
-                </thead>
-                <tbody>
-                    @foreach ($services as $service)
-                        <tr>
-                            <td> {{$service->name}} </td>
-
-                            <td><form method="POST" action="{{ route('admin.services.destroy', ['service' => $service]) }}" class="mb-0">
-                                @csrf
-                                @method('DELETE')
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-  Détail
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
+                                @endforeach
+                                @endforeach
+                        </div>
+                    </div>
+                </div>
+            </tbody>
+        </table>
+    </table>
 </div>
-                               
-                              </form></td>
-
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-      </div>
-    </div>
-
-
-        @else
-            <p> Aucun produit à afficher pour le moment ! </p>
-        @endif
 
 
 @endsection

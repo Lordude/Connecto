@@ -36,7 +36,7 @@ class ServiceController extends Controller
 
         $service->save();
 
-        return redirect()->route('admin.services.index')->with('success', 'Le service a été créé ! ');
+        return redirect()->route('admin.services.index')->with('success', 'Le service a été modifié ! ');
     }
 
     public function store(Request $request)

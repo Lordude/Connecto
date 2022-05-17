@@ -5,6 +5,7 @@ namespace App\Http\Controllers\SuperAdmin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -44,6 +45,20 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        // $user = User::create($request->validate([
+
+        //     'first_name' => 'required',
+        //     'last_name' => 'required',
+        //     'email' => 'required',
+        //     'password' => 'required',
+        //     'date_hired' => 'required',
+        //     'role_id' => 'required',
+
+        // ]));
+        //  // The blog post is valid...
+
+        // $user->services()->sync($request->services);
+
         $user = new User;
 
         $user->first_name = $request->first_name;
@@ -54,8 +69,8 @@ class UserController extends Controller
         $user->role_id = $request->role_id;
 
         $user->save();
+        return redirect()->route('superadmin.users')->withSuccess('Le signalement a été créée');
 
-        return redirect()->route('superadmin.users.index')->with('success', 'Le user a été créé ! ');
     }
 
     public function destroy(Request $request, $id)

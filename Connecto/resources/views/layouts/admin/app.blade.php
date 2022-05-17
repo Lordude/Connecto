@@ -1,16 +1,15 @@
 <html>
     @include('layouts.admin.includes.head')
+    
 
     <body>
-        <div class="container mt-5">
-            @if (session('success'))
-                <div class="alert alert-sucess">
-                    {{session('success')}}
-                </div>
-            @endif
+    @include('layouts.admin.headerAdmin')
+
             
             @yield('content')
-        </div>
     </body>
+
+    @include('layouts.footer')
+    </div>
 
 </html>

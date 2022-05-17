@@ -10,6 +10,8 @@ use App\Models\Service;
 use App\Models\State;
 use App\Models\User;
 
+use function PHPUnit\Framework\at;
+
 class Incident extends Model
 {
     use HasFactory;
@@ -34,7 +36,7 @@ class Incident extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'start_date' => 'date',
+
     ];
 
 
@@ -48,9 +50,9 @@ class Incident extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function states()
+    public function state()
     {
-        return $this->belongsToMany(State::class);
+        return $this->belongsTo(State::class);
     }
     public function get_state_id($state_id)
     {
@@ -120,46 +122,110 @@ class Incident extends Model
         }
     }
 
+    public static function hasNoOpenIncident()
+    {
+        $result = DB::table('incidents')
+            ->select('incidents.end_date')
+            ->whereNull('incidents.end_date')
+            ->get();
+
+        return  $result->count() == 0;
+
+
+    }
+
     public function incidentOpenSince()
     {
-        $start_date = $this->created_at;
+        $start_date = $this->start_date;
         $result = Carbon::now()->diffInHours($start_date);
         return $result;
     }
+
+    public function incidentLengthInHour()
+    {
+        $start_date = $this->start_date;
+        $end_date = $this->end_date;
+        $incidents = Carbon::parse($end_date);
+        $result = $incidents->diffInHours($start_date);
+        return $result;
+    }
+
+    public function incidentLengthIneDays()
+    {
+        $start_date = $this->start_date;
+        $end_date = $this->end_date;
+        $incidents = Carbon::parse($end_date);
+        $result = $incidents->diffInDays($start_date);
+        return $result;
+    }
+
+    // public static function time()
+    // {
+    //     $cur_time = Carbon::now()->format('Y/m/d H:i:s');
+    //     echo "Date et heure actuelle: $cur_time";
+    // }
+
+    public static function show_historic()
+        {
+            $incidents = Incident::all();
+
+            return view('home.incidents', ['incidents' => $incidents]);
+        }
+
 
     public static function get_Uptime() {
 
         $currentTime = Carbon::now();
         $threeMonthsAgo = Carbon::now()->subDays(90);
+        $totalTime = $currentTime->diffInMinutes($threeMonthsAgo);
         $totalDownTime = 0;
         $downTime = 0;
 
 
-        $incidents = Incident::all();
+        $incidents = Incident::orderBy('start_date', 'ASC')->get() ;
 
-        foreach ($incidents as $incident) {
+                                                                                        //aller chercher tout les incidents et les classer par start_date ascendant,
+        if(count($incidents) > 0) {
+        $refIncident = $incidents->first();                                             //aller chercher le tout premier incident cree et en faire la reference ( refIncident )
+        $refIncidentStart = Carbon::parse($refIncident->start_date);
+        if(!$refIncident->end_date){
+            $refIncidentEnd = Carbon::now();
+        }else{
+            $refIncidentEnd = Carbon::parse($refIncident->end_date);
+        }
+        $downtime = $refIncidentEnd->diffInMinutes($refIncidentStart);
+        $totalDownTime += $downtime;                                                    //Ajouter le downtime de la reference au totalDownTime
 
-
-
-            $start = Carbon::parse($incident->start_date);
-            if($incident->end_date){
-                $end = Carbon::parse($incident->end_date);
-            }else{
-                $end = Carbon::now();
+        foreach($incidents as $incident){
+            if($incident->id == $refIncident->id){                                      //Skipper le refIncident dans l'iteration puisque deja ajouter au downtime
+                continue;
             }
 
+            $curIncidentStart = Carbon::parse($incident->start_date);                   //curIncident pour current Incident de l'iteration
+            if(!$incident->end_date){
+                $curIncidentEnd = Carbon::now();
+            }else{
+                $curIncidentEnd = Carbon::parse($incident->end_date);
+            }
 
-            $downTime = $end->diffInMinutes($start);
-            $totalDownTime = $downTime + $totalDownTime;
+            if(($refIncidentEnd->diffInMinutes($curIncidentStart)) > 0){                // Si le debut de curIncident est avant la fin de refIncident == overlap
+                if($curIncidentEnd->diffInMinutes($refIncidentEnd) < 0){                // Si la fin de curIncident est avant la fin de refIncident == complete overlap, completement a l'interieur de refIncident
+                    continue;                                                           // On ajoute rien au downtime vue que refIncident est deja dans le downtime
+                }
+            else{
+                $totalDownTime += $curIncidentEnd->diffInMinutes($refIncidentEnd);
+                $refIncidentStart = $curIncidentStart;                                      //fait du curIncident le nouvel refIncident
+                $refIncidentEnd = $curIncidentEnd;                                          //le debut de curIncident est a l'interieur de refIncident, on fait juste calculer la difference entre fin refIncident et fin curIncident
+                }
+            }
+            }                   // fin du foreach incidents
+
+        }
+            $totalUpTime = (($totalTime - $totalDownTime)/ $totalTime) * 100 ;
+
+            return round($totalUpTime, 2);
         }
 
-        $totalTime = $currentTime->diffInMinutes($threeMonthsAgo);
-
-        $totalUpTime = (($totalTime - $totalDownTime)/ $totalTime) * 100; 
-
-        return $totalUpTime;
-
-    }
 
 
 }

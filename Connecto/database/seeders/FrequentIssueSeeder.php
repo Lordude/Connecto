@@ -16,12 +16,13 @@ class FrequentIssueSeeder extends Seeder
     public function run()
     {
         DB::table('frequent_issues')->insert([
-            ['problem' => 'Impossible pour l\'appareil de se connecter aux serveurs de Connecto'],
-            ['problem' => 'Tous mes appareils Connecto affichent un message d\'erreur'],
-            ['problem' => 'L\'application mobile ne charge pas (symbole de chargement en continu)'],
-            ['problem' => 'Les alertes ne fonctionnent plus'],
-            ['problem' => 'Impossible d\'accéder au flux vidéo et/ou l\'historique des enregistrements (Connecto Cam)'],
-            ['problem' => 'Impossible d\'accéder aux services Connecto Pro (message d\'erreur ou symbole de chargement en continu)']
+            ['problem' => 'Mon appareil ne s\'allume pas.'],
+            ['problem' => 'Mon appareil s\'allume, mais ne se connecte pas aux services Connecto'],
+            ['problem' => 'Mon appareil s\'allume et semble se connecter, mais n\'agit pas comme souhaité'],
+            ['problem' => 'Mon service ou application ne démarre pas'],
+            ['problem' => 'Mon service ou application démarre, mais n\'est pas fonctionnelle'],
+            ['problem' => 'Mon service ou application semble fonctionner, mais n\'agit pas comme souhaité'],
+            ['problem' => 'Autre']
         ]);
     }
 }

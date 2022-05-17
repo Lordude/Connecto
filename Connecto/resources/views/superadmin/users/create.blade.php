@@ -1,10 +1,12 @@
-@extends('layouts.superadmin.app')
+@extends('layouts.admin.app')
 
 @section('title', 'Ajouter un compte')
 
 @section('content')
+<div class="col-md-9">
 
     <h1>Ajouter un compte utilisateur</h1>
+    <hr>
 
     <form method="POST" action="{{ route('superadmin.users.store') }}">
         @csrf
@@ -26,16 +28,19 @@
             <label for="date_hired" class="form-label">Date d'embauche</label>
             <input id="date_hired" name="date_hired" type="date" value="" class="form-control">
 
-            <label for="role_id" class="form-label">Accès rôle</label>
-            <input id="role_id" name="role_id" type="number" class="form-control">
-
-
+            <label for="role_id" class="form-label">Accès rôle</label> </br>
+                <select id="role_id" name="role_id">
+                    <option value="1">Administrateur</option>
+                    <option value="2">Superadministrateur</option>
+                </select>
         </div>
+        </br>
 
 
     <input type="submit" value="Enregistrer" class="btn btn-primary">
     <a href="{{ route('superadmin.users.index') }}" class="btn btn-secondary"> Retour </a>
 
     </form>
+    </div>
     
 @endsection

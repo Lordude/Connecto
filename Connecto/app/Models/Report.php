@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\ReportService;
 
 
+
 class Report extends Model
 {
     use HasFactory;
@@ -27,59 +28,57 @@ class Report extends Model
         'email',
         'detail',
         'date',
+        'created_at',
         'frequent_issue_id',
 
     ];
-/**
+    /**
      * The attributes that should be cast.
      *
      * @var array<string, string>
      */
     protected $casts = [
-        'start_date' => 'date',
+
     ];
-    
-    public function frequentIssues()
-    {
-        return $this->belongsToMany(Report::class);
-    }
+
+
 
     public function services()
     {
         return $this->belongsToMany(Service::class);
     }
+    public function frequent_issue()
+    {
+        return $this->belongsTo(frequentIssue::class);
+    }
 
     public function reports_services()
     {
-        return $this->belongsToMany(Report_Service::class);
+        return $this->belongsToMany(ReportService::class);
+    }
+
+    public static function reportOpenSince24Hour()
+    {
+        $Reports = Report::select([
+            DB::raw('HOUR(created_at) AS hour'),
+        ])
+            ->whereBetween('created_at', [Carbon::now()->subHours(24), Carbon::now()])
+            ->get();
+
+        $ReportBy24Hour = 0;
+        foreach ($Reports as $report) {
+           
+            $ReportBy24Hour = $ReportBy24Hour + 1; 
+        }
+
+        return $ReportBy24Hour;
     }
 
 
-
-
-
-public static function reportOpenSinceOneHour()
-{
-    $Report = Report::select([
-        DB::raw('HOUR(created_at) AS hour'),
-        
-
-    ])
-    ->whereBetween('created_at', [Carbon::now()->subHours(24), Carbon::now()])
-    ->get();
-
-    $ReportByHour = [];
-    foreach ($Report as $reports) {
-        $ReportByHour[$reports['hour']] = $reports['count'];
+    public function get_report_sub_hours($report_id)
+    {
+        $reports = Report::where('report_id', 'active')
+            ->where('created_at', '>', Carbon::now()->subHours(24))
+            ->get();
     }
-
-    ksort($ReportByHour);
-    return count($ReportByHour);
-
-    
 }
-
-}
-
-
-

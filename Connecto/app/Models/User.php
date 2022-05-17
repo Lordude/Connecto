@@ -53,6 +53,11 @@ class User extends Authenticatable
         return $this->hasMany(Incident::class);
     }
 
+    public function roles()
+    {
+        return $this->hasOne(Role::class);
+    }
+
 
 
 //pour l'affichage du compte de l'admin
@@ -63,6 +68,16 @@ class User extends Authenticatable
         ->first();
 
         return $resultUser; 
+    }
+
+    public function getUserRole($role_id)
+    {
+        $userRole = DB::table('users')
+        ->join('roles', 'roles.id', '=', 'users.role_id')
+        ->where("roles.id", '=', $role_id)
+        ->get();
+
+        return $userRole;
     }
 
 //pour la modification du mot de passe de l'admin

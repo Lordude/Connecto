@@ -1,0 +1,10 @@
+Lignes directrices de marque
+--
+
+Couleur principale: #1E4095
+Couleurs secondaires: nous privilégions la simplicité et les couleurs se mariant bien avec le bleu de la compagnie, soit le blanc, le noir et les teintes de gris.
+Typographie: Open Sans
+Utilisation du logo:
+	- Important: utiliser sur fond blanc uniquement;
+	- Lorsque l'espace le permet: version rectangulaire, avec texte;
+	- En espace restreint (ex.: image de profil carré médias sociaux): version carrée, sans texte.

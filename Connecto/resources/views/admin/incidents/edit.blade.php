@@ -1,46 +1,88 @@
-@include('layouts.admin.headerAdmin')
-
-@extends('layouts.admin.incidents.app')
+@extends('layouts.admin.app')
 
 @section('title', 'Modifier un statut')
 
 @section('content')
-    <h2>Modifier le statut</h2>
-    <form method="POST" action="{{ route('admin.incidents.update', ['incident' => $incident]) }}">
-        @csrf
-        @method('PUT')
-        <div>
-            @foreach ($incident->services as $service)
-                <h3>
-                    <ul class="list-group">
-                        <li class="list-group-item">Service: {{ $service->name }} </li>
-                    </ul>
-                </h3>
-            @endforeach
-            <h4 class="text-danger">Actuellement :{{ $service->get_service_state($service->id)->first()->name }}</h4>
-        </div>
-        <div>
-            <label for="name" class="form-label">État du service</label>
-            <select class="form-select" name="state" id="states">
-
-                <option value="state" selected="selected" disabled>
-                    {{ $service->get_service_state($service->id)->first()->name }}
-                </option>
-
-                @foreach ($states as $state)
-                    {{-- <option class="list-group-item"><input class="form-check-input me-1" type="checkbox" id="service"
-                            name="services[]" value="{{ $state->id }}"></option>
-                            <label>for="service">{{ $state->name }}</label></li> --}}
-                    <option value="<?= $state['id'] ?>"><?= $state['name'] ?></option>
-                @endforeach
-            </select>
-            <label for="commentary">Commentaire</label>
-            <input type="text" id="commentary" name="commentary">
-            <div>
-                </select>
+    <div class="col-md-9">
+        <h1 class="flexEditForm">Modifier le statut</h1>
+        <hr>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
             </div>
+        @endif
+        @foreach ($incident->services as $service)
+            <div class=" flexDeleteGroup">
+                @if ($incident->services->count() > 1)
+                    <button type="button" class="col btn flexDeleteRow">
+                        <form method="POST"
+                            action="{{ route('admin.services.deleteServiceFromIncidentService', $service->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" class="btn-close" value="" aria-label="Close" onclick="return confirm
+                                            ('êtes-vous sûr de vouloir remettre ce service opérationnel? Il sera alors retiré de l\'incident en cours')" />
+                        </form>
+                    </button>
+                @endif
+                <ul class="list-group list-group-flush editServiceStatus">
+                    <li class="list-group-item">{{ $service->name }}</li>
+                </ul>
+            </div>
+        @endforeach
+        <div class="flexEditForm">
+            <p class="text-info">Statut actuel :
+                {{ $incident->state->name }}
+            </p>
+            <hr />
+            <form class="editFormStatus" method="POST"
+                action="{{ route('admin.incidents.update', ['incident' => $incident]) }}">
+                @csrf
+                @method('PUT')
+                <label for="name" class="form-label">Modifier l'état à :</label>
+                <select class="form-select editState1 " name="state" id="states">
+                    <option value="{{ $incident->state_id }}" selected="selected">
+                        {{ $incident->state->name }}
+                    </option>
+                    @foreach ($states as $state)
+                        @if ($state->id != $incident->state_id)
+                            <option value="<?= $state['id'] ?>"><?= $state['name'] ?></option>
+                        @endif
+                    @endforeach
+                </select>
+                <br />
+                <label for="commentary">Commentaire</label>
+                <input class="editState2 commentary" type="textarea" id="commentary" name="commentary" size="50px" maxlength="50"
+                    value="{{ $incident->commentary }}">
+                <div>
+                    <br />
+                    <hr />
+                    {{-- <label for="date" class="text-danger">Attention: Ce champs est fait uniquement pour modifier la date et l'heure du <strong>début</strong> de l'incident</label>
+                    <?php
+                    use Carbon\Carbon;
+                    ?>
+                    /*ne fonctionne pas correctement. ça ne prend pas la dernière heure de la DB*/
+                    /* et si je fais un value ça ne modifie pas l'heure dans la DB
+                    <div class=" date" data-provide="datepicker">
+                        <input id="start_date" name="start_date" type="datetime-local" class="form-control"
+                            max="{{ Carbon::now()->format('Y-m-d\TH:i') }}" >
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-th"></span>
+                        </div>
+                    </div> --}}
+                </div>
         </div>
-        <input type="submit" value="Enregistrer" class="btn btn-primary">
-        <a href="{{ route('admin.incidents.index') }}" class="btn btn-secondary"> Retour </a>
-    </form>
+        <div class="editFormButton">
+            <input type="submit" value="Enregistrer" class="btn btn-warning text-white">
+            <a href="{{ route('admin.incidents.index') }}" class="btn text-danger"> Retour </a>
+        </div>
+        <br />
+
+        </form>
+    </div>
+    </div>
+    </div>
 @endsection

@@ -1,10 +1,12 @@
-@extends('layouts.superadmin.app')
+@extends('layouts.admin.app')
 
 @section('title', 'Ajouter un compte')
 
 @section('content')
+<div class="col-md-9">
 
     <h1>Modifier un compte utilisateur</h1>
+    <hr>
 
     <form method="POST" action="{{ route('superadmin.users.update', ['user' => $user])}}">
         @csrf 
@@ -30,6 +32,7 @@
     <a href="{{ route('superadmin.users.index') }}" class="btn btn-secondary"> Retour </a>
 
     </form>
+    </div>
 
     
 @endsection

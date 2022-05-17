@@ -19,19 +19,10 @@ class CheckSession
 
         if(session()->has('emailUser'))
         {
-
-            // if(session('TypeRole') == '2')
-            // {
-            //     return $next($request);
-            // }
-            // else{
-            //     return redirect(route('home'))->with('AccessAdminDenided','Accès refusé');
-            // }
-
             return $next($request);
         }
         else{
-            return redirect(route('home'))->with('AccessDenided','Veuillez-vous connecter pour accéder à cette page! 😊');
+            return redirect(route('home'))->with('AccessDenided','Veuillez-vous connecter pour accéder à cette page!');
         }
     }
 }

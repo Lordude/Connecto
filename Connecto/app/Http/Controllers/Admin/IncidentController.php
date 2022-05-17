@@ -10,25 +10,30 @@ use App\Models\Service;
 use App\Models\State;
 use App\Models\User;
 
-
 class IncidentController extends Controller
 {
     public function index()
     {
-        $incidents = Incident::all();
+        //affichage seulement les incidents des 30 derniers jours
+        $from = (new Carbon)->subDays(30)->startOfDay()->toDateString();
+        $to = Carbon::now();
+
+        $incidents = Incident::whereBetween('start_date', [$from, $to])->orderBy('start_date', 'desc')->get();
         $services = Service::all();
         $states = State::all();
         $users = User::all();
-        // $incident_service = IncidentService::all();
+
         return view(
             'admin.incidents.index',
-            ['incidents' => $incidents],
-            ['services' => $services],
-            ['states' => $states],
-            ['users' => $users]
-            // ['incident_service' => $incident_service]
+            [
+                'incidents' => $incidents,
+                'services' => $services,
+                'states' => $states,
+                'users' => $users
+            ]
         );
     }
+
     public function show($id)
     {
         $incident = Incident::findOrFail($id);
@@ -36,15 +41,11 @@ class IncidentController extends Controller
         return view('admin.incidents.show', [
             'incident' => $incident,
             'services' => $incident->services()->get(),
-            'states' => $incident->states()->get()
+            'states' => $incident->states()->get(),
+            // 'start_date' => Carbon::now()
         ]);
     }
 
-    /**
-     * Show the form to create a new blog post.
-     *
-     * @return \Illuminate\View\View
-     */
     public function create()
     {
         return view('admin.incidents.index', [
@@ -55,35 +56,32 @@ class IncidentController extends Controller
             'incident_service' => array(),
         ]);
     }
-    /**
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'commentary' => 'required|max:255',
-
+            'state' => 'required',
+            'services' => 'required',
+            'start_date' => 'required',
+            'emailUser' => 'required',
         ]);
 
         $incident = new Incident;
-        $incident->commentary = $request->commentary;
-        $incident->start_date = Carbon::now()->format('Y-m-d H:i:s');
 
-        $incident->commentary = $validated['commentary'];
-        $incident->user_id = User::first()->id;
-        $incident->start_date = now();
-        $incident->state_id = $request->state;
+        $incident->start_date = $validated['start_date'];
+        $incident->commentary = $request->commentary;
+        $incident->user_id = $validated['emailUser'];
+        $incident->state_id = $validated['state'];
 
         $incident->save();
 
-        $incident->services()->sync($request->services);
+        $incident->services()->sync($validated['services']);
 
         $incident->save();
 
         return redirect()->route('admin.incidents.index')->with('success', 'L\'incident a été créé!');
     }
+
 
     public function edit($id)
     {
@@ -102,16 +100,26 @@ class IncidentController extends Controller
 
     public function update(Request $request, $id)
     {
+        // $validated = $request->validate([
+        //     'state' => 'required',
+        // ]);
         $incident = Incident::findOrFail($id);
+        $incident->save();
         $incident->commentary = $request->commentary;
-        $incident->user_id = User::first()->id;
         $incident->state_id = $request->state;
-        // dd($request->state_id);
         if ($incident->state_id == 1) {
-            $incident->end_date = Carbon::now()->format('Y-m-d H:i:s');
+            $incident->end_date = now();
         }
         $incident->save();
         return redirect()->route('admin.incidents.index')->with('success', 'L\'incident a été modifié!');
     }
 
+    public function destroy(Request $request, $id)
+    {
+
+        $incidents = Incident::destroy($id);
+
+        return redirect()->route('admin.incidents.index')->with('success', 'L\'incident a été supprimé.');;
+    }
 }
+

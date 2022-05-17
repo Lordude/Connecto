@@ -17,9 +17,11 @@ class ReportServiceSeeder extends Seeder
     public function run()
     {
         DB::table('report_service')->insert([
+            ['report_id' => '1', 'service_id' => '2'],
             ['report_id' => '2', 'service_id' => '3'],
-            ['report_id' => '1', 'service_id' => '4'],
-            ['report_id' => '3', 'service_id' => '4'],
+            ['report_id' => '3', 'service_id' => '6'],
+            ['report_id' => '4', 'service_id' => '1'],
+            ['report_id' => '5', 'service_id' => '5'],
 
         ]);
     }
