@@ -95,7 +95,7 @@
 
                         <div class=" date" data-provide="datepicker">
                             <input id="start_date" name="start_date" type="datetime-local" class="form-control"
-                                max="{{ Carbon::now()->format('Y-m-d\TH:i') }}">
+                                max="{{ Carbon::now()->addMinutes(15)->format('Y-m-d\TH:i') }}">
                             <div class="input-group-addon">
                                 <span class="glyphicon glyphicon-th"></span>
                             </div>
