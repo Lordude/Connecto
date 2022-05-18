@@ -29,14 +29,14 @@
                     </thead>
                     <tbody>
                         @foreach ($services as $service)
-                            <tr>
-                                <td class="tableauAccueil serviceNameAccueilResponsive">{{ $service->name }} </td>
-                                <td class="tableauAccueil iconesServicesAccueil">{{ $service->incident }}</td>
-                                <td class="tableauAccueil iconesServicesAccueil"> <img width="42px" height="42px"
+                            <tr class="tableauAccueil">
+                                <td class="serviceNameAccueilResponsive">{{ $service->name }} </td>
+                                <td class="iconesServicesAccueil">{{ $service->incident }}</td>
+                                <td class="iconesServicesAccueil"> <img width="42px" height="42px"
                                         src="./image/{{ $service->get_service_image($service->id)->first()->image }}"
                                         alt="Icone de l\'etat du service {{ $service->get_service_image($service->id)->first()->image }}">{{ $service->get_service_state($service->id)->first()->name }}
                                 </td>
-                                <td class="tableauAccueil descriptionTableauAccueil">
+                                <td class=" descriptionTableauAccueil">
                                     {{ $service->get_service_description($service->id)->first()->description }} </td>
                             </tr>
                         @endforeach

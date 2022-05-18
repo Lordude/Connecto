@@ -424,38 +424,43 @@ h1 {
 
 /*footer*/
 
-.flexFooterLogo {
-    display: flex;
-    margin-left: 5%;
-    flex-direction: column;
-    margin-top: 5px;
-}
-
-footerLigne {
-    margin-top: 2em !important;
+footer {
+    /* margin-top: 2em !important; */
     padding: 0.8em;
     background-color: #2A4A9B;
     text-align: center;
     color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.footerAlgoritmus{
+    font-weight: lighter;
+    font-size: 0.9em;
 }
 
 @media screen and (max-width: 720px) {
+
     .TextCompte {
         display: none;
     }
 }
 
 @media screen and (max-width: 426px) {
+
     /*nav*/
+
     .sidenavDiv {
         padding-top: 0;
         padding-bottom: 20px;
     }
+
     .sidenav {
         padding: 6px;
         margin: 0.8em;
         width: 60%;
     }
+
     nav {
         display: flex;
         flex-direction: column;
@@ -470,10 +475,12 @@ footerLigne {
         border-bottom-width: 0!important;
         text-align: center;
     }
+
     .serviceNameAccueilResponsive {
         font-weight: bold;
         padding-bottom: 0!important;
     }
+
     .iconesServicesAccueil {
         display: flex;
         flex-direction: row;
@@ -486,6 +493,7 @@ footerLigne {
         width: 20px;
         height: 20px;
     }
+
     .descriptionTableauAccueil {
         font-size: 0.7em;
         margin-left: 10px;
@@ -493,24 +501,30 @@ footerLigne {
         margin-bottom: 10px;
         border-bottom: 1px solid grey!important;
     }
+
     .tailleIconeResponsive {
         width: 25px;
         height: 25px;
     }
+
     .enteteTableauResponsive {
         display: none;
     }
+
     .table>:not(:first-child) {
         border-top: none;
     }
+
     .titreBoutonAccueilRes {
         text-align: center;
         padding: 0;
         padding-top: 10px;
     }
+
     .yellowButton {
         font-size: 0.8em;
     }
+
     .tauxDisponibilite {
         text-align: center;
         font-size: 0.8em;
@@ -523,42 +537,52 @@ footerLigne {
 /* Medium devices (tablets, 768px and up)*/
 
 @media (min-width: 768px) {
+
     .reportFormPublic1 {
         flex-direction: row;
     }
+
 }
 
 @media screen and (max-width: 720px) {
+
     .TextCompte {
         display: none;
     }
+
 }
 
 @media screen and (max-width: 600px) {
+
     /*nav*/
 
     .sidenavDiv {
         padding-top: 0;
         padding-bottom: 20px;
     }
+
     .sidenav {
         padding: 6px;
         margin: 0.8em;
         width: 60%;
     }
+
     nav {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
+
     /*report public*/
 
     .reportFormPublic {
         flex-direction: column;
     }
+
     .generalForm {
         width: 100%;
     }
+
     .reportPublicClock {
         font-size: 0.8em;
         text-align: end;
@@ -566,21 +590,25 @@ footerLigne {
         border-radius: 20px;
         background-color: #e3e9f1;
     }
+
     .form-select>option {
         font-size: 0.8em;
     }
+
     /*accueil public*/
 
     .tableauAccueil {
         display: flex;
-        flex-direction: column;
-        border-bottom-width: 0!important;
-        text-align: center;
+        flex-direction: column!important;
+        border-bottom-width:0em!important;
+        text-align: center!important;
     }
+
     .serviceNameAccueilResponsive {
         font-weight: bold;
-        padding-bottom: 0!important;
+        border-bottom-width:0em!important;
     }
+
     .iconesServicesAccueil {
         display: flex;
         flex-direction: row;
@@ -588,11 +616,14 @@ footerLigne {
         justify-content: center;
         padding-top: 0!important;
         padding-bottom: 5px!important;
+        border-bottom-width:0em!important;
     }
+
     .iconesServicesAccueil>img {
         width: 20px;
         height: 20px;
     }
+
     .descriptionTableauAccueil {
         font-size: 0.7em;
         margin-left: 10px;
@@ -600,78 +631,97 @@ footerLigne {
         margin-bottom: 10px;
         border-bottom: 1px solid grey!important;
     }
+
     .tailleIconeResponsive {
         width: 25px;
         height: 25px;
     }
+
     .enteteTableauResponsive {
         display: none;
     }
+
     .table>:not(:first-child) {
         border-top: none;
     }
+
     .titreBoutonAccueilRes {
         text-align: center;
         padding: 0;
         padding-top: 10px;
     }
+
     .yellowButton {
         font-size: 0.8em;
     }
+
     .tauxDisponibilite {
         text-align: center;
         font-size: 0.8em;
     }
+
     /*historic public*/
+
     .titreHistoric {
         text-align: center;
         padding-top: 10px;
     }
+
     .ligneHistoricResponsive {
         display: flex;
         flex-direction: column-reverse;
         text-align: center;
     }
+
     .tdHistoric {
         border: none;
         display: flex;
         flex-direction: column;
     }
+
     .ref::before {
         font-weight: bold;
         color: #2a4a9b;
         content: "Service affecté:  ";
     }
+
     .ref2::before {
         font-weight: bold;
         color: #2a4a9b;
         content: "Durée :  ";
     }
+
     .ref3::before {
         font-weight: bold;
         color: #2a4a9b;
         content: "Commentaire :  ";
     }
+
     .ref4::before {
         font-weight: bold;
         color: #2a4a9b;
         content: "Début :  ";
     }
+
     .bordure {
         border-bottom: 1px solid gray;
     }
+
     .ref5::before {
         font-weight: bold;
         color: #2a4a9b;
         content: "Fin :  ";
     }
+
     #NbSignalement {
         text-align: center;
     }
+
     .dateHistoricRes {
         display: flex;
         flex-direction: column-reverse;
     }
+
     #clickable:hover {
         cursor: pointer;
     }
