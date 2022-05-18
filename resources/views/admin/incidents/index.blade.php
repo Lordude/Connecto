@@ -8,6 +8,7 @@
         <div class="row" style="margin:1em;">
         <div class="col-md-8">
         <h1>Gestion des incidents</h1>
+        <p>*Pour terminer un incident, veuillez accéder au menu "Modifier" et changer son état pour "Opérationnel"</p>
         </div>
         </div>
         <hr />
@@ -24,7 +25,6 @@
             incident</button>
         {{-- quand on clic sur 'créer un incident' le formulaire ci-dessous apparait --}}
         <div>
-            <p>*Pour terminer un incident, veuillez accéder au menu "Modifier" et changer son état pour "Opérationnel"</p>
             <form data-status='@if ($errors->any()) open @endif' id="incidentForm" method="POST"
                 action="{{ route('admin.incidents.store') }}">
                 <a href="{{ route('admin.incidents.index') }}" class="btn text-danger margeLeftHautPage">Annuler</a>
