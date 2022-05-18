@@ -8,6 +8,7 @@
         <div class="row" style="margin:1em;">
         <div class="col-md-8">
         <h1>Gestion des incidents</h1>
+        <p>*Pour terminer un incident, veuillez accéder au menu "Modifier" et changer son état pour "Opérationnel"</p>
         </div>
         </div>
         <hr />
@@ -110,6 +111,7 @@
     </div>
     {{-- vue des incidents en cours --}}
     <div>
+        
         <table class="table container-md">
             <h3 class="text-center"> Incident ouvert </h3>
             <thead>
@@ -124,7 +126,6 @@
                 <th>Option</th>
             </thead>
             <tbody>
-
                 @foreach ($incidents as $incident)
                     @if ($incident->end_date == null)
                         <tr>
@@ -164,8 +165,8 @@
                                     </form>
                             </td>
                         </tr>
-                    @endif
             </tbody>
+            @endif
             @endforeach
                 @if ($service->hasOpenIncident() == 0)
                 <p class="mx-auto text-center bg-success p-2 text-dark bg-opacity-10 rounded-2 w-50"> Aucun incidents à
