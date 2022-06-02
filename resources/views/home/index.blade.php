@@ -1,6 +1,6 @@
 @extends(session()->has('emailUser') ? 'layouts.admin.app' : 'layouts.app')
 
-@section('title', 'Bienvenu')
+@section('title', 'Bienvenue')
 
 @section('content')
     <div class="col-md-9">
